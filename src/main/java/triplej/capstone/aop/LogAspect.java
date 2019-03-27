@@ -17,6 +17,7 @@ public class LogAspect {
 
 
     // Entities 안에 Class 안에 Function 까지.
+    // AOP 동작하는 부분 PointCut 설정
     @Pointcut("execution(* triplej.capstone.entities.*.*(..))")
     public void AllEntityPointCut() {
     }
@@ -28,6 +29,7 @@ public class LogAspect {
         result = proceedingJoinPoint.proceed();
         long end = System.currentTimeMillis();
 
+        // Log 작업필요
         log.info("Code Info : " + proceedingJoinPoint.getSignature());
         log.info("Method : " + proceedingJoinPoint.getSignature().getName());
         log.info("Args : " + Arrays.toString(proceedingJoinPoint.getArgs()));

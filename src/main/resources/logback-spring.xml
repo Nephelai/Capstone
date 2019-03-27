@@ -1,8 +1,11 @@
+<!--Log 방법 설정-->
+
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanperiod="30 seconds">
     <include resource="org/springframework/boot/logging/logback/defaults.xml" />
     <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
 
+    <!--File로 저장-->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>./logs/current_data.log</file>
 
@@ -25,6 +28,7 @@
         </rollingPolicy>
     </appender>
 
+    <!--비동기 저장-->
     <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
         <appender-ref ref="FILE" />
     </appender>
