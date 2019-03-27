@@ -3,23 +3,28 @@ package triplej.capstone.entities;
 import lombok.AccessLevel;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@Entity
 public class Restaurants {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // working .identity in mysql
     private long id;
 
-    @Column()
+    @Column(length = 50, nullable = false)
     private String name;
 
-    @Column()
+    @Column(length = 11, nullable = false)
     private String phoneNumber;
 
-    @Column()
     private int totalTable;
+
+    @Builder
+    public Restaurants(String name, String phoneNumber, int totalTable) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.totalTable = totalTable;
+    }
 }
