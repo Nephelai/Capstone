@@ -7,8 +7,8 @@ class Customer extends React.Component{
         return(
             <TableRow>
             <TableCell>{this.props.rank}</TableCell>
-            <TableCell> <img src={this.props.image} alt="profile"/></TableCell>
             <TableCell>{this.props.name}</TableCell>
+            <TableCell>{this.props.currentTable}</TableCell>
             <TableCell>{this.props.table}</TableCell>
             <TableCell>{this.props.time}</TableCell>
             </TableRow>

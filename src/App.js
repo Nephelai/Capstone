@@ -1,52 +1,69 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Paper from '@material-ui/core/Paper'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';import Paper from '@material-ui/core/Paper'
 import Customer from './components/Customer'
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
-import {withStyles} from '@material-ui/core/styles'
 
-const styles=theme=>({
-  root:{
-      width:'100%',
-      marginTop:theme.spacing.unit*3,
-      overflowX:'auto'
 
+const drawerWidth = 240;
+
+const styles = theme => ({
+  root: {
+    width:'100%',
+    minwidth:1080
 
   },
-  table:{
-      minWidth:1080
-  }
-})
+  paper:{
+    marginLeft:18,
+    marginRight:18
 
+},
+table:{
+    position:"relative",
+    marginLeft:240,
+    width:"77%"
+},
 
-// const customers=[
-//   {
-//   'rank':'1',
-//   'image':'https://placeimg.com/64/64/1',
-//    'name':'짜장 ',
-//    'table':'3',
-//    'time':'4'
-//   },
-//   {
-//     'rank':'2',
-//     'image':'https://placeimg.com/64/64/2',
-//      'name':'짬뽕',
-//      'table':'4',
-//      'time':'5'
-//   }
-// ]
+appBar: {
+  zIndex: theme.zIndex.drawer + 1,
+},
+drawer: {
+  width: drawerWidth,
+  flexShrink: 0,
+  
+},
+drawerPaper: {
+  width: drawerWidth,
+},
+content: {
+  flexGrow: 1,
+  padding: theme.spacing.unit * 3,
+},
+toolbar: theme.mixins.toolbar,
+});
 
+class App extends React.Component {
+  state = {
+    customers:"",
+    open: false,
+  };
 
-class App extends Component {
-
-  state={
-    customers: ""
-  }
   componentDidMount(){
     this.callApi()
       .then(res=>this.setState({customers:res}))
@@ -58,31 +75,70 @@ class App extends Component {
     return body;
   }
 
+
   render() {
-    const {classes}=this.props;
+    const { classes } = this.props;
+  
+
     return (
-      <Paper className={classes.root}>
+      <div className={classes.root}>
+      <CssBaseline />
+      <AppBar position="fixed" className={classes.appBar}>
+        <Toolbar>
+          <Typography variant="h6" color="inherit" noWrap>
+            ALL-EAT
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        className={classes.drawer}
+        variant="permanent"
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+      >
+        <div className={classes.toolbar} />
+        <List>
+          {['한식', '일식', '중식', '양식'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {['치킨', '피자', '분식'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+        <Paper position="relative">
         <Table className={classes.table}>
           <TableHead>
           <TableRow>
             <TableCell>순위</TableCell>
-            <TableCell>가게 이미지</TableCell>
             <TableCell>가게 이름</TableCell>
-            <TableCell>테이블 수</TableCell>
+            <TableCell>현재 테이블 수</TableCell>
+            <TableCell>전체 테이블 수</TableCell>
             <TableCell>대기 시간</TableCell>
            </TableRow>
           </TableHead>
           <TableBody>
         {
-           this.state.customer? this.state.customers.map(c=>{
+           this.state.customers? this.state.customers.map(c=>{
             return(
               <Customer
               rank={c.rank}
-              image={c.image}
               name={c.name}
+              currentTable={c.currentTable}
               table={c.table}
               time={c.time}
-
               />
 
             )
@@ -94,8 +150,14 @@ class App extends Component {
         </TableBody>
         </Table>
       </Paper> 
+        </main>
+      </div>
     );
   }
 }
 
-export default withStyles(styles)(App);
+App.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles, { withTheme: true })(App);
