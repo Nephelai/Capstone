@@ -24,6 +24,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "proxy": "http://ec2-52-78-139-153.ap-northeast-2.compute.amazonaws.com"
+  ]
+ 
 }

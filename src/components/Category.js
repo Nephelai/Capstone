@@ -13,7 +13,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';import Paper from '@material-ui/core/Paper'
-import Customer from './components/Customer'
+import Customer from './Customer'
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
@@ -155,7 +155,7 @@ class Category extends React.Component {
   }
 }
 
-App.propTypes = {
+Category.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
