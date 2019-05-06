@@ -25,6 +25,6 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy":"http://capstone.c1p6fdr15njw.ap-northeast-2.rds.amazonaws.com/"
+  "proxy":"http://http://52.78.139.153:3000/"
  
 }

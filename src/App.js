@@ -200,7 +200,7 @@ const images = [
     width: '30%',
   },
   {
-    url: '/일식.jpg',
+    url: '/ilsik.jpg',
     title: '일식',
     width: '30%',
   },
