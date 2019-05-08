@@ -22,7 +22,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import InputBase from '@material-ui/core/InputBase';
 import ButtonBase from '@material-ui/core/ButtonBase';
-
+import {Link} from 'react-router-dom';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -241,8 +241,9 @@ class PersistentDrawerLeft extends React.Component {
             >
               <MenuIcon />
             </IconButton>
+            
             <Typography variant="h6" color="inherit" noWrap>
-              ALL-EAT
+             <h4><Link to="/" style={{ textDecoration: 'none', color:"white" }}>ALL-EAT</Link></h4>
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
@@ -299,8 +300,8 @@ class PersistentDrawerLeft extends React.Component {
           })}
         >
           <div className={classes.drawerHeader} />
-          {images.map(image => (
-        <ButtonBase
+          {images.map((image,index) => (
+        <ButtonBase component={Link} to={"/category/"+index}
           focusRipple
           key={image.title}
           className={classes.image}
@@ -309,7 +310,7 @@ class PersistentDrawerLeft extends React.Component {
             width: image.width,
           }}
         >
-          <span
+          <span 
             className={classes.imageSrc}
             style={{
               backgroundImage: `url(${image.url})`,

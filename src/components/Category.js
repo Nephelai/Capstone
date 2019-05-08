@@ -19,6 +19,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
+import {Link} from 'react-router-dom';
 
 
 const drawerWidth = 240;
@@ -82,7 +83,7 @@ class Category extends React.Component {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            ALL-EAT
+          <Link to="/" style={{ textDecoration: 'none', color:"white" }}>ALL-EAT</Link>
           </Typography>
         </Toolbar>
       </AppBar>
