@@ -192,18 +192,23 @@ const images = [
   {
     url: '/hansik.png',
     title: '한식',
-    width: '40%',
+    width: '33%',
   },
   {
     url: '/joongsick.jpg',
     title: '중식',
-    width: '30%',
+    width: '33%',
   },
   {
     url: '/ilsik.jpg',
     title: '일식',
-    width: '30%',
+    width: '33%',
   },
+  {
+    url: '/yangsik.jpg',
+    title: '양식',
+    width: '33%',
+  }
 ];
 
 class PersistentDrawerLeft extends React.Component {
@@ -275,23 +280,7 @@ class PersistentDrawerLeft extends React.Component {
             </IconButton>
           </div>
           <Divider />
-          <List>
-            {['한식', '일식', '중식', '양식'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {['치킨', '피자', '분식'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
+          
         </Drawer>
         
         <main
