@@ -162,7 +162,7 @@ class Category extends React.Component {
         <div className={classes.toolbar} />
         <List>
           {['한식', '일식', '중식', '양식'].map((text, index) => (
-            <ListItem component={Link} to={"/category/"+index} button key={text}>
+            <ListItem component={Link} to={"/categories/"+index} button key={text}>
               <ListItemText primary={text} style={{textAlign: 'center'}}/>
             </ListItem>
           ))}
