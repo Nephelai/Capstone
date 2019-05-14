@@ -1,4 +1,4 @@
-package triplej.capstone.entities;
+package main.java.triplej.capstone.entities;
 
 import lombok.AccessLevel;
 import lombok.*;
