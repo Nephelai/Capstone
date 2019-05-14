@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 ### logs ###
-/logs/
+/backend/logs/
 *.log
 
 # dependencies
@@ -10,10 +10,10 @@
 .pnp.js
 
 # testing
-/coverage
+/backend/coverage
 
 # production
-/build
+/backend/build
 
 # misc
 .DS_Store
@@ -28,7 +28,7 @@ yarn-error.log*
 
 HELP.md
 .gradle
-/build/
+/backend/build/
 !gradle/wrapper/gradle-wrapper.jar
 
 ### STS ###
@@ -45,7 +45,7 @@ HELP.md
 *.iws
 *.iml
 *.ipr
-/out/
+/backend/out/
 
 ### NetBeans ###
 /nbproject/private/
