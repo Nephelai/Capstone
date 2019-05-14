@@ -27,10 +27,10 @@ public class RestaurantsRepositoryTest {
     public void 저장_불러오기() {
         // given
         restaurantsRepository.save(Restaurants.builder()
-            .name("인하각")
-            .phoneNumber("01012345678")
-            .totalTable(20)
-            .build());
+                .name("인하각")
+                .phoneNumber("01012345678")
+                .totalTable(20)
+                .build());
 
         // when
         List<Restaurants> restaurantsList = restaurantsRepository.findAll();

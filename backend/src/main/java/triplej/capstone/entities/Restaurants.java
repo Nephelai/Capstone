@@ -21,13 +21,15 @@ public class Restaurants {
     @Column(length = 11, nullable = false)
     private String phoneNumber;
 
+    private int currentTable;
     private int totalTable;
 
     // 생성자
     @Builder
-    public Restaurants(String name, String phoneNumber, int totalTable) {
+    public Restaurants(String name, String phoneNumber,int currentTable, int totalTable) {
         this.name = name;
         this.phoneNumber = phoneNumber;
+        this.currentTable = currentTable;
         this.totalTable = totalTable;
     }
 }

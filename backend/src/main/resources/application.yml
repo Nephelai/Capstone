@@ -1,9 +1,9 @@
-# 환경 선택
+# select Environments
 spring:
   profiles:
     active: local
 
-# lcoal 환경
+# Local Env
 ---
 spring:
   profiles: local
