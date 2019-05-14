@@ -22,7 +22,12 @@ repositories {
 sourceSets {
     main {
         java {
-            srcDirs 'backend/src'
+            srcDir 'backend/src'
+        }
+    }
+    test {
+        java {
+            srcDir 'backend/src'
         }
     }
 }
@@ -42,5 +47,6 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     runtime 'com.h2database:h2'
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    Implementation 'org.springframework.boot:spring-boot-starter-test'
+    //testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
