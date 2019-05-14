@@ -45,7 +45,7 @@ dependencies {
     implementation 'org.slf4j:slf4j-api:1.7.25'
     implementation 'ch.qos.logback:logback-classic:1.2.3'
 
-    compileOnly 'org.projectlombok:lombok:1.18.8'
+    compile 'org.projectlombok:lombok:1.18.8'
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
     runtime 'com.h2database:h2'
     compile 'org.springframework.boot:spring-boot-starter-test'
