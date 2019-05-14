@@ -1,4 +1,5 @@
 package triplej.capstone.dtos;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -6,10 +7,11 @@ import lombok.Setter;
 @Setter
 @Getter
 @Builder
+@AllArgsConstructor
 public class RestaurantResponseDto {
-    private int rank;
+    private String rank;
     private String name;
-    private int currentTable;
-    private int totalTable;
-    private int remainTime;
+    private String currentTable;
+    private String totalTable;
+    private String remainTime;
 }
