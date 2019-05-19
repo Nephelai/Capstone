@@ -3,11 +3,12 @@ package triplej.capstone.services;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import triplej.capstone.dtos.RestaurantResponseDto;
 import triplej.capstone.entities.Restaurants;
 import triplej.capstone.entities.RestaurantsRepository;
 
-import javax.transaction.Transactional;
+
 import java.util.Optional;
 
 @AllArgsConstructor
