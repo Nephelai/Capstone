@@ -1,18 +1,23 @@
 package triplej.capstone.entities;
 
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@IdClass(Restaurants.class)
+@Getter
 public class CurrentTable {
     @Id
-    @Column(name = "restaurants_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @OneToOne(targetEntity = Restaurants.class)
+    @JoinColumn(name = "restaurants_id")
+    private long restaurant_id;
+
+    @Column
+    private Integer currentTable;
 }

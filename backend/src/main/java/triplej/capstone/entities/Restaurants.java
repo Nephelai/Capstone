@@ -6,13 +6,14 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Getter // get 함수 생성
 @Entity // Entity를 만드는 과정을 Annotation으로 해결
 public class Restaurants implements Serializable {
     // Entity 생성 PK 설정
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // working .identity in mysql
+    @JoinColumn(name = "restaurants_id")
     private long id;
 
     @Column(length = 12, nullable = false)
