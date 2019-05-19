@@ -12,7 +12,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';import Paper from '@material-ui/core/Paper'
+import MailIcon from '@material-ui/icons/Mail';
+import Paper from '@material-ui/core/Paper';
 import Customer from './Customer'
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
@@ -100,18 +101,20 @@ toolbar: theme.mixins.toolbar,
 
 class Category extends React.Component {
   state = {
-    customers:"",
-    open: false,
-  };
-
+    customers : []
+  }
   componentDidMount(){
     this.callApi()
       .then(res=>this.setState({customers:res}))
       .catch(err=>console.log(err));
+      
+     
   }
   callApi=async()=>{
-    const response =await fetch('/categories');
+    const url = 'http://52.78.139.153:8080/categories/0'; 
+    const response =await fetch(url);
     const body =await response.json();
+    console.log(body);
     return body;
   }
 
@@ -162,7 +165,7 @@ class Category extends React.Component {
         <div className={classes.toolbar} />
         <List>
           {['한식', '일식', '중식', '양식'].map((text, index) => (
-            <ListItem component={Link} to={"/category/"+index} button key={text}>
+            <ListItem component={Link} to={"/categories/"+index} button key={text}>
               <ListItemText primary={text} style={{textAlign: 'center'}}/>
             </ListItem>
           ))}
@@ -186,21 +189,15 @@ class Category extends React.Component {
            </TableRow>
           </TableHead>
           <TableBody>
-        {
-           this.state.customers? this.state.customers.map(c=>{
-            return(
-              <Customer
-              rank={c.rank}
-              name={c.name}
-              currentTable={c.currentTable}
-              table={c.table}
-              time={c.time}
-              />
-
-            )
-          }):""
-        }
-        </TableBody>
+          {this.state.customers ? 
+          <Customer rank={this.state.customers.rank} 
+           name={this.state.customers.name}
+           currentTable={this.state.customers.currentTable}
+           totalTable={this.state.customers.totalTable}
+           remainTime={this.state.customers.remainTime}
+          />
+          : ''}
+       </TableBody>
         </Table>
       </Paper> 
         </main>
