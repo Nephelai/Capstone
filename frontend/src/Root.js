@@ -9,7 +9,7 @@ class Root extends Component {
         return (
          <BrowserRouter>
                 <Route exact path="/" component={Main}/>
-                <Route path="/category" component={Category}/>
+                <Route path="/categories" component={Category}/>
         </BrowserRouter>
         );
     }

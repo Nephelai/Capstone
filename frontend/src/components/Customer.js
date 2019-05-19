@@ -9,8 +9,8 @@ class Customer extends React.Component{
             <TableCell>{this.props.rank}</TableCell>
             <TableCell>{this.props.name}</TableCell>
             <TableCell>{this.props.currentTable}</TableCell>
-            <TableCell>{this.props.table}</TableCell>
-            <TableCell>{this.props.time}</TableCell>
+            <TableCell>{this.props.totalTable}</TableCell>
+            <TableCell>{this.props.remainTime}</TableCell>
             </TableRow>
         )
     }
