@@ -15,7 +15,7 @@ public class JapaneseFood {
     private long id;
 
     @OneToOne(targetEntity = Restaurants.class)
-    @JoinColumn(name = "restaurants_id")
+    @JoinColumn(name = "restaurant_id")
     private long restaurant_id;
 
     // Column 구성

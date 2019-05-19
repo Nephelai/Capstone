@@ -15,7 +15,7 @@ public class CurrentTable {
     private long id;
 
     @OneToOne(targetEntity = Restaurants.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "restaurants_id")
+    @JoinColumn(name = "restaurant_id")
     private long restaurant_id;
 
     @Column

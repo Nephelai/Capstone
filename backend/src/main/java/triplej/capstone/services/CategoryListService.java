@@ -26,7 +26,7 @@ public class CategoryListService {
             case 1:
                 Stream<ChineseFood> tmpChinese = chineseFoodRepository.findAllDesc();
 
-                for (int i = 1; i < tmpChinese.size() + 1; i++) {
+                for (int i = 1; i < tmpChinese.map(CategoryResDto::new). + 1; i++) {
                     resCategory.add(CategoryResDto.builder()
                             .rank(String.valueOf(i))
                             .name(tmpChinese.get(i).getName())
