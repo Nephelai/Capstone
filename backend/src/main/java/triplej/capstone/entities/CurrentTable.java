@@ -14,7 +14,7 @@ public class CurrentTable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne(targetEntity = Restaurants.class)
+    @OneToOne(targetEntity = Restaurants.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurants_id")
     private long restaurant_id;
 
