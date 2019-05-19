@@ -18,10 +18,10 @@ public class RestaurantsRepositoryTest {
     @Autowired
     RestaurantsRepository restaurantsRepository;
 
-    @After
-    public void cleanup() {
-        restaurantsRepository.deleteAll();
-    }
+//    @After
+//    public void cleanup() {
+//        restaurantsRepository.deleteAll();
+//    }
 
     @Test
     public void 저장_불러오기() {
