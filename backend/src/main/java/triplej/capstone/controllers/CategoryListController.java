@@ -1,5 +1,6 @@
 package triplej.capstone.controllers;
 
+<<<<<<< HEAD
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,4 +27,7 @@ public class CategoryListController {
         restaurantResponseDto = restaurantsListService.findRestaurant();
         return restaurantResponseDto;
     }
+=======
+public class CategoryListController {
+>>>>>>> Start API Service Development
 }
