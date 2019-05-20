@@ -14,7 +14,6 @@ public class WesternFood {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne(targetEntity = Restaurants.class)
     @JoinColumn(name = "restaurant_id")
     private long restaurant_id;
 

@@ -6,7 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@AllArgsConstructor
+@NoArgsConstructor
 @Getter // get 함수 생성
 @Entity // Entity를 만드는 과정을 Annotation으로 해결
 public class Restaurants implements Serializable {

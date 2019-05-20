@@ -16,7 +16,7 @@ public class TempController {
     @Autowired
     RestaurantsListService restaurantsListService;
 
-    @GetMapping("/categories/{id}")
+    @GetMapping("/cat")
     public RestaurantResponseDto hello(@PathVariable int id) {
         // id = categoryId
         RestaurantResponseDto restaurantResponseDto;
