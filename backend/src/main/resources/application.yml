@@ -10,10 +10,12 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
   datasource:
     url: jdbc:mysql://capstone.c1p6fdr15njw.ap-northeast-2.rds.amazonaws.com:3306/test
     username: admin
     password: 12345678
+    initialization-mode: always
+    data: classpath:data.sql
