@@ -16,6 +16,7 @@ public class CurrentTable {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     @OneToOne(targetEntity = Restaurants.class)
 =======
     @OneToOne(targetEntity = Restaurants.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -24,6 +25,10 @@ public class CurrentTable {
     @OneToOne(targetEntity = Restaurants.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 >>>>>>> Sample Data Insert
     @JoinColumn(name = "restaurants_id")
+=======
+    @OneToOne(targetEntity = Restaurants.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "restaurant_id")
+>>>>>>> new_rebase_branch
     private long restaurant_id;
 
     @Column

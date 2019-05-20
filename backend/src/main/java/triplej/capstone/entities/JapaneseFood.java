@@ -15,7 +15,11 @@ public class JapaneseFood {
     private long id;
 
     @OneToOne(targetEntity = Restaurants.class)
+<<<<<<< HEAD
     @JoinColumn(name = "restaurants_id")
+=======
+    @JoinColumn(name = "restaurant_id")
+>>>>>>> new_rebase_branch
     private long restaurant_id;
 
     // Column 구성
