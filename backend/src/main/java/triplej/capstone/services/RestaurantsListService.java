@@ -19,9 +19,6 @@ public class RestaurantsListService {
     public RestaurantResponseDto findRestaurant() {
         Optional<Restaurants> restaurant = restaurantsRepository.findById(new Long(1));
         RestaurantResponseDto restaurantResponseDto = RestaurantResponseDto.builder()
-                .name(restaurant.get().getName())
-                .currentTable(Integer.toString(restaurant.get().getCurrentTable()))
-                .totalTable(Integer.toString(restaurant.get().getTotalTable()))
                 .build();
 
         restaurantResponseDto.setRank("1");
