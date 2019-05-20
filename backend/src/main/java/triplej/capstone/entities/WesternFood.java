@@ -15,7 +15,11 @@ public class WesternFood {
     private long id;
 
     @OneToOne(targetEntity = Restaurants.class)
+<<<<<<< HEAD
     @JoinColumn(name = "restaurant_id")
+=======
+    @JoinColumn(name = "restaurants_id")
+>>>>>>> Make DB Table
     private long restaurant_id;
 
     // Column 구성

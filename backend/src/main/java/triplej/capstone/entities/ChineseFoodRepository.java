@@ -1,6 +1,7 @@
 package triplej.capstone.entities;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+<<<<<<< HEAD
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
@@ -10,4 +11,8 @@ public interface ChineseFoodRepository extends JpaRepository<ChineseFood, Long> 
     @Query("SELECT * FROM  chinese_food NATURAL JOIN current_table WHERE chinese_food.restaurants_id = current_table.restaurants_id ORDER BY current_table.id DESC")
     //Stream<ChineseFood> findAllDesc();
     Stream<ChineseFood> findAllDesc();
+=======
+
+public interface ChineseFoodRepository extends JpaRepository<ChineseFood, Long> {
+>>>>>>> Make DB Table
 }
