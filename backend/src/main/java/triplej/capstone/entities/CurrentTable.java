@@ -14,21 +14,8 @@ public class CurrentTable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    @OneToOne(targetEntity = Restaurants.class)
-=======
-    @OneToOne(targetEntity = Restaurants.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
->>>>>>> 0aa7e60c7d7d91f25169e2aa27b51db2543e0c45
-=======
-    @OneToOne(targetEntity = Restaurants.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
->>>>>>> Sample Data Insert
-    @JoinColumn(name = "restaurants_id")
-=======
     @OneToOne(targetEntity = Restaurants.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurant_id")
->>>>>>> new_rebase_branch
     private long restaurant_id;
 
     @Column

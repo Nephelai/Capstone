@@ -13,11 +13,7 @@ public class Restaurants implements Serializable {
     // Entity 생성 PK 설정
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // working .identity in mysql
-<<<<<<< HEAD
-    @JoinColumn(name = "restaurants_id")
-=======
     @JoinColumn(name = "restaurant_id")
->>>>>>> new_rebase_branch
     private long id;
 
     @Column(length = 12, nullable = false)
