@@ -7,7 +7,6 @@ import Category from './components/Category';
 import * as serviceWorker from './serviceWorker';
 import {MuiThemeProvider,createMuiTheme} from '@material-ui/core/styles';
 
-
 const theme = createMuiTheme({
     typography:{
         fontFamily:'"Noto Sans KR",serif',

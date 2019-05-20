@@ -24,8 +24,7 @@ import {Link} from 'react-router-dom';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -33,6 +32,9 @@ const styles = theme => ({
     width:'100%',
     minwidth:1080
 
+  },
+  progress: {
+    margin: theme.spacing.unit * 2,
   },
   search: {
     position: 'relative',
@@ -101,14 +103,15 @@ toolbar: theme.mixins.toolbar,
 
 class Category extends React.Component {
   state = {
-    customers : []
+    customers : "",
+    completed:0
   }
   componentDidMount(){
+    this.timer=setInterval(this.progress,20);
     this.callApi()
-      .then(res=>this.setState({customers:res}))
-      .catch(err=>console.log(err));
-      
-     
+        .then(res=>this.setState({customers:res}))
+        .catch(err=>console.log(err));
+
   }
   callApi=async()=>{
     const url = 'http://52.78.139.153:8080/categories/0'; 
@@ -122,7 +125,10 @@ class Category extends React.Component {
       let nextState={};
       nextState[e.target.name]=e.taget.value;
       this.setState(nextState)
-
+  }
+  progress=()=>{
+    const {completed} =this.state;
+    this.setState({completed:completed>=100?0:completed+1})
 
   }
 
@@ -189,14 +195,25 @@ class Category extends React.Component {
            </TableRow>
           </TableHead>
           <TableBody>
-          {this.state.customers ? 
-          <Customer rank={this.state.customers.rank} 
-           name={this.state.customers.name}
-           currentTable={this.state.customers.currentTable}
-           totalTable={this.state.customers.totalTable}
-           remainTime={this.state.customers.remainTime}
-          />
-          : ''}
+          {this.state.customers.length>0 ? 
+          this.state.customers.map((c,i)=>{
+              return <Customer key={i}
+              rank={c.rank}
+              name={c.name}
+              currentTable={c.currentTable}
+              totalTable={c.totalTable}
+              remainTime={c.remainTime}
+              />}): 
+          <TableRow>
+            <TableCell colSpan="6" align="center">
+              <CircularProgress
+                   className={classes.progress}
+                   variant="determinate"
+                   value={this.state.completed}
+                 />
+            </TableCell>
+          </TableRow>
+          }
        </TableBody>
         </Table>
       </Paper> 
