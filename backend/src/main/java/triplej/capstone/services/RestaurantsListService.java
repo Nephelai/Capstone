@@ -19,11 +19,7 @@ public class RestaurantsListService {
     @Transactional
     public RestaurantResponseDto findRestaurant() {
         Optional<Restaurants> restaurant = restaurantsRepository.findById(new Long(1));
-        RestaurantResponseDto restaurantResponseDto = RestaurantResponseDto.builder()
-                .build();
-
-        restaurantResponseDto.setRank("1");
-        restaurantResponseDto.setRemainTime("5");
+        RestaurantResponseDto restaurantResponseDto = null;
 
         return restaurantResponseDto;
     }

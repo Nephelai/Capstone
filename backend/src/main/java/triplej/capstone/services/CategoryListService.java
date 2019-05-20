@@ -18,26 +18,29 @@ public class CategoryListService {
     private JapaneseFoodRepository japaneseFoodRepository;
     private KoreanFoodRepository koreanFoodRepository;
     private WesternFoodRepository westernFoodRepository;
+    private  List<CategoryResDto> resCategory;
 
     @Transactional(readOnly = true)
     public List<CategoryResDto> findRestaurantInCategory(int category_id) {
-        List<CategoryResDto> resCategory;
-        switch (category_id) {
-            case 1:
-                Stream<ChineseFood> tmpChinese = chineseFoodRepository.findAllDesc();
+        //List<CategoryResDto> resCategory;
 
-                for (int i = 1; i < tmpChinese.map(CategoryResDto::new). + 1; i++) {
-                    resCategory.add(CategoryResDto.builder()
-                            .rank(String.valueOf(i))
-                            .name(tmpChinese.get(i).getName())
-                            .currentTable(tmpChinese.get(i).)
-                            .
-                            .build()
-                    );
-                }
-
-                resCategory = CategoryResDto.builder()
-                        .name(tmpChinese.map().)
-        }
+        return resCategory;
+//        switch (category_id) {
+//            case 1:
+//                Stream<ChineseFood> tmpChinese = chineseFoodRepository.findAllDesc();
+//
+//                for (int i = 1; i < tmpChinese.map(CategoryResDto::new). + 1; i++) {
+//                    resCategory.add(CategoryResDto.builder()
+//                            .rank(String.valueOf(i))
+//                            .name(tmpChinese.get(i).getName())
+//                            .currentTable(tmpChinese.get(i).)
+//                            .
+//                            .build()
+//                    );
+//                }
+//
+//                resCategory = CategoryResDto.builder()
+//                        .name(tmpChinese.map().)
+//        }
     }
 }

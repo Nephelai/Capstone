@@ -18,9 +18,4 @@ public class CategoryListResultDto {
     private String totalTable;
     private String currentTable;
 
-    public CategoryListResultDto(ChineseFood entity) {
-        this.id = String.valueOf(entity.getId());
-
-
-    }
 }

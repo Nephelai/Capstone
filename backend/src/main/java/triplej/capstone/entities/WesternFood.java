@@ -26,5 +26,8 @@ public class WesternFood {
     private String phoneNumber;
 
     @Column
+    private int currentTable;
+
+    @Column
     private int totalTable;
 }

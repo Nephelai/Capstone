@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import triplej.capstone.dtos.CategoryResDto;
 import triplej.capstone.dtos.RestaurantResponseDto;
+import triplej.capstone.services.CategoryListService;
 import triplej.capstone.services.RestaurantsListService;
 
 import java.util.List;
@@ -16,14 +18,13 @@ import java.util.List;
 @AllArgsConstructor
 public class CategoryListController {
     @Autowired
-    RestaurantsListService restaurantsListService;
+    CategoryListService restaurantsListService;
 
     @GetMapping("/categories/{id}")
-    public List<CategoryListController> findList(@PathVariable int id) {
+    public List<CategoryResDto> findList(@PathVariable int id) {
         // id = categoryId
         RestaurantResponseDto restaurantResponseDto;
 
-        restaurantResponseDto = restaurantsListService.findRestaurant();
-        return restaurantResponseDto;
+        return restaurantsListService.findRestaurantInCategory(1);
     }
 }

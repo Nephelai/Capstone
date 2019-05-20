@@ -26,5 +26,8 @@ public class JapaneseFood {
     private String phoneNumber;
 
     @Column
+    private int currentTable;
+
+    @Column
     private int totalTable;
 }
