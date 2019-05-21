@@ -20,7 +20,7 @@ public class CategoryListService {
     private KoreanFoodRepository koreanFoodRepository;
     private WesternFoodRepository westernFoodRepository;
     private BoonsikFoodRepository boonsikFoodRepository;
-    private List<CategoryResDto> resCategory;
+
 
     @Transactional(readOnly = true)
     public List<CategoryResDto> findRestaurantInCategory(int category_id) {
