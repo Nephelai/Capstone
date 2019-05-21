@@ -19,12 +19,26 @@ public class CategoryListService {
     private JapaneseFoodRepository japaneseFoodRepository;
     private KoreanFoodRepository koreanFoodRepository;
     private WesternFoodRepository westernFoodRepository;
+    private BoonsikFoodRepository boonsikFoodRepository;
     private List<CategoryResDto> resCategory;
 
     @Transactional(readOnly = true)
     public List<CategoryResDto> findRestaurantInCategory(int category_id) {
         List<CategoryResDto> resCategory = new ArrayList<CategoryResDto>();
         switch (category_id) {
+            case 0:
+                List<KoreanFood> tmpKorean = koreanFoodRepository.findAll();
+                for(int i = 0; i < tmpKorean.size(); i++){
+                    CategoryResDto tmp = CategoryResDto.builder()
+                            .rank(String.valueOf(i + 1))
+                            .name(tmpKorean.get(i).getName())
+                            .currentTable(String.valueOf(tmpKorean.get(i).getCurrentTable()))
+                            .totalTable(String.valueOf(tmpKorean.get(i).getTotalTable()))
+                            .remainTime("10")
+                            .build();
+                    resCategory.add(tmp);
+                }
+                break;
             case 1:
                 List<ChineseFood> tmpChinese = chineseFoodRepository.findAll();
                 for(int i = 0; i < tmpChinese.size(); i++){
@@ -52,19 +66,6 @@ public class CategoryListService {
                 }
                 break;
             case 3:
-                List<KoreanFood> tmpKorean = koreanFoodRepository.findAll();
-                for(int i = 0; i < tmpKorean.size(); i++){
-                    CategoryResDto tmp = CategoryResDto.builder()
-                            .rank(String.valueOf(i + 1))
-                            .name(tmpKorean.get(i).getName())
-                            .currentTable(String.valueOf(tmpKorean.get(i).getCurrentTable()))
-                            .totalTable(String.valueOf(tmpKorean.get(i).getTotalTable()))
-                            .remainTime("10")
-                            .build();
-                    resCategory.add(tmp);
-                }
-                break;
-            case 4:
                 List<WesternFood> tmpWestern = westernFoodRepository.findAll();
                 for(int i = 0; i < tmpWestern.size(); i++){
                     CategoryResDto tmp = CategoryResDto.builder()
@@ -72,6 +73,19 @@ public class CategoryListService {
                             .name(tmpWestern.get(i).getName())
                             .currentTable(String.valueOf(tmpWestern.get(i).getCurrentTable()))
                             .totalTable(String.valueOf(tmpWestern.get(i).getTotalTable()))
+                            .remainTime("10")
+                            .build();
+                    resCategory.add(tmp);
+                }
+                break;
+            case 4:
+                List<BoonsikFood> tmpBoonsik = boonsikFoodRepository.findAll();
+                for(int i = 0; i < tmpBoonsik.size(); i++){
+                    CategoryResDto tmp = CategoryResDto.builder()
+                            .rank(String.valueOf(i + 1))
+                            .name(tmpBoonsik.get(i).getName())
+                            .currentTable(String.valueOf(tmpBoonsik.get(i).getCurrentTable()))
+                            .totalTable(String.valueOf(tmpBoonsik.get(i).getTotalTable()))
                             .remainTime("10")
                             .build();
                     resCategory.add(tmp);

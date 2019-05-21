@@ -1,20 +1,18 @@
 package triplej.capstone.entities;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter // get 함수 생성
+@NoArgsConstructor
+@Getter
 @Entity
-public class ChineseFood {
+public class BoonsikFood {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    @OneToOne
     @JoinColumn(name = "restaurant_id")
     private long restaurant_id;
 
@@ -30,4 +28,6 @@ public class ChineseFood {
 
     @Column
     private int totalTable;
+
+
 }

@@ -13,6 +13,7 @@ public class Restaurants implements Serializable {
     // Entity 생성 PK 설정
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // working .identity in mysql
+//    @OneToOne(mappedBy = "restaurant")
     @JoinColumn(name = "restaurant_id")
     private long id;
 
