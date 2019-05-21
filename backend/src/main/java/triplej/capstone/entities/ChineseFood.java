@@ -14,7 +14,7 @@ public class ChineseFood {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    @OneToOne
+//    @OneToOne(mappedBy = "restaurant")
     @JoinColumn(name = "restaurant_id")
     private long restaurant_id;
 
