@@ -114,7 +114,7 @@ class Category extends React.Component {
 
   }
   callApi=async()=>{
-    const url = 'http://52.78.139.153:8080/categories/0'; 
+    const url = 'http://52.78.139.153:8080/categories/1'; 
     const response =await fetch(url);
     const body =await response.json();
     console.log(body);

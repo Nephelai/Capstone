@@ -8,7 +8,7 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import { RenderAfterNavermapsLoaded, NaverMap } from 'react-naver-maps'
+import NaverMap from 'react-naver-map'
 
 const DialogTitle = withStyles(theme => ({
   root: {
@@ -40,6 +40,7 @@ const DialogContent = withStyles(theme => ({
   root: {
     margin: 0,
     padding: theme.spacing.unit * 2,
+    
   },
 }))(MuiDialogContent);
 
@@ -54,6 +55,7 @@ const DialogActions = withStyles(theme => ({
 class CustomizedDialogDemo extends React.Component {
   state = {
     open: false,
+    bounds: undefined
   };
   handleClickOpen = () => {
     this.setState({
@@ -64,6 +66,16 @@ class CustomizedDialogDemo extends React.Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+  handleBoundChange = bounds => {
+    this.setState({bounds})
+  }
+
+  handleMapClick = e => {
+    console.log(e)
+  }
+
+  handleMapInit = (map, naver) => {}
+
   
   render() {
     return (
@@ -81,25 +93,23 @@ class CustomizedDialogDemo extends React.Component {
           </DialogTitle>
           <DialogContent>
          <h1>가게 이름</h1>
-          ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ
-          </DialogContent>
-          <DialogContent>
+          인하각
           <h2>가게이미지</h2>
-          </DialogContent>
-          <DialogContent>
-          <h2>가게위치</h2>
-          <RenderAfterNavermapsLoaded clientId="od2tgm7ydu">
-  <NaverMap 
-    mapDivId={'maps-getting-started-uncontrolled'} // default: react-naver-map
-    style={{
-      width: '100%',
-      height: '400px',
-    }}
-    defaultCenter={{ lat: 37.3595704, lng: 127.105399 }}
-    defaultZoom={10}
-  />
-</RenderAfterNavermapsLoaded>
       
+          <h2>가게위치</h2>
+         
+          <NaverMap
+            clientId="od2tgm7ydu"
+            style={{width: '600px', height: '400px'}}
+            initialPosition={{lat: 37.451320, lng: 126.658038}}
+            initialZoom={15}
+            // initialBounds={bounds}
+            ncp
+            onInit={this.handleMapInit}
+            onBoundChange={this.handleBoundChange}
+            onMapClick={this.handleMapClick}
+          />
+              
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
