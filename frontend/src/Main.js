@@ -208,6 +208,16 @@ const images = [
     url: '/yangsik.jpg',
     title: '양식',
     width: '33%',
+  },
+  {
+    url: '/boonsick.jpg',
+    title: '분식',
+    width: '33%',
+  },
+  {
+    url: '/total.png',
+    title: '전체',
+    width: '33%',
   }
 ];
 
