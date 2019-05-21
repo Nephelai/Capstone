@@ -14,8 +14,7 @@ public class ChineseFood {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne(targetEntity = Restaurants.class)
-    @JoinColumn(name = "restaurants_id")
+    @JoinColumn(name = "restaurant_id")
     private long restaurant_id;
 
     // Column 구성
@@ -24,6 +23,9 @@ public class ChineseFood {
 
     @Column(length = 11, nullable = false)
     private String phoneNumber;
+
+    @Column
+    private int currentTable;
 
     @Column
     private int totalTable;
