@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Main from './Main';
 import Root from './Root';
-import Category from './components/Category';
 import * as serviceWorker from './serviceWorker';
 import {MuiThemeProvider,createMuiTheme} from '@material-ui/core/styles';
 

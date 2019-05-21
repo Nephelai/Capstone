@@ -114,7 +114,7 @@ class Category extends React.Component {
 
   }
   callApi=async()=>{
-    const url = 'http://52.78.139.153:8080/categories/1'; 
+    const url = 'http://52.78.139.153:8080/categories/5'; 
     const response =await fetch(url);
     const body =await response.json();
     console.log(body);
@@ -170,7 +170,7 @@ class Category extends React.Component {
       >
         <div className={classes.toolbar} />
         <List>
-          {['한식', '일식', '중식', '양식'].map((text, index) => (
+          {['한식', '중식', '일식', '양식','분식','전체'].map((text, index) => (
             <ListItem component={Link} to={"/categories/"+index} button key={text}>
               <ListItemText primary={text} style={{textAlign: 'center'}}/>
             </ListItem>
