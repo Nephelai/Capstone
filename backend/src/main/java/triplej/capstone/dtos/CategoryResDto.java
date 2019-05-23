@@ -13,4 +13,6 @@ public class CategoryResDto {
     private String currentTable;
     private String totalTable;
     private String remainTime;
+    private String lat;
+    private String lng;
 }
