@@ -14,13 +14,8 @@ class Root extends Component {
     render() {
         return (
          <BrowserRouter>
+                <Route exact path="/categories/:categoriesId" component={Category1}/>
                 <Route exact path="/" component={Main}/>
-                <Route exact path="/categories/0" component={Category1}/>
-                <Route exact path="/categories/1" component={Category2}/>
-                <Route exact path="/categories/2" component={Category3}/>
-                <Route exact path="/categories/3" component={Category4}/>
-                <Route exact path="/categories/4" component={Category5}/>
-                <Route exact path="/categories/5" component={Category6}/>
                 <Route path="/modal" component={Modal}/>    
         </BrowserRouter>
         );

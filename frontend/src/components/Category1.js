@@ -25,6 +25,7 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Modal from "./Modal" 
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -102,19 +103,27 @@ toolbar: theme.mixins.toolbar,
 });
 
 class Category extends React.Component {
-  state = {
+  constructor(props)
+  {
+    super(props);
+    this.state = {
     customers : "",
-    completed:0
+    completed:0,
   }
+  //this.stateRefresh = this.stateRefresh.bind(this);
+
+}
+
   componentDidMount(){
     this.timer=setInterval(this.progress,20);
     this.callApi()
         .then(res=>this.setState({customers:res}))
         .catch(err=>console.log(err));
-
+    //this.stateRefresh();
   }
   callApi=async()=>{
-    const url = 'http://52.78.139.153:8080/categories/0'; 
+    const {categoriesId}=this.props.match.params
+    const url=`http://15.164.118.54:8080/categories/${categoriesId}`
     const response =await fetch(url);
     const body =await response.json();
     console.log(body);
@@ -131,10 +140,19 @@ class Category extends React.Component {
     this.setState({completed:completed>=100?0:completed+1})
 
   }
+  // stateRefresh() {
 
+  //   this.setState({
+  //   customers: '',
+  //   completed: 0,    
+  //   });
+  //   this.callApi()
+  // .then(res => this.setState({customers: res}))
+  // .catch(err => console.log(err));
+//}
   render() {
     const { classes } = this.props;
-  
+    
 
     return (
       <div className={classes.root}>
