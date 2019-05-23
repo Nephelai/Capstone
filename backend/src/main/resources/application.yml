@@ -19,3 +19,8 @@ spring:
     password: 12345678
     initialization-mode: never
     data: classpath:data.sql
+    hikari:
+      maximum-pool-size: 100
+      minimum-idle: 20
+      idle-timeout: 10000
+      connection-timeout: 30000

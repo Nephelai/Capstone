@@ -18,12 +18,12 @@ import java.util.List;
 @AllArgsConstructor
 public class CategoryListController {
     @Autowired
-    CategoryListService restaurantsListService;
+    CategoryListService categoryListService;
 
     @GetMapping("/categories/{id}")
     public List<CategoryResDto> findList(@PathVariable(name = "id") int id) {
         // id = categoryId
 
-        return restaurantsListService.findRestaurantInCategory(id);
+        return categoryListService.findRestaurantInCategory(id);
     }
 }
