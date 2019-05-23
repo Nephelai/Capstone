@@ -21,7 +21,7 @@ public class CategoryListController {
     CategoryListService restaurantsListService;
 
     @GetMapping("/categories/{id}")
-    public List<CategoryResDto> findList(@PathVariable int id) {
+    public List<CategoryResDto> findList(@PathVariable(name = "id") int id) {
         // id = categoryId
 
         return restaurantsListService.findRestaurantInCategory(id);

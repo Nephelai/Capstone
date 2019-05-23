@@ -18,27 +18,26 @@ public class RestaurantsRepositoryTest {
     @Autowired
     RestaurantsRepository restaurantsRepository;
 
-//    @After
-//    public void cleanup() {
-//        restaurantsRepository.deleteAll();
-//    }
+    private Restaurants restaurants;
+
+    @After
+    public void cleanup() {
+        restaurantsRepository.delete(restaurants);
+    }
 
     @Test
     public void 저장_불러오기() {
         // given
-        restaurantsRepository.save(Restaurants.builder()
-                .name("인하각")
-                .phoneNumber("01012345678")
-                .totalTable(20)
-                .build());
+        restaurants = Restaurants.builder()
+                .category("KoreanFood")
+                .build();
+        restaurantsRepository.save(restaurants);
 
         // when
         List<Restaurants> restaurantsList = restaurantsRepository.findAll();
 
         // then
-        Restaurants restaurants = restaurantsList.get(0);
-        assertThat(restaurants.getName(), is("인하각"));
-        assertThat(restaurants.getPhoneNumber(), is("01012345678"));
-        assertThat(restaurants.getTotalTable(), is(20));
+        Restaurants tmp_rest = restaurantsList.get(restaurantsList.size() - 1);
+        assertThat(tmp_rest.getCategory(), is("KoreanFood"));
     }
 }
