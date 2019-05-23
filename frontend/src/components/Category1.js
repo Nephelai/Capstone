@@ -109,21 +109,21 @@ class Category extends React.Component {
     this.state = {
     customers : "",
     completed:0,
+
   }
-  //this.stateRefresh = this.stateRefresh.bind(this);
+  this.stateRefresh = this.stateRefresh.bind(this);
 
 }
 
   componentDidMount(){
     this.timer=setInterval(this.progress,20);
     this.callApi()
-        .then(res=>this.setState({customers:res}))
-        .catch(err=>console.log(err));
-    //this.stateRefresh();
+         .then(res=>this.setState({customers:res}))
+         .catch(err=>console.log(err));
+   
   }
   callApi=async()=>{
-    const {categoriesId}=this.props.match.params
-    const url=`http://15.164.118.54:8080/categories/${categoriesId}`
+    const url=`http://15.164.118.54:8080/categories/${this.props.match.params.categoriesId}`
     const response =await fetch(url);
     const body =await response.json();
     console.log(body);
@@ -140,16 +140,18 @@ class Category extends React.Component {
     this.setState({completed:completed>=100?0:completed+1})
 
   }
-  // stateRefresh() {
+  stateRefresh() {
+    this.setState({
+      customers: '',
+      completed: 0
+      });
+  this.callApi()
+  .then(res => this.setState({customers: res}))
+  .catch(err => console.log(err));
+}
 
-  //   this.setState({
-  //   customers: '',
-  //   completed: 0,    
-  //   });
-  //   this.callApi()
-  // .then(res => this.setState({customers: res}))
-  // .catch(err => console.log(err));
-//}
+
+
   render() {
     const { classes } = this.props;
     
@@ -189,7 +191,7 @@ class Category extends React.Component {
         <div className={classes.toolbar} />
         <List>
           {['한식', '중식', '일식', '양식','분식','전체'].map((text, index) => (
-            <ListItem component={Link} to={"/categories/"+index} button key={text}>
+            <ListItem component={Link} to={"/categories/"+index} onClick={this.stateRefresh} button key={text}>
               <ListItemText primary={text} style={{textAlign: 'center'}}/>
             </ListItem>
           ))}
