@@ -29,5 +29,9 @@ public class BoonsikFood {
     @Column
     private int totalTable;
 
+    @Column
+    private double lat;
 
+    @Column
+    private double lng;
 }

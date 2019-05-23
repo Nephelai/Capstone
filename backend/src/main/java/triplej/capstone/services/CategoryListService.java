@@ -35,6 +35,8 @@ public class CategoryListService {
                             .currentTable(String.valueOf(tmpKorean.get(i).getCurrentTable()))
                             .totalTable(String.valueOf(tmpKorean.get(i).getTotalTable()))
                             .remainTime("10")
+                            .lat(String.valueOf(tmpKorean.get(i).getLat()))
+                            .lng(String.valueOf(tmpKorean.get(i).getLng()))
                             .build();
                     resCategory.add(tmp);
                 }
@@ -48,6 +50,8 @@ public class CategoryListService {
                             .currentTable(String.valueOf(tmpChinese.get(i).getCurrentTable()))
                             .totalTable(String.valueOf(tmpChinese.get(i).getTotalTable()))
                             .remainTime("10")
+                            .lat(String.valueOf(tmpChinese.get(i).getLat()))
+                            .lng(String.valueOf(tmpChinese.get(i).getLng()))
                             .build();
                     resCategory.add(tmp);
                 }
@@ -61,6 +65,8 @@ public class CategoryListService {
                             .currentTable(String.valueOf(tmpJapanese.get(i).getCurrentTable()))
                             .totalTable(String.valueOf(tmpJapanese.get(i).getTotalTable()))
                             .remainTime("10")
+                            .lat(String.valueOf(tmpJapanese.get(i).getLat()))
+                            .lng(String.valueOf(tmpJapanese.get(i).getLng()))
                             .build();
                     resCategory.add(tmp);
                 }
@@ -74,6 +80,8 @@ public class CategoryListService {
                             .currentTable(String.valueOf(tmpWestern.get(i).getCurrentTable()))
                             .totalTable(String.valueOf(tmpWestern.get(i).getTotalTable()))
                             .remainTime("10")
+                            .lat(String.valueOf(tmpWestern.get(i).getLat()))
+                            .lng(String.valueOf(tmpWestern.get(i).getLng()))
                             .build();
                     resCategory.add(tmp);
                 }
@@ -87,6 +95,8 @@ public class CategoryListService {
                             .currentTable(String.valueOf(tmpBoonsik.get(i).getCurrentTable()))
                             .totalTable(String.valueOf(tmpBoonsik.get(i).getTotalTable()))
                             .remainTime("10")
+                            .lat(String.valueOf(tmpBoonsik.get(i).getLat()))
+                            .lng(String.valueOf(tmpBoonsik.get(i).getLng()))
                             .build();
                     resCategory.add(tmp);
                 }
