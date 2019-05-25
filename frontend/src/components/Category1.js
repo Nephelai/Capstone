@@ -118,14 +118,10 @@ class Category extends React.Component {
 
   componentDidMount(){
     this.timer=setInterval(this.progress,20);
-    this.callApi()
-         .then(res=>this.setState({customers:res,lastId:this.props.match.params.categoriesId}))
-         .catch(err=>console.log(err));
-   
+    this.timer2=setInterval(this.stateRefresh,10000)
   }
   componentDidUpdate(prevProps, prevState) {
     if (this.state.lastId !== prevProps.match.params.categoriesId) {
-      console.log(3000)
       this.stateRefresh();
     }
   }
