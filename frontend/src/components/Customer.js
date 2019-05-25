@@ -12,7 +12,7 @@ class Customer extends React.Component{
             <TableCell>{this.props.currentTable}</TableCell>
             <TableCell>{this.props.totalTable}</TableCell>
             <TableCell>{this.props.remainTime}</TableCell>
-            <TableCell><Modal/></TableCell>
+            <TableCell><Modal name={this.props.name} lat={this.props.lat} lng={this.props.lng}/></TableCell>
             </TableRow>
         )
     }

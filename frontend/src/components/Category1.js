@@ -86,6 +86,7 @@ table:{
 
 appBar: {
   zIndex: theme.zIndex.drawer + 1,
+  backgroundColor: "#d11507"
 },
 drawer: {
   width: drawerWidth,
@@ -109,7 +110,7 @@ class Category extends React.Component {
     this.state = {
     customers : "",
     completed:0,
-
+    lastId: null 
   }
   this.stateRefresh = this.stateRefresh.bind(this);
 
@@ -118,11 +119,27 @@ class Category extends React.Component {
   componentDidMount(){
     this.timer=setInterval(this.progress,20);
     this.callApi()
-         .then(res=>this.setState({customers:res}))
+         .then(res=>this.setState({customers:res,lastId:this.props.match.params.categoriesId}))
          .catch(err=>console.log(err));
    
   }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.lastId !== prevProps.match.params.categoriesId) {
+      console.log(3000)
+      this.stateRefresh();
+    }
+  }
+  static getDerivedStateFromProps(nextProps, prevState) {
+   
+    if (prevState.lastId !== nextProps.match.params.categoriesId) {
+      console.log(nextProps.match.params.categoriesId)
+      return { lastId:  nextProps.match.params.categoriesId};
+    }
+    
+    return null;
+    }
   callApi=async()=>{
+    console.log(this.props.match.params.categoriesId)
     const url=`http://15.164.118.54:8080/categories/${this.props.match.params.categoriesId}`
     const response =await fetch(url);
     const body =await response.json();
@@ -191,7 +208,7 @@ class Category extends React.Component {
         <div className={classes.toolbar} />
         <List>
           {['한식', '중식', '일식', '양식','분식','전체'].map((text, index) => (
-            <ListItem component={Link} to={"/categories/"+index} onClick={this.stateRefresh} button key={text}>
+            <ListItem component={Link} to={"/categories/"+index} button key={text}>
               <ListItemText primary={text} style={{textAlign: 'center'}}/>
             </ListItem>
           ))}
@@ -212,18 +229,24 @@ class Category extends React.Component {
             <TableCell>현재 테이블 수</TableCell>
             <TableCell>전체 테이블 수</TableCell>
             <TableCell>대기 시간</TableCell>
+            <TableCell>상세 정보</TableCell>
            </TableRow>
           </TableHead>
           <TableBody>
           {this.state.customers.length>0 ? 
           this.state.customers.map((c,i)=>{
-              return <Customer key={i}
+              return <Customer stateRefresh={this.stateRefresh}
+              key={i}
               rank={c.rank}
               name={c.name}
               currentTable={c.currentTable}
               totalTable={c.totalTable}
               remainTime={c.remainTime}
-              />}): 
+              lat={c.lat}
+              lng={c.lng}
+              />
+            })
+            : 
           <TableRow>
             <TableCell colSpan="6" align="center">
               <CircularProgress

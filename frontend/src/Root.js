@@ -11,7 +11,6 @@ class Root extends Component {
          <BrowserRouter>
                 <Route exact path="/categories/:categoriesId" component={Category1}/>
                 <Route exact path="/" component={Main}/>
-                <Route path="/modal" component={Modal}/>    
         </BrowserRouter>
         );
     }
