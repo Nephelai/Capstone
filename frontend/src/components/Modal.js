@@ -8,7 +8,24 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import NaverMap from 'react-naver-map'
+import NaverMap,{Marker} from 'react-naver-map'
+import markerPng from './marker_v2.png'
+
+
+const CustomMarker = ({lat, lng, onClick}) => (
+  <Marker
+    lat={lat}
+    lng={lng}
+    onClick={onClick}
+    icon={{
+      url: markerPng,
+      size: {width: 24, height: 32},
+      scaledSize: {width: 24, height: 32},
+      anchor: {x: 12, y: 32},
+    }}
+    shape={{coords: [0, 12, 12, 0, 24, 12, 12, 32, 0, 12], type: 'poly'}}
+  />
+)
 
 const DialogTitle = withStyles(theme => ({
   root: {
@@ -55,7 +72,9 @@ const DialogActions = withStyles(theme => ({
 class CustomizedDialogDemo extends React.Component {
   state = {
     open: false,
-    bounds: undefined
+    bounds: undefined,
+    markers: [{id: 1, lat: this.props.lat, lng: this.props.lng}],
+    
   };
   handleClickOpen = () => {
     this.setState({
@@ -66,18 +85,24 @@ class CustomizedDialogDemo extends React.Component {
   handleClose = () => {
     this.setState({ open: false });
   };
-  handleBoundChange = bounds => {
-    this.setState({bounds})
+  handleMapClick = e => {
+    const lat = e.latlng.lat()
+    const lng = e.latlng.lng()
+    this.setState(state => ({markers: [{id: +new Date(), lat, lng}]}))
   }
 
-  handleMapClick = e => {
-    console.log(e)
+  handleMarkerClick = (id, e) => {
+    this.setState(state => ({markers: state.markers.filter(m => m.id !== id)}))
   }
+
 
   handleMapInit = (map, naver) => {}
 
   
   render() {
+    const {markers} = this.state
+    const firstMarker = markers[0]
+
     return (
       <div>
         <Button variant="outlined" color="secondary" onClick={this.handleClickOpen}>
@@ -92,23 +117,30 @@ class CustomizedDialogDemo extends React.Component {
             상세 정보
           </DialogTitle>
           <DialogContent>
-         <h1>가게 이름</h1>
-          인하각
-          <h2>가게이미지</h2>
-      
+         <h1>{this.props.name}</h1>
+          
           <h2>가게위치</h2>
          
-          <NaverMap
-            clientId="od2tgm7ydu"
-            style={{width: '600px', height: '400px'}}
-            initialPosition={{lat: 37.451320, lng: 126.658038}}
-            initialZoom={15}
-            // initialBounds={bounds}
-            ncp
-            onInit={this.handleMapInit}
-            onBoundChange={this.handleBoundChange}
-            onMapClick={this.handleMapClick}
-          />
+          <div>
+  
+        <NaverMap
+          ncp
+          clientId="od2tgm7ydu"
+          style={{width: '500px', height: '500px'}}
+          initialPosition={firstMarker}
+          initialZoom={15}
+          onMapClick={this.handleMapClick}>
+          {markers.map(marker => (
+            <CustomMarker
+              key={marker.id}
+              lat={marker.lat}
+              lng={marker.lng}
+              onClick={e => this.handleMarkerClick(marker.id, e)}
+            />
+          ))}
+          <Marker lat={this.props.lat} lng={this.props.lng} />
+        </NaverMap>
+      </div>
               
           </DialogContent>
           <DialogActions>

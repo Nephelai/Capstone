@@ -25,6 +25,7 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Modal from "./Modal" 
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -85,6 +86,7 @@ table:{
 
 appBar: {
   zIndex: theme.zIndex.drawer + 1,
+  backgroundColor: "#d11507"
 },
 drawer: {
   width: drawerWidth,
@@ -102,19 +104,39 @@ toolbar: theme.mixins.toolbar,
 });
 
 class Category extends React.Component {
-  state = {
+  constructor(props)
+  {
+    super(props);
+    this.state = {
     customers : "",
-    completed:0
+    completed:0,
+    lastId: null 
   }
+  this.stateRefresh = this.stateRefresh.bind(this);
+
+}
+
   componentDidMount(){
     this.timer=setInterval(this.progress,20);
-    this.callApi()
-        .then(res=>this.setState({customers:res}))
-        .catch(err=>console.log(err));
-
+    this.timer2=setInterval(this.stateRefresh,10000)
   }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.lastId !== prevProps.match.params.categoriesId) {
+      this.stateRefresh();
+    }
+  }
+  static getDerivedStateFromProps(nextProps, prevState) {
+   
+    if (prevState.lastId !== nextProps.match.params.categoriesId) {
+      console.log(nextProps.match.params.categoriesId)
+      return { lastId:  nextProps.match.params.categoriesId};
+    }
+    
+    return null;
+    }
   callApi=async()=>{
-    const url = 'http://52.78.139.153:8080/categories/0'; 
+    console.log(this.props.match.params.categoriesId)
+    const url=`http://15.164.118.54:8080/categories/${this.props.match.params.categoriesId}`
     const response =await fetch(url);
     const body =await response.json();
     console.log(body);
@@ -131,10 +153,21 @@ class Category extends React.Component {
     this.setState({completed:completed>=100?0:completed+1})
 
   }
+  stateRefresh() {
+    this.setState({
+      customers: '',
+      completed: 0
+      });
+  this.callApi()
+  .then(res => this.setState({customers: res}))
+  .catch(err => console.log(err));
+}
+
+
 
   render() {
     const { classes } = this.props;
-  
+    
 
     return (
       <div className={classes.root}>
@@ -192,18 +225,24 @@ class Category extends React.Component {
             <TableCell>현재 테이블 수</TableCell>
             <TableCell>전체 테이블 수</TableCell>
             <TableCell>대기 시간</TableCell>
+            <TableCell>상세 정보</TableCell>
            </TableRow>
           </TableHead>
           <TableBody>
           {this.state.customers.length>0 ? 
           this.state.customers.map((c,i)=>{
-              return <Customer key={i}
+              return <Customer stateRefresh={this.stateRefresh}
+              key={i}
               rank={c.rank}
               name={c.name}
               currentTable={c.currentTable}
               totalTable={c.totalTable}
               remainTime={c.remainTime}
-              />}): 
+              lat={c.lat}
+              lng={c.lng}
+              />
+            })
+            : 
           <TableRow>
             <TableCell colSpan="6" align="center">
               <CircularProgress
