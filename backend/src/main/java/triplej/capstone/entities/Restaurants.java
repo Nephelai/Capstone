@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 @NoArgsConstructor
 @Getter // get 함수 생성
+@Setter
 @Entity // Entity를 만드는 과정을 Annotation으로 해결
 public class Restaurants implements Serializable {
     // Entity 생성 PK 설정

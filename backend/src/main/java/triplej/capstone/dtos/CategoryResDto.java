@@ -15,4 +15,5 @@ public class CategoryResDto {
     private String remainTime;
     private String lat;
     private String lng;
+    private String phoneNumber;
 }

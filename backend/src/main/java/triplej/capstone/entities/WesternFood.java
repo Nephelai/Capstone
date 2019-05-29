@@ -3,11 +3,13 @@ package triplej.capstone.entities;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter // get 함수 생성
+@Setter
 @Entity
 public class WesternFood {
     @Id
