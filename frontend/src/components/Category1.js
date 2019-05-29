@@ -9,10 +9,7 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import Paper from '@material-ui/core/Paper';
 import Customer from './Customer'
 import Table from '@material-ui/core/Table';
@@ -25,9 +22,19 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Modal from "./Modal" 
+import Pagination from "react-js-pagination";
 const drawerWidth = 240;
 
+const customStyles = {
+  ul: {
+      backgroundColor: 'white'
+  },
+ 
+  a: {
+      color: 'blue',
+      border: '1px solid black'
+  }
+};
 const styles = theme => ({
   root: {
     width:'100%',
@@ -110,19 +117,23 @@ class Category extends React.Component {
     this.state = {
     customers : "",
     completed:0,
-    lastId: null 
+    lastId: null,
+    activePage: 1,
+    searchKeyword: ''
+    
   }
   this.stateRefresh = this.stateRefresh.bind(this);
-
+   
 }
 
   componentDidMount(){
+    this.stateRefresh()
+    this.timer2=setInterval(this.stateRefresh,600000)
     this.timer=setInterval(this.progress,20);
-    this.timer2=setInterval(this.stateRefresh,10000)
   }
   componentDidUpdate(prevProps, prevState) {
     if (this.state.lastId !== prevProps.match.params.categoriesId) {
-      this.stateRefresh();
+      this.stateRefresh();  
     }
   }
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -145,7 +156,7 @@ class Category extends React.Component {
 
   handlevaluechange=(e)=>{
       let nextState={};
-      nextState[e.target.name]=e.taget.value;
+      nextState[e.target.name]=e.target.value;
       this.setState(nextState)
   }
   progress=()=>{
@@ -161,12 +172,32 @@ class Category extends React.Component {
   this.callApi()
   .then(res => this.setState({customers: res}))
   .catch(err => console.log(err));
+  
 }
 
 
 
   render() {
     const { classes } = this.props;
+    const filteredComponents = (data) => {
+      data = data.filter((c) => {
+      return c.name.indexOf(this.state.searchKeyword) > -1;
+      });
+    
+      return data.sort((a,b)=>a.totalTable-b.totalTable).map((c,i)=>{
+        return <Customer stateRefresh={this.stateRefresh}
+        key={i}
+        rank={i+1}
+        name={c.name}
+        currentTable={c.currentTable}
+        totalTable={c.totalTable}
+        remainTime={c.remainTime}
+        lat={c.lat}
+        lng={c.lng}
+        />
+      })
+    }
+      
     
 
     return (
@@ -182,11 +213,14 @@ class Category extends React.Component {
                 <SearchIcon />
               </div>
               <InputBase 
-                placeholder="Search…"
+                placeholder="검색"
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,
                 }}
+                name="searchKeyword"
+                value={this.state.searchKeyword}
+                onChange={this.handlevaluechange}
               />
             </div>
         </Toolbar>
@@ -230,19 +264,7 @@ class Category extends React.Component {
           </TableHead>
           <TableBody>
           {this.state.customers.length>0 ? 
-          this.state.customers.map((c,i)=>{
-              return <Customer stateRefresh={this.stateRefresh}
-              key={i}
-              rank={c.rank}
-              name={c.name}
-              currentTable={c.currentTable}
-              totalTable={c.totalTable}
-              remainTime={c.remainTime}
-              lat={c.lat}
-              lng={c.lng}
-              />
-            })
-            : 
+         filteredComponents(this.state.customers) : 
           <TableRow>
             <TableCell colSpan="6" align="center">
               <CircularProgress
@@ -255,7 +277,9 @@ class Category extends React.Component {
           }
        </TableBody>
         </Table>
-      </Paper> 
+      
+      </Paper>
+       
         </main>
     
       </div>
