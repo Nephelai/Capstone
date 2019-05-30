@@ -35,11 +35,6 @@ public class CurrentTableService {
                         res.setName(tmpKorean.get(i).getName());
                         res.setCurrentTable(tmpKorean.get(i).getCurrentTable());
                         res.setTotalTable(tmpKorean.get(i).getTotalTable());
-//                        res.builder()
-//                                .name(tmpKorean.get(i).getName())
-//                                .totalTable(tmpKorean.get(i).getTotalTable())
-//                                .currentTable(tmpKorean.get(i).getCurrentTable())
-//                                .build();
                         break;
                     }
                 }
@@ -119,11 +114,6 @@ public class CurrentTableService {
                         res.setName(tmpKorean.get(i).getName());
                         res.setCurrentTable(tmpKorean.get(i).getCurrentTable());
                         res.setTotalTable(tmpKorean.get(i).getTotalTable());
-//                        res.builder()
-//                                .name(tmpKorean.get(i).getName())
-//                                .totalTable(tmpKorean.get(i).getTotalTable())
-//                                .currentTable(tmpKorean.get(i).getCurrentTable())
-//                                .build();
                         break;
                     }
                 }

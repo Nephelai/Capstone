@@ -33,4 +33,4 @@ insert into restaurants (category) values ('WesternFood');
 insert into western_food (name, phone_number, total_table, restaurant_id, current_table, lat, lng) values ('맘스터치', '01000000034', 16, 12, 1, 37.451735, 126.657368);
 
 insert into restaurants (category) values ('BoonsikFood');
-insert into boonsik_food (name, phone_number, total_table, restaurant_id, current_table, lat, lng) values ('떡볶이에 반한 닭', '01000000031', 40, 9, 4, 37.451153, 126.659023);
+insert into boonsik_food (name, phone_number, total_table, restaurant_id, current_table, lat, lng) values ('떡볶이에 반한 닭', '01000000041', 40, 9, 4, 37.451153, 126.659023);
