@@ -18,7 +18,7 @@ public class CurrentTableService {
     private KoreanFoodRepository koreanFoodRepository;
     private WesternFoodRepository westernFoodRepository;
 
-    @Transactional(readOnly = true)
+    @Transactional
     public CurrentTableDto increment(int category_id, int id) {
         CurrentTableDto res = new CurrentTableDto();
 
@@ -37,7 +37,6 @@ public class CurrentTableService {
                         break;
                     }
                 }
-
                 break;
             case 1:
                 List<ChineseFood> tmpChinese = chineseFoodRepository.findAll();
@@ -102,7 +101,7 @@ public class CurrentTableService {
         return res;
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public CurrentTableDto decrement(int category_id, int id) {
         CurrentTableDto res = new CurrentTableDto();
 
