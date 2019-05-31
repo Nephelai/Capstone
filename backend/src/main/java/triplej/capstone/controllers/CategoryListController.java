@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import triplej.capstone.dtos.CategoryResDto;
-import triplej.capstone.dtos.RestaurantResponseDto;
 import triplej.capstone.services.CategoryListService;
-import triplej.capstone.services.RestaurantsListService;
 
 import java.util.List;
 

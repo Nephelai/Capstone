@@ -20,6 +20,9 @@ public class CategoryListService {
     private KoreanFoodRepository koreanFoodRepository;
     private WesternFoodRepository westernFoodRepository;
     private BoonsikFoodRepository boonsikFoodRepository;
+    private RestaurantsRepository restaurantsRepository;
+
+    RestaurantListService restaurantListService;
 
 
     @Transactional(readOnly = true)
@@ -100,6 +103,14 @@ public class CategoryListService {
                             .build();
                     resCategory.add(tmp);
                 }
+                break;
+            case 6:
+                List<Restaurants> tmpRestaurant = restaurantsRepository.findAll();
+                for(int i = 0; i < tmpRestaurant.size(); i++){
+                    CategoryResDto tmp = restaurantListService.findInfo(tmpRestaurant.get(i).getCategory(), tmpRestaurant.get(i).getId());
+                    resCategory.add(tmp);
+                }
+
                 break;
             default:
                 break;

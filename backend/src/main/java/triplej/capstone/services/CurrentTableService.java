@@ -4,9 +4,7 @@ package triplej.capstone.services;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import triplej.capstone.dtos.CategoryResDto;
 import triplej.capstone.dtos.CurrentTableDto;
-import triplej.capstone.dtos.RestaurantResponseDto;
 import triplej.capstone.entities.*;
 
 import java.util.List;
@@ -29,7 +27,7 @@ public class CurrentTableService {
             case 0:
                 List<KoreanFood> tmpKorean = koreanFoodRepository.findAll();
                 for(int i = 0; i < tmpKorean.size(); i++){
-                    if(tmpKorean.get(i).getId() == id) {
+                    if(tmpKorean.get(i).getRestaurant_id() == id) {
                         updateCurrent = tmpKorean.get(i).getCurrentTable() + 1;
                         tmpKorean.get(i).setCurrentTable(updateCurrent);
                         res.setName(tmpKorean.get(i).getName());
@@ -43,7 +41,7 @@ public class CurrentTableService {
             case 1:
                 List<ChineseFood> tmpChinese = chineseFoodRepository.findAll();
                 for(int i = 0; i < tmpChinese.size(); i++){
-                    if(tmpChinese.get(i).getId() == id) {
+                    if(tmpChinese.get(i).getRestaurant_id() == id) {
                         updateCurrent = tmpChinese.get(i).getCurrentTable() + 1;
                         tmpChinese.get(i).setCurrentTable(updateCurrent);
                         res.setName(tmpChinese.get(i).getName());
@@ -56,7 +54,7 @@ public class CurrentTableService {
             case 2:
                 List<JapaneseFood> tmpJapanese = japaneseFoodRepository.findAll();
                 for(int i = 0; i < tmpJapanese.size(); i++){
-                    if(tmpJapanese.get(i).getId() == id) {
+                    if(tmpJapanese.get(i).getRestaurant_id() == id) {
                         updateCurrent = tmpJapanese.get(i).getCurrentTable() + 1;
                         tmpJapanese.get(i).setCurrentTable(updateCurrent);
                         res.setName(tmpJapanese.get(i).getName());
@@ -69,7 +67,7 @@ public class CurrentTableService {
             case 3:
                 List<WesternFood> tmpWestern = westernFoodRepository.findAll();
                 for(int i = 0; i < tmpWestern.size(); i++){
-                    if(tmpWestern.get(i).getId() == id) {
+                    if(tmpWestern.get(i).getRestaurant_id() == id) {
                         updateCurrent = tmpWestern.get(i).getCurrentTable() + 1;
                         tmpWestern.get(i).setCurrentTable(updateCurrent);
                         res.setName(tmpWestern.get(i).getName());
@@ -82,7 +80,7 @@ public class CurrentTableService {
             case 4:
                 List<BoonsikFood> tmpBoonsik = boonsikFoodRepository.findAll();
                 for(int i = 0; i < tmpBoonsik.size(); i++){
-                    if(tmpBoonsik.get(i).getId() == id) {
+                    if(tmpBoonsik.get(i).getRestaurant_id() == id) {
                         updateCurrent = tmpBoonsik.get(i).getCurrentTable() + 1;
                         tmpBoonsik.get(i).setCurrentTable(updateCurrent);
                         res.setName(tmpBoonsik.get(i).getName());
@@ -108,7 +106,7 @@ public class CurrentTableService {
             case 0:
                 List<KoreanFood> tmpKorean = koreanFoodRepository.findAll();
                 for(int i = 0; i < tmpKorean.size(); i++){
-                    if(tmpKorean.get(i).getId() == id) {
+                    if(tmpKorean.get(i).getRestaurant_id() == id) {
                         updateCurrent = tmpKorean.get(i).getCurrentTable() - 1;
                         tmpKorean.get(i).setCurrentTable(updateCurrent);
                         res.setName(tmpKorean.get(i).getName());
@@ -122,7 +120,7 @@ public class CurrentTableService {
             case 1:
                 List<ChineseFood> tmpChinese = chineseFoodRepository.findAll();
                 for(int i = 0; i < tmpChinese.size(); i++){
-                    if(tmpChinese.get(i).getId() == id) {
+                    if(tmpChinese.get(i).getRestaurant_id() == id) {
                         updateCurrent = tmpChinese.get(i).getCurrentTable() - 1;
                         tmpChinese.get(i).setCurrentTable(updateCurrent);
                         res.setName(tmpChinese.get(i).getName());
@@ -135,7 +133,7 @@ public class CurrentTableService {
             case 2:
                 List<JapaneseFood> tmpJapanese = japaneseFoodRepository.findAll();
                 for(int i = 0; i < tmpJapanese.size(); i++){
-                    if(tmpJapanese.get(i).getId() == id) {
+                    if(tmpJapanese.get(i).getRestaurant_id() == id) {
                         updateCurrent = tmpJapanese.get(i).getCurrentTable() - 1;
                         tmpJapanese.get(i).setCurrentTable(updateCurrent);
                         res.setName(tmpJapanese.get(i).getName());
@@ -148,7 +146,7 @@ public class CurrentTableService {
             case 3:
                 List<WesternFood> tmpWestern = westernFoodRepository.findAll();
                 for(int i = 0; i < tmpWestern.size(); i++){
-                    if(tmpWestern.get(i).getId() == id) {
+                    if(tmpWestern.get(i).getRestaurant_id() == id) {
                         updateCurrent = tmpWestern.get(i).getCurrentTable() - 1;
                         tmpWestern.get(i).setCurrentTable(updateCurrent);
                         res.setName(tmpWestern.get(i).getName());
@@ -161,7 +159,7 @@ public class CurrentTableService {
             case 4:
                 List<BoonsikFood> tmpBoonsik = boonsikFoodRepository.findAll();
                 for(int i = 0; i < tmpBoonsik.size(); i++){
-                    if(tmpBoonsik.get(i).getId() == id) {
+                    if(tmpBoonsik.get(i).getRestaurant_id() == id) {
                         updateCurrent = tmpBoonsik.get(i).getCurrentTable() - 1;
                         tmpBoonsik.get(i).setCurrentTable(updateCurrent);
                         res.setName(tmpBoonsik.get(i).getName());
