@@ -30,6 +30,7 @@ public class CurrentTableService {
                     if(tmpKorean.get(i).getRestaurant_id() == id) {
                         updateCurrent = tmpKorean.get(i).getCurrentTable() + 1;
                         tmpKorean.get(i).setCurrentTable(updateCurrent);
+                        koreanFoodRepository.save(tmpKorean.get(i));
                         res.setName(tmpKorean.get(i).getName());
                         res.setCurrentTable(tmpKorean.get(i).getCurrentTable());
                         res.setTotalTable(tmpKorean.get(i).getTotalTable());
@@ -44,6 +45,7 @@ public class CurrentTableService {
                     if(tmpChinese.get(i).getRestaurant_id() == id) {
                         updateCurrent = tmpChinese.get(i).getCurrentTable() + 1;
                         tmpChinese.get(i).setCurrentTable(updateCurrent);
+                        chineseFoodRepository.save(tmpChinese.get(i));
                         res.setName(tmpChinese.get(i).getName());
                         res.setCurrentTable(tmpChinese.get(i).getCurrentTable());
                         res.setTotalTable(tmpChinese.get(i).getTotalTable());
@@ -57,6 +59,7 @@ public class CurrentTableService {
                     if(tmpJapanese.get(i).getRestaurant_id() == id) {
                         updateCurrent = tmpJapanese.get(i).getCurrentTable() + 1;
                         tmpJapanese.get(i).setCurrentTable(updateCurrent);
+                        japaneseFoodRepository.save(tmpJapanese.get(i));
                         res.setName(tmpJapanese.get(i).getName());
                         res.setCurrentTable(tmpJapanese.get(i).getCurrentTable());
                         res.setTotalTable(tmpJapanese.get(i).getTotalTable());
@@ -70,6 +73,7 @@ public class CurrentTableService {
                     if(tmpWestern.get(i).getRestaurant_id() == id) {
                         updateCurrent = tmpWestern.get(i).getCurrentTable() + 1;
                         tmpWestern.get(i).setCurrentTable(updateCurrent);
+                        westernFoodRepository.save(tmpWestern.get(i));
                         res.setName(tmpWestern.get(i).getName());
                         res.setCurrentTable(tmpWestern.get(i).getCurrentTable());
                         res.setTotalTable(tmpWestern.get(i).getTotalTable());
@@ -83,6 +87,7 @@ public class CurrentTableService {
                     if(tmpBoonsik.get(i).getRestaurant_id() == id) {
                         updateCurrent = tmpBoonsik.get(i).getCurrentTable() + 1;
                         tmpBoonsik.get(i).setCurrentTable(updateCurrent);
+                        boonsikFoodRepository.save(tmpBoonsik.get(i));
                         res.setName(tmpBoonsik.get(i).getName());
                         res.setCurrentTable(tmpBoonsik.get(i).getCurrentTable());
                         res.setTotalTable(tmpBoonsik.get(i).getTotalTable());
@@ -109,6 +114,7 @@ public class CurrentTableService {
                     if(tmpKorean.get(i).getRestaurant_id() == id) {
                         updateCurrent = tmpKorean.get(i).getCurrentTable() - 1;
                         tmpKorean.get(i).setCurrentTable(updateCurrent);
+                        koreanFoodRepository.save(tmpKorean.get(i));
                         res.setName(tmpKorean.get(i).getName());
                         res.setCurrentTable(tmpKorean.get(i).getCurrentTable());
                         res.setTotalTable(tmpKorean.get(i).getTotalTable());
@@ -123,6 +129,7 @@ public class CurrentTableService {
                     if(tmpChinese.get(i).getRestaurant_id() == id) {
                         updateCurrent = tmpChinese.get(i).getCurrentTable() - 1;
                         tmpChinese.get(i).setCurrentTable(updateCurrent);
+                        chineseFoodRepository.save(tmpChinese.get(i));
                         res.setName(tmpChinese.get(i).getName());
                         res.setCurrentTable(tmpChinese.get(i).getCurrentTable());
                         res.setTotalTable(tmpChinese.get(i).getTotalTable());
@@ -136,6 +143,7 @@ public class CurrentTableService {
                     if(tmpJapanese.get(i).getRestaurant_id() == id) {
                         updateCurrent = tmpJapanese.get(i).getCurrentTable() - 1;
                         tmpJapanese.get(i).setCurrentTable(updateCurrent);
+                        japaneseFoodRepository.save(tmpJapanese.get(i));
                         res.setName(tmpJapanese.get(i).getName());
                         res.setCurrentTable(tmpJapanese.get(i).getCurrentTable());
                         res.setTotalTable(tmpJapanese.get(i).getTotalTable());
@@ -149,6 +157,7 @@ public class CurrentTableService {
                     if(tmpWestern.get(i).getRestaurant_id() == id) {
                         updateCurrent = tmpWestern.get(i).getCurrentTable() - 1;
                         tmpWestern.get(i).setCurrentTable(updateCurrent);
+                        westernFoodRepository.save(tmpWestern.get(i));
                         res.setName(tmpWestern.get(i).getName());
                         res.setCurrentTable(tmpWestern.get(i).getCurrentTable());
                         res.setTotalTable(tmpWestern.get(i).getTotalTable());
@@ -162,6 +171,7 @@ public class CurrentTableService {
                     if(tmpBoonsik.get(i).getRestaurant_id() == id) {
                         updateCurrent = tmpBoonsik.get(i).getCurrentTable() - 1;
                         tmpBoonsik.get(i).setCurrentTable(updateCurrent);
+                        boonsikFoodRepository.save(tmpBoonsik.get(i));
                         res.setName(tmpBoonsik.get(i).getName());
                         res.setCurrentTable(tmpBoonsik.get(i).getCurrentTable());
                         res.setTotalTable(tmpBoonsik.get(i).getTotalTable());
