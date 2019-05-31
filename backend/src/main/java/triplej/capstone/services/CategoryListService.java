@@ -30,13 +30,13 @@ public class CategoryListService {
                 List<KoreanFood> tmpKorean = koreanFoodRepository.findAll();
                 for(int i = 0; i < tmpKorean.size(); i++){
                     CategoryResDto tmp = CategoryResDto.builder()
-                            .rank(String.valueOf(i + 1))
                             .name(tmpKorean.get(i).getName())
                             .currentTable(String.valueOf(tmpKorean.get(i).getCurrentTable()))
                             .totalTable(String.valueOf(tmpKorean.get(i).getTotalTable()))
                             .remainTime("10")
                             .lat(String.valueOf(tmpKorean.get(i).getLat()))
                             .lng(String.valueOf(tmpKorean.get(i).getLng()))
+                            .phoneNumber(tmpKorean.get(i).getPhoneNumber())
                             .build();
                     resCategory.add(tmp);
                 }
@@ -45,13 +45,13 @@ public class CategoryListService {
                 List<ChineseFood> tmpChinese = chineseFoodRepository.findAll();
                 for(int i = 0; i < tmpChinese.size(); i++){
                     CategoryResDto tmp = CategoryResDto.builder()
-                            .rank(String.valueOf(i + 1))
                             .name(tmpChinese.get(i).getName())
                             .currentTable(String.valueOf(tmpChinese.get(i).getCurrentTable()))
                             .totalTable(String.valueOf(tmpChinese.get(i).getTotalTable()))
                             .remainTime("10")
                             .lat(String.valueOf(tmpChinese.get(i).getLat()))
                             .lng(String.valueOf(tmpChinese.get(i).getLng()))
+                            .phoneNumber(tmpChinese.get(i).getPhoneNumber())
                             .build();
                     resCategory.add(tmp);
                 }
@@ -60,13 +60,13 @@ public class CategoryListService {
                 List<JapaneseFood> tmpJapanese = japaneseFoodRepository.findAll();
                 for(int i = 0; i < tmpJapanese.size(); i++){
                     CategoryResDto tmp = CategoryResDto.builder()
-                            .rank(String.valueOf(i + 1))
                             .name(tmpJapanese.get(i).getName())
                             .currentTable(String.valueOf(tmpJapanese.get(i).getCurrentTable()))
                             .totalTable(String.valueOf(tmpJapanese.get(i).getTotalTable()))
                             .remainTime("10")
                             .lat(String.valueOf(tmpJapanese.get(i).getLat()))
                             .lng(String.valueOf(tmpJapanese.get(i).getLng()))
+                            .phoneNumber(tmpJapanese.get(i).getPhoneNumber())
                             .build();
                     resCategory.add(tmp);
                 }
@@ -75,13 +75,13 @@ public class CategoryListService {
                 List<WesternFood> tmpWestern = westernFoodRepository.findAll();
                 for(int i = 0; i < tmpWestern.size(); i++){
                     CategoryResDto tmp = CategoryResDto.builder()
-                            .rank(String.valueOf(i + 1))
                             .name(tmpWestern.get(i).getName())
                             .currentTable(String.valueOf(tmpWestern.get(i).getCurrentTable()))
                             .totalTable(String.valueOf(tmpWestern.get(i).getTotalTable()))
                             .remainTime("10")
                             .lat(String.valueOf(tmpWestern.get(i).getLat()))
                             .lng(String.valueOf(tmpWestern.get(i).getLng()))
+                            .phoneNumber(tmpWestern.get(i).getPhoneNumber())
                             .build();
                     resCategory.add(tmp);
                 }
@@ -90,13 +90,13 @@ public class CategoryListService {
                 List<BoonsikFood> tmpBoonsik = boonsikFoodRepository.findAll();
                 for(int i = 0; i < tmpBoonsik.size(); i++){
                     CategoryResDto tmp = CategoryResDto.builder()
-                            .rank(String.valueOf(i + 1))
                             .name(tmpBoonsik.get(i).getName())
                             .currentTable(String.valueOf(tmpBoonsik.get(i).getCurrentTable()))
                             .totalTable(String.valueOf(tmpBoonsik.get(i).getTotalTable()))
                             .remainTime("10")
                             .lat(String.valueOf(tmpBoonsik.get(i).getLat()))
                             .lng(String.valueOf(tmpBoonsik.get(i).getLng()))
+                            .phoneNumber(tmpBoonsik.get(i).getPhoneNumber())
                             .build();
                     resCategory.add(tmp);
                 }
