@@ -104,7 +104,7 @@ public class CategoryListService {
                     resCategory.add(tmp);
                 }
                 break;
-            case 6:
+            case 5:
                 List<Restaurants> tmpRestaurant = restaurantsRepository.findAll();
                 for(int i = 0; i < tmpRestaurant.size(); i++){
                     CategoryResDto tmp = restaurantListService.findInfo(tmpRestaurant.get(i).getCategory(), tmpRestaurant.get(i).getId());
