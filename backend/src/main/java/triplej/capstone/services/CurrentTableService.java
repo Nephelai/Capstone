@@ -28,6 +28,9 @@ public class CurrentTableService {
                 List<KoreanFood> tmpKorean = koreanFoodRepository.findAll();
                 for(int i = 0; i < tmpKorean.size(); i++){
                     if(tmpKorean.get(i).getRestaurant_id() == id) {
+                        if(tmpKorean.get(i).getCurrentTable() + 1 > tmpKorean.get(i).getTotalTable()){
+                            return res;
+                        }
                         updateCurrent = tmpKorean.get(i).getCurrentTable() + 1;
                         tmpKorean.get(i).setCurrentTable(updateCurrent);
                         koreanFoodRepository.save(tmpKorean.get(i));
@@ -42,6 +45,9 @@ public class CurrentTableService {
                 List<ChineseFood> tmpChinese = chineseFoodRepository.findAll();
                 for(int i = 0; i < tmpChinese.size(); i++){
                     if(tmpChinese.get(i).getRestaurant_id() == id) {
+                        if(tmpChinese.get(i).getCurrentTable() + 1 > tmpChinese.get(i).getTotalTable()){
+                            return res;
+                        }
                         updateCurrent = tmpChinese.get(i).getCurrentTable() + 1;
                         tmpChinese.get(i).setCurrentTable(updateCurrent);
                         chineseFoodRepository.save(tmpChinese.get(i));
@@ -56,6 +62,9 @@ public class CurrentTableService {
                 List<JapaneseFood> tmpJapanese = japaneseFoodRepository.findAll();
                 for(int i = 0; i < tmpJapanese.size(); i++){
                     if(tmpJapanese.get(i).getRestaurant_id() == id) {
+                        if(tmpJapanese.get(i).getCurrentTable() + 1 > tmpJapanese.get(i).getTotalTable()){
+                            return res;
+                        }
                         updateCurrent = tmpJapanese.get(i).getCurrentTable() + 1;
                         tmpJapanese.get(i).setCurrentTable(updateCurrent);
                         japaneseFoodRepository.save(tmpJapanese.get(i));
@@ -70,6 +79,9 @@ public class CurrentTableService {
                 List<WesternFood> tmpWestern = westernFoodRepository.findAll();
                 for(int i = 0; i < tmpWestern.size(); i++){
                     if(tmpWestern.get(i).getRestaurant_id() == id) {
+                        if(tmpWestern.get(i).getCurrentTable() + 1 > tmpWestern.get(i).getTotalTable()){
+                            return res;
+                        }
                         updateCurrent = tmpWestern.get(i).getCurrentTable() + 1;
                         tmpWestern.get(i).setCurrentTable(updateCurrent);
                         westernFoodRepository.save(tmpWestern.get(i));
@@ -84,6 +96,9 @@ public class CurrentTableService {
                 List<BoonsikFood> tmpBoonsik = boonsikFoodRepository.findAll();
                 for(int i = 0; i < tmpBoonsik.size(); i++){
                     if(tmpBoonsik.get(i).getRestaurant_id() == id) {
+                        if(tmpBoonsik.get(i).getCurrentTable() + 1 > tmpBoonsik.get(i).getTotalTable()){
+                            return res;
+                        }
                         updateCurrent = tmpBoonsik.get(i).getCurrentTable() + 1;
                         tmpBoonsik.get(i).setCurrentTable(updateCurrent);
                         boonsikFoodRepository.save(tmpBoonsik.get(i));
@@ -111,6 +126,9 @@ public class CurrentTableService {
                 List<KoreanFood> tmpKorean = koreanFoodRepository.findAll();
                 for(int i = 0; i < tmpKorean.size(); i++){
                     if(tmpKorean.get(i).getRestaurant_id() == id) {
+                        if(tmpKorean.get(i).getCurrentTable() - 1 < 0) {
+                            return res;
+                        }
                         updateCurrent = tmpKorean.get(i).getCurrentTable() - 1;
                         tmpKorean.get(i).setCurrentTable(updateCurrent);
                         koreanFoodRepository.save(tmpKorean.get(i));
@@ -126,6 +144,9 @@ public class CurrentTableService {
                 List<ChineseFood> tmpChinese = chineseFoodRepository.findAll();
                 for(int i = 0; i < tmpChinese.size(); i++){
                     if(tmpChinese.get(i).getRestaurant_id() == id) {
+                        if(tmpChinese.get(i).getCurrentTable() - 1 < 0) {
+                            return res;
+                        }
                         updateCurrent = tmpChinese.get(i).getCurrentTable() - 1;
                         tmpChinese.get(i).setCurrentTable(updateCurrent);
                         chineseFoodRepository.save(tmpChinese.get(i));
@@ -140,6 +161,9 @@ public class CurrentTableService {
                 List<JapaneseFood> tmpJapanese = japaneseFoodRepository.findAll();
                 for(int i = 0; i < tmpJapanese.size(); i++){
                     if(tmpJapanese.get(i).getRestaurant_id() == id) {
+                        if(tmpJapanese.get(i).getCurrentTable() - 1 < 0) {
+                            return res;
+                        }
                         updateCurrent = tmpJapanese.get(i).getCurrentTable() - 1;
                         tmpJapanese.get(i).setCurrentTable(updateCurrent);
                         japaneseFoodRepository.save(tmpJapanese.get(i));
@@ -154,6 +178,9 @@ public class CurrentTableService {
                 List<WesternFood> tmpWestern = westernFoodRepository.findAll();
                 for(int i = 0; i < tmpWestern.size(); i++){
                     if(tmpWestern.get(i).getRestaurant_id() == id) {
+                        if(tmpWestern.get(i).getCurrentTable() - 1 < 0) {
+                            return res;
+                        }
                         updateCurrent = tmpWestern.get(i).getCurrentTable() - 1;
                         tmpWestern.get(i).setCurrentTable(updateCurrent);
                         westernFoodRepository.save(tmpWestern.get(i));
@@ -168,6 +195,9 @@ public class CurrentTableService {
                 List<BoonsikFood> tmpBoonsik = boonsikFoodRepository.findAll();
                 for(int i = 0; i < tmpBoonsik.size(); i++){
                     if(tmpBoonsik.get(i).getRestaurant_id() == id) {
+                        if(tmpBoonsik.get(i).getCurrentTable() - 1 < 0) {
+                            return res;
+                        }
                         updateCurrent = tmpBoonsik.get(i).getCurrentTable() - 1;
                         tmpBoonsik.get(i).setCurrentTable(updateCurrent);
                         boonsikFoodRepository.save(tmpBoonsik.get(i));
