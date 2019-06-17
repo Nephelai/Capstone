@@ -56,7 +56,6 @@ const styles = theme => ({
     width: theme.spacing.unit * 9,
     height: '100%',
     position: 'absolute',
-    pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -263,7 +262,7 @@ class PersistentDrawerLeft extends React.Component {
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
-                <SearchIcon />
+              <Link to="/categories/4" style={{ textDecoration: 'none', color:"white" }}><SearchIcon/></Link>
               </div>
               <InputBase 
                 placeholder="Search…"

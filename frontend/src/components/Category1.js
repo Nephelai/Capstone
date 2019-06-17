@@ -9,10 +9,7 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import Paper from '@material-ui/core/Paper';
 import Customer from './Customer'
 import Table from '@material-ui/core/Table';
@@ -25,9 +22,19 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Modal from "./Modal" 
+
 const drawerWidth = 240;
 
+const customStyles = {
+  ul: {
+      backgroundColor: 'white'
+  },
+ 
+  a: {
+      color: 'blue',
+      border: '1px solid black'
+  }
+};
 const styles = theme => ({
   root: {
     width:'100%',
@@ -55,7 +62,7 @@ const styles = theme => ({
     width: theme.spacing.unit * 9,
     height: '100%',
     position: 'absolute',
-    pointerEvents: 'none',
+    //pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -110,19 +117,25 @@ class Category extends React.Component {
     this.state = {
     customers : "",
     completed:0,
-    lastId: null 
+    lastId: null,
+    activePage: 1,
+    searchKeyword: '',
+    currentPage: 1,//현재 페이지
+    todosPerPage: 10//한 페이지에 보여줄 페이지 목록
   }
+  this.InputBase=React.createRef()
   this.stateRefresh = this.stateRefresh.bind(this);
-
+   
 }
 
   componentDidMount(){
+    this.stateRefresh()
+    //this.timer2=setInterval(this.stateRefresh,600000)
     this.timer=setInterval(this.progress,20);
-    this.timer2=setInterval(this.stateRefresh,10000)
   }
   componentDidUpdate(prevProps, prevState) {
     if (this.state.lastId !== prevProps.match.params.categoriesId) {
-      this.stateRefresh();
+      this.stateRefresh();  
     }
   }
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -131,7 +144,7 @@ class Category extends React.Component {
       console.log(nextProps.match.params.categoriesId)
       return { lastId:  nextProps.match.params.categoriesId};
     }
-    
+
     return null;
     }
   callApi=async()=>{
@@ -145,8 +158,13 @@ class Category extends React.Component {
 
   handlevaluechange=(e)=>{
       let nextState={};
-      nextState[e.target.name]=e.taget.value;
+      nextState[e.target.name]=e.target.value;
       this.setState(nextState)
+  }
+  handleClick=(event)=> {
+    this.setState({
+      currentPage: Number(event.target.id)
+    });
   }
   progress=()=>{
     const {completed} =this.state;
@@ -156,17 +174,70 @@ class Category extends React.Component {
   stateRefresh() {
     this.setState({
       customers: '',
-      completed: 0
+      completed: 0,
+      frank:''
       });
   this.callApi()
   .then(res => this.setState({customers: res}))
   .catch(err => console.log(err));
-}
-
-
+      }
+    
 
   render() {
     const { classes } = this.props;
+    const { todos, currentPage, todosPerPage } = this.state;
+  
+      
+      const indexOfLastTodo = currentPage * todosPerPage;//ex) 1*10
+      const indexOfFirstTodo = indexOfLastTodo - todosPerPage;//ex)10-10
+      
+      const pageNumbers = [];
+      for (let i = 1; i <= Math.ceil(this.state.customers.length / todosPerPage); i++) {
+        pageNumbers.push(i);
+      }
+      const renderPageNumbers = pageNumbers.map(number => {
+        return (
+          <div style={ {marginLeft:240}}>
+          <button
+            key={number}
+            id={number}
+            onClick={this.handleClick}
+            style={{float:"left"}}
+          >
+            {number}
+          </button> 
+          </div>
+        );
+      });
+      
+      
+      const filteredComponents = (data) => {
+      let arr=[]
+      data =data.sort((a,b)=>(b.totalTable-b.currentTable)-(a.totalTable-a.currentTable))
+      for(var i=1;i<=data.length;i++)
+      {
+          arr[data[i-1].phoneNumber]=i
+      }
+            
+      data = data.filter((c) => {
+        return c.name.indexOf(this.state.searchKeyword) > -1;
+      });
+      const currentTodos = data.slice(indexOfFirstTodo, indexOfLastTodo);//[0,10)까지 배열 잘름
+  
+      return currentTodos.map((c,i)=>{
+        return <Customer stateRefresh={this.stateRefresh}
+        key={i}
+        rank={arr[c.phoneNumber]}
+        name={c.name}
+        currentTable={c.totalTable-c.currentTable}
+        totalTable={c.totalTable}
+        remainTime={c.remainTime}
+        lat={c.lat}
+        lng={c.lng}
+        />
+      })
+    }
+      
     
 
     return (
@@ -177,16 +248,20 @@ class Category extends React.Component {
           <Typography variant="h6" color="inherit" noWrap>
           <Link to="/" style={{ textDecoration: 'none', color:"white" }}>ALL-EAT</Link>
           </Typography>
-          <div className={classes.search}>
+          <div className={classes.search} >
               <div className={classes.searchIcon}>
-                <SearchIcon />
+               <Link to="/categories/4" style={{ textDecoration: 'none', color:"white" }}><SearchIcon/></Link>
               </div>
               <InputBase 
-                placeholder="Search…"
+                ref={this.InputBase}
+                placeholder="검색"
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,
                 }}
+                name="searchKeyword"
+                value={this.state.searchKeyword}
+                onChange={this.handlevaluechange}
               />
             </div>
         </Toolbar>
@@ -222,7 +297,7 @@ class Category extends React.Component {
           <TableRow>
             <TableCell>순위</TableCell>
             <TableCell>가게 이름</TableCell>
-            <TableCell>현재 테이블 수</TableCell>
+            <TableCell>이용가능 테이블 수</TableCell>
             <TableCell>전체 테이블 수</TableCell>
             <TableCell>대기 시간</TableCell>
             <TableCell>상세 정보</TableCell>
@@ -230,19 +305,7 @@ class Category extends React.Component {
           </TableHead>
           <TableBody>
           {this.state.customers.length>0 ? 
-          this.state.customers.map((c,i)=>{
-              return <Customer stateRefresh={this.stateRefresh}
-              key={i}
-              rank={c.rank}
-              name={c.name}
-              currentTable={c.currentTable}
-              totalTable={c.totalTable}
-              remainTime={c.remainTime}
-              lat={c.lat}
-              lng={c.lng}
-              />
-            })
-            : 
+         filteredComponents(this.state.customers) : 
           <TableRow>
             <TableCell colSpan="6" align="center">
               <CircularProgress
@@ -253,9 +316,13 @@ class Category extends React.Component {
             </TableCell>
           </TableRow>
           }
+          
        </TableBody>
         </Table>
-      </Paper> 
+      </Paper>
+      <ul id="page-numbers" >
+            {renderPageNumbers}
+        </ul>
         </main>
     
       </div>
