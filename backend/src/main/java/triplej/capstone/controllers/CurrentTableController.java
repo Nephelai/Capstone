@@ -3,10 +3,7 @@ package triplej.capstone.controllers;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import triplej.capstone.dtos.CategoryResDto;
 import triplej.capstone.dtos.CurrentTableDto;
-import triplej.capstone.dtos.RestaurantResponseDto;
-import triplej.capstone.entities.RestaurantsRepository;
 import triplej.capstone.services.CurrentTableService;
 
 @CrossOrigin(origins = "*")
