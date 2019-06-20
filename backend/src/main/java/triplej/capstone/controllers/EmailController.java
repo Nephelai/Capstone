@@ -13,9 +13,9 @@ public class EmailController {
 
     @PostMapping("/email")
     public String emailSend() {
-        EmailService emailService = new EmailService();
-        emailService.setJavaMailSender(javaMailSender);
-        emailService.sendSimpleMessage("jaeho618@naver.com", "제목","내용");
+//        EmailService emailService = new EmailService();
+//        emailService.setJavaMailSender(javaMailSender);
+//        emailService.sendSimpleMessage("jaeho618@naver.com", "제목","내용");
         return "success";
     }
 }
