@@ -2,11 +2,14 @@ package triplej.capstone.services;
 
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import triplej.capstone.dtos.CurrentTableDto;
+import triplej.capstone.dtos.RestaurantsTimeStampDto;
 import triplej.capstone.entities.*;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Service
@@ -18,10 +21,15 @@ public class CurrentTableService {
     private KoreanFoodRepository koreanFoodRepository;
     private WesternFoodRepository westernFoodRepository;
 
-    @Transactional
-    public CurrentTableDto increment(int category_id, int id) {
-        CurrentTableDto res = new CurrentTableDto();
+    private RestaurantsTimeStampRepository restaurantsTimeStampRepository;
 
+    @Autowired
+    private FindFirstTimeService findFirstTimeService;
+
+    @Transactional
+    public CurrentTableDto increment(int category_id, long id) {
+        CurrentTableDto res = new CurrentTableDto();
+        SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
         int updateCurrent = 0;
         switch (category_id) {
             case 0:
@@ -34,6 +42,11 @@ public class CurrentTableService {
                         updateCurrent = tmpKorean.get(i).getCurrentTable() + 1;
                         tmpKorean.get(i).setCurrentTable(updateCurrent);
                         koreanFoodRepository.save(tmpKorean.get(i));
+                        restaurantsTimeStampRepository.save(RestaurantsTimeStamp.builder()
+                            .restaurant_id(id)
+                            .time(format.format(System.currentTimeMillis()))
+                            .build()
+                        );
                         res.setName(tmpKorean.get(i).getName());
                         res.setCurrentTable(tmpKorean.get(i).getCurrentTable());
                         res.setTotalTable(tmpKorean.get(i).getTotalTable());
@@ -51,6 +64,11 @@ public class CurrentTableService {
                         updateCurrent = tmpChinese.get(i).getCurrentTable() + 1;
                         tmpChinese.get(i).setCurrentTable(updateCurrent);
                         chineseFoodRepository.save(tmpChinese.get(i));
+                        restaurantsTimeStampRepository.save(RestaurantsTimeStamp.builder()
+                                .restaurant_id(id)
+                                .time(format.format(System.currentTimeMillis()))
+                                .build()
+                        );
                         res.setName(tmpChinese.get(i).getName());
                         res.setCurrentTable(tmpChinese.get(i).getCurrentTable());
                         res.setTotalTable(tmpChinese.get(i).getTotalTable());
@@ -68,6 +86,11 @@ public class CurrentTableService {
                         updateCurrent = tmpJapanese.get(i).getCurrentTable() + 1;
                         tmpJapanese.get(i).setCurrentTable(updateCurrent);
                         japaneseFoodRepository.save(tmpJapanese.get(i));
+                        restaurantsTimeStampRepository.save(RestaurantsTimeStamp.builder()
+                                .restaurant_id(id)
+                                .time(format.format(System.currentTimeMillis()))
+                                .build()
+                        );
                         res.setName(tmpJapanese.get(i).getName());
                         res.setCurrentTable(tmpJapanese.get(i).getCurrentTable());
                         res.setTotalTable(tmpJapanese.get(i).getTotalTable());
@@ -85,6 +108,11 @@ public class CurrentTableService {
                         updateCurrent = tmpWestern.get(i).getCurrentTable() + 1;
                         tmpWestern.get(i).setCurrentTable(updateCurrent);
                         westernFoodRepository.save(tmpWestern.get(i));
+                        restaurantsTimeStampRepository.save(RestaurantsTimeStamp.builder()
+                                .restaurant_id(id)
+                                .time(format.format(System.currentTimeMillis()))
+                                .build()
+                        );
                         res.setName(tmpWestern.get(i).getName());
                         res.setCurrentTable(tmpWestern.get(i).getCurrentTable());
                         res.setTotalTable(tmpWestern.get(i).getTotalTable());
@@ -102,6 +130,11 @@ public class CurrentTableService {
                         updateCurrent = tmpBoonsik.get(i).getCurrentTable() + 1;
                         tmpBoonsik.get(i).setCurrentTable(updateCurrent);
                         boonsikFoodRepository.save(tmpBoonsik.get(i));
+                        restaurantsTimeStampRepository.save(RestaurantsTimeStamp.builder()
+                                .restaurant_id(id)
+                                .time(format.format(System.currentTimeMillis()))
+                                .build()
+                        );
                         res.setName(tmpBoonsik.get(i).getName());
                         res.setCurrentTable(tmpBoonsik.get(i).getCurrentTable());
                         res.setTotalTable(tmpBoonsik.get(i).getTotalTable());
@@ -117,7 +150,7 @@ public class CurrentTableService {
     }
 
     @Transactional
-    public CurrentTableDto decrement(int category_id, int id) {
+    public CurrentTableDto decrement(int category_id, long id) {
         CurrentTableDto res = new CurrentTableDto();
 
         int updateCurrent = 0;
@@ -132,6 +165,7 @@ public class CurrentTableService {
                         updateCurrent = tmpKorean.get(i).getCurrentTable() - 1;
                         tmpKorean.get(i).setCurrentTable(updateCurrent);
                         koreanFoodRepository.save(tmpKorean.get(i));
+                        restaurantsTimeStampRepository.deleteById(findFirstTimeService.findFirstTime(Long.toString(id)));
                         res.setName(tmpKorean.get(i).getName());
                         res.setCurrentTable(tmpKorean.get(i).getCurrentTable());
                         res.setTotalTable(tmpKorean.get(i).getTotalTable());
@@ -150,6 +184,7 @@ public class CurrentTableService {
                         updateCurrent = tmpChinese.get(i).getCurrentTable() - 1;
                         tmpChinese.get(i).setCurrentTable(updateCurrent);
                         chineseFoodRepository.save(tmpChinese.get(i));
+                        restaurantsTimeStampRepository.deleteById(findFirstTimeService.findFirstTime(Long.toString(id)));
                         res.setName(tmpChinese.get(i).getName());
                         res.setCurrentTable(tmpChinese.get(i).getCurrentTable());
                         res.setTotalTable(tmpChinese.get(i).getTotalTable());
@@ -167,6 +202,7 @@ public class CurrentTableService {
                         updateCurrent = tmpJapanese.get(i).getCurrentTable() - 1;
                         tmpJapanese.get(i).setCurrentTable(updateCurrent);
                         japaneseFoodRepository.save(tmpJapanese.get(i));
+                        restaurantsTimeStampRepository.deleteById(findFirstTimeService.findFirstTime(Long.toString(id)));
                         res.setName(tmpJapanese.get(i).getName());
                         res.setCurrentTable(tmpJapanese.get(i).getCurrentTable());
                         res.setTotalTable(tmpJapanese.get(i).getTotalTable());
@@ -184,6 +220,7 @@ public class CurrentTableService {
                         updateCurrent = tmpWestern.get(i).getCurrentTable() - 1;
                         tmpWestern.get(i).setCurrentTable(updateCurrent);
                         westernFoodRepository.save(tmpWestern.get(i));
+                        restaurantsTimeStampRepository.deleteById(findFirstTimeService.findFirstTime(Long.toString(id)));
                         res.setName(tmpWestern.get(i).getName());
                         res.setCurrentTable(tmpWestern.get(i).getCurrentTable());
                         res.setTotalTable(tmpWestern.get(i).getTotalTable());
@@ -201,6 +238,7 @@ public class CurrentTableService {
                         updateCurrent = tmpBoonsik.get(i).getCurrentTable() - 1;
                         tmpBoonsik.get(i).setCurrentTable(updateCurrent);
                         boonsikFoodRepository.save(tmpBoonsik.get(i));
+                        restaurantsTimeStampRepository.deleteById(findFirstTimeService.findFirstTime(Long.toString(id)));
                         res.setName(tmpBoonsik.get(i).getName());
                         res.setCurrentTable(tmpBoonsik.get(i).getCurrentTable());
                         res.setTotalTable(tmpBoonsik.get(i).getTotalTable());
