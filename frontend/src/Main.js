@@ -125,6 +125,8 @@ const styles = theme => ({
   },
   image: {
     position: 'relative',
+    marginTop: 65,
+    marginLeft:15,
     height: 200,
     [theme.breakpoints.down('xs')]: {
       width: '100% !important', // Overrides inline-style
@@ -192,32 +194,32 @@ const images = [
   {
     url: '/hansik.png',
     title: '한식',
-    width: '33%',
+    width: '30%',
   },
   {
     url: '/joongsick.jpg',
     title: '중식',
-    width: '33%',
+    width: '30%',
   },
   {
     url: '/ilsik.jpg',
     title: '일식',
-    width: '33%',
+    width: '30%',
   },
   {
     url: '/yangsik.jpg',
     title: '양식',
-    width: '33%',
+    width: '30%',
   },
   {
     url: '/boonsick.jpg',
     title: '분식',
-    width: '33%',
+    width: '30%',
   },
   {
     url: '/total.png',
     title: '전체',
-    width: '33%',
+    width: '30%',
   }
 ];
 
@@ -248,30 +250,19 @@ class PersistentDrawerLeft extends React.Component {
           })}
         >
           <Toolbar disableGutters={!open}>
-            <IconButton
+            {/* <IconButton
               color="inherit"
               aria-label="Open drawer"
               onClick={this.handleDrawerOpen}
               className={classNames(classes.menuButton, open && classes.hide)}
             >
               <MenuIcon />
-            </IconButton>
+            </IconButton> */}
             
             <Typography variant="h6" color="inherit" noWrap>
-             <h4><Link to="/" style={{ textDecoration: 'none', color:"white" }}>ALL-EAT</Link></h4>
+            <h2 style={{marginLeft:40}}><Link to='/' style={{ textDecoration: 'none', color:"white"}}>ALL-EAT</Link></h2>
             </Typography>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-              <Link to="/categories/4" style={{ textDecoration: 'none', color:"white" }}><SearchIcon/></Link>
-              </div>
-              <InputBase 
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-              />
-            </div>
+           
           </Toolbar>
         </AppBar>
 

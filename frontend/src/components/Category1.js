@@ -17,7 +17,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
-import {Link} from 'react-router-dom';
+import {Link,NavLink} from 'react-router-dom';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
@@ -27,12 +27,14 @@ const drawerWidth = 240;
 
 const customStyles = {
   ul: {
-      backgroundColor: 'white'
+      backgroundColor: 'white',
+      marginLeft: '50%'
   },
  
   a: {
       color: 'blue',
-      border: '1px solid black'
+      border: '1px solid black',
+  
   }
 };
 const styles = theme => ({
@@ -62,7 +64,7 @@ const styles = theme => ({
     width: theme.spacing.unit * 9,
     height: '100%',
     position: 'absolute',
-    //pointerEvents: 'none',
+    pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -86,14 +88,15 @@ const styles = theme => ({
     },
   },
 table:{
-    position:"relative",
+    paddingTop:0,
     marginLeft:240,
-    width:"77%"
+    width:"83%"
 },
 
 appBar: {
   zIndex: theme.zIndex.drawer + 1,
-  backgroundColor: "#d11507"
+  backgroundColor: "#d11507",
+  marginBottom:0
 },
 drawer: {
   width: drawerWidth,
@@ -105,10 +108,14 @@ drawerPaper: {
 },
 content: {
   flexGrow: 1,
-  padding: theme.spacing.unit * 3,
+  paddingTop:0
 },
 toolbar: theme.mixins.toolbar,
+
 });
+const activeStyle = {
+  backgroundColor: '#D8D8D8',
+};
 
 class Category extends React.Component {
   constructor(props)
@@ -121,9 +128,10 @@ class Category extends React.Component {
     activePage: 1,
     searchKeyword: '',
     currentPage: 1,//현재 페이지
-    todosPerPage: 10//한 페이지에 보여줄 페이지 목록
+    todosPerPage: 10,//한 페이지에 보여줄 페이지 목록
+    value: 1  
   }
-  this.InputBase=React.createRef()
+
   this.stateRefresh = this.stateRefresh.bind(this);
    
 }
@@ -180,8 +188,12 @@ class Category extends React.Component {
   this.callApi()
   .then(res => this.setState({customers: res}))
   .catch(err => console.log(err));
-      }
+    }
+      
     
+    handleChange=(event)=> {
+        this.setState({value: event.target.value},()=>{console.log(this.state.value)})      
+      } 
 
   render() {
     const { classes } = this.props;
@@ -197,12 +209,12 @@ class Category extends React.Component {
       }
       const renderPageNumbers = pageNumbers.map(number => {
         return (
-          <div style={ {marginLeft:240}}>
+          <div style={ {marginLeft:'50%'}}>
           <button
             key={number}
             id={number}
             onClick={this.handleClick}
-            style={{float:"left"}}
+            style={{float:"left",textAlign:"center"}}
           >
             {number}
           </button> 
@@ -213,7 +225,12 @@ class Category extends React.Component {
       
       const filteredComponents = (data) => {
       let arr=[]
+      if(this.state.value==1)
       data =data.sort((a,b)=>(b.totalTable-b.currentTable)-(a.totalTable-a.currentTable))
+      
+      if(this.state.value==2)
+      data =data.sort((a,b)=>(b.grade-a.grade))
+     
       for(var i=1;i<=data.length;i++)
       {
           arr[data[i-1].phoneNumber]=i
@@ -225,13 +242,16 @@ class Category extends React.Component {
       const currentTodos = data.slice(indexOfFirstTodo, indexOfLastTodo);//[0,10)까지 배열 잘름
   
       return currentTodos.map((c,i)=>{
-        return <Customer stateRefresh={this.stateRefresh}
+        return <Customer 
+        stateRefresh={this.stateRefresh}
         key={i}
+        id={c.id}
         rank={arr[c.phoneNumber]}
         name={c.name}
         currentTable={c.totalTable-c.currentTable}
         totalTable={c.totalTable}
         remainTime={c.remainTime}
+        grade={c.grade}
         lat={c.lat}
         lng={c.lng}
         />
@@ -279,7 +299,8 @@ class Category extends React.Component {
         <div className={classes.toolbar} />
         <List>
           {['한식', '중식', '일식', '양식','분식','전체'].map((text, index) => (
-            <ListItem component={Link} to={"/categories/"+index} button key={text}>
+    
+            <ListItem component={NavLink} to={"/categories/"+index} activeStyle={activeStyle} button key={text}>
               <ListItemText primary={text} style={{textAlign: 'center'}}/>
             </ListItem>
           ))}
@@ -291,16 +312,22 @@ class Category extends React.Component {
 
       <main className={classes.content}>
         <div className={classes.toolbar} />
+        <select style={{position:"relative",marginLeft:1200,marginTop:10,width:150,marginBottom:10}}
+        onChange={this.handleChange}>
+            <option selected value="1">좌석 순</option>
+            <option value="2">평점 순</option>
+        </select>
         <Paper position="relative">
         <Table className={classes.table}>
           <TableHead>
-          <TableRow>
-            <TableCell>순위</TableCell>
-            <TableCell>가게 이름</TableCell>
-            <TableCell>이용가능 테이블 수</TableCell>
-            <TableCell>전체 테이블 수</TableCell>
-            <TableCell>대기 시간</TableCell>
-            <TableCell>상세 정보</TableCell>
+          <TableRow >
+            <TableCell style={{fontSize:20}}>순위</TableCell>
+            <TableCell style={{fontSize:20}}>가게 이름</TableCell>
+            <TableCell style={{fontSize:20}}>이용가능 테이블 수</TableCell>
+            <TableCell style={{fontSize:20}}>대기 시간</TableCell>
+            <TableCell style={{fontSize:20}}>평점</TableCell>
+            <TableCell style={{fontSize:20}}>위치 정보</TableCell>
+            <TableCell style={{fontSize:20}}>예약하기</TableCell>
            </TableRow>
           </TableHead>
           <TableBody>
@@ -322,9 +349,8 @@ class Category extends React.Component {
       </Paper>
       <ul id="page-numbers" >
             {renderPageNumbers}
-        </ul>
+      </ul>
         </main>
-    
       </div>
     );
   }
