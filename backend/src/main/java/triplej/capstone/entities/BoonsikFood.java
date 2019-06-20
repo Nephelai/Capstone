@@ -24,7 +24,7 @@ public class BoonsikFood {
     @Column(length = 50, nullable = false)
     private String name;
 
-    @Column(length = 11, nullable = false)
+    @Column
     private String phoneNumber;
 
     @Column
