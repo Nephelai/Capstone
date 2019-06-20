@@ -14,12 +14,12 @@ public class CurrentTableController {
     CurrentTableService currentTableService;
 
     @GetMapping("/increment/{category_id}/{restaurant_id}")
-    public CurrentTableDto increaseCurrentTable(@PathVariable("category_id") int category_id, @PathVariable("restaurant_id") int id){
+    public CurrentTableDto increaseCurrentTable(@PathVariable("category_id") int category_id, @PathVariable("restaurant_id") long id){
         return  currentTableService.increment(category_id, id);
     }
 
     @GetMapping("/decrement/{category_id}/{restaurant_id}")
-    public CurrentTableDto decreaseCurrentTable(@PathVariable("category_id") int category_id, @PathVariable("restaurant_id") int id){
+    public CurrentTableDto decreaseCurrentTable(@PathVariable("category_id") int category_id, @PathVariable("restaurant_id") long id){
         return  currentTableService.decrement(category_id, id);
     }
 

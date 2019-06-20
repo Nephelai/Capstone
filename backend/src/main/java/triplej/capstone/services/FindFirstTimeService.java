@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import triplej.capstone.dtos.RestaurantsTimeStampDto;
-import triplej.capstone.entities.RestaurantsTimeStamp;
 import triplej.capstone.entities.RestaurantsTimeStampRepository;
 
 import java.util.List;
@@ -19,9 +18,10 @@ public class FindFirstTimeService {
 
     @Transactional(readOnly = true)
     public Long findFirstTime(String id) {
-        List<RestaurantsTimeStampDto> tmp = restaurantsTimeStampRepository.findAllByDesc(id).map(RestaurantsTimeStampDto::new).collect(Collectors.toList());
+        List<RestaurantsTimeStampDto> tmp = restaurantsTimeStampRepository.findAllByAsc(Long.parseLong(id)).map(RestaurantsTimeStampDto::new).collect(Collectors.toList());
+        System.out.println(tmp.size());
         for(int i = 0; i < tmp.size(); i++)
-            log.info(tmp.get(i).toString());
+            System.out.println(tmp.get(i).toString());
         return Long.parseLong(tmp.get(0).getId());
     }
 }

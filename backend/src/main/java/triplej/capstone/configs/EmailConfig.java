@@ -33,8 +33,8 @@ public class EmailConfig {
     public JavaMailSender javaMailService() {
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
         javaMailSender.setHost("smtp.gmail.com");
-        javaMailSender.setUsername("지메일 아이디");
-        javaMailSender.setPassword("지메일 비밀번호");
+        javaMailSender.setUsername("jaeho406@gmail.com");
+        javaMailSender.setPassword("jhK6180408");
         javaMailSender.setPort(port);
 
         pt.put("mail.smtp.socketFactory.port", socketPort); pt.put("mail.smtp.auth", auth);

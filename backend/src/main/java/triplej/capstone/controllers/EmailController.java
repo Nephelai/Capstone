@@ -21,9 +21,9 @@ public class EmailController {
 
     @PostMapping("/email")
     public String emailSend(@RequestBody Map<String, Object> params) {
-//        EmailService emailService = new EmailService();
-//        emailService.setJavaMailSender(javaMailSender);
-//        emailService.constructMessage(params.get("id").toString(), params.get("name").toString(), params.get("number").toString(), params.get("phone").toString());
+        EmailService emailService = new EmailService();
+        emailService.setJavaMailSender(javaMailSender);
+        emailService.constructMessage(params.get("id").toString(), params.get("name").toString(), params.get("number").toString(), params.get("phone").toString());
         return "success";
     }
 }
