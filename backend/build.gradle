@@ -18,9 +18,12 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 
 	implementation 'org.slf4j:slf4j-api:1.7.25'
 	implementation 'ch.qos.logback:logback-classic:1.2.3'
+	compile "org.springframework:spring-context-support"
+	compile "com.sun.mail:javax.mail"
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
