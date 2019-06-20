@@ -19,7 +19,7 @@ public class EmailService {
         this.emailSender = javaMailSender;
     }
 
-    public void sendSimpleMessage(String id, String to, String subject, String text) {
+    private void sendSimpleMessage(String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
         message.setSubject(subject);
@@ -36,6 +36,7 @@ public class EmailService {
         RestaurantEmailDto restaurantEmail = findRestaurantsInfoService.findEmailById(id);
         String to = restaurantEmail.getEmail();
         String subject = username;
-        String text = "사용자 수 : " + count + "\n 전화번호 : " + phonenumber + "\n 예약시간 : " + ;
+        String text = "사용자 수 : " + count + "\n 전화번호 : " + phonenumber + "\n 예약시간 : " + format.format(System.currentTimeMillis());
+        sendSimpleMessage(to, subject, text);
     }
 }

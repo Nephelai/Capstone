@@ -2,10 +2,12 @@ package triplej.capstone.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import triplej.capstone.services.EmailService;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class EmailController {
     @Autowired
