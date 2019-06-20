@@ -1,7 +1,7 @@
 alter table restaurants auto_increment = 1;
 
 insert into restaurants (category) values ('ChineseFood');
-insert into chinese_food (name, phone_number, total_table, restaurant_id, current_table, lat, lng) values ('인하각', '01000000001', 20, 1, 3, 37.450995, 126.658060);
+insert into chinese_food (name, phone_number, total_table, restaurant_id, current_table, lat, lng) values ('인하각', 'sksmsljh1026@naver.com', 20, 1, 3, 37.450995, 126.658060);
 insert into restaurants (category) values ('ChineseFood');
 insert into chinese_food (name, phone_number, total_table, restaurant_id, current_table, lat, lng) values ('짜장전설', '01080302438', 12, 2, 4, 37.452622, 126.657495);
 insert into restaurants (category) values ('ChineseFood');

@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Map;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter // get 함수 생성
@@ -37,4 +39,5 @@ public class WesternFood {
 
     @Column
     private double lng;
+
 }
