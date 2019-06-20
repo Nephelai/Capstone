@@ -17,6 +17,7 @@ public class RestaurantListService {
     private JapaneseFoodRepository japaneseFoodRepository;
     private KoreanFoodRepository koreanFoodRepository;
     private WesternFoodRepository westernFoodRepository;
+    private ReviewsRepository reviewsRepository;
 
     @Transactional(readOnly = true)
     public CategoryResDto findInfo(String category, long id) {
@@ -37,6 +38,18 @@ public class RestaurantListService {
                 List<KoreanFood> tmpKorean = koreanFoodRepository.findAll();
                 for(int i = 0; i < tmpKorean.size(); i++){
                     if(tmpKorean.get(i).getRestaurant_id() == id) {
+                        double grade = 0;
+                        int cnt = 0;
+                        double ans = 0;
+                        List<Reviews> tmpReview = reviewsRepository.findAll();
+                        for(int a = 0; a < tmpReview.size(); a++){
+                            if(tmpKorean.get(i).getRestaurant_id() == tmpReview.get(a).getRestaurant_id()){
+                                grade += tmpReview.get(a).getGrade();
+                                cnt++;
+                            }
+                        }
+                        ans = grade / cnt;
+
                         CategoryResDto res = CategoryResDto.builder()
                                 .name(tmpKorean.get(i).getName())
                                 .currentTable(String.valueOf(tmpKorean.get(i).getCurrentTable()))
@@ -45,6 +58,7 @@ public class RestaurantListService {
                                 .lat(String.valueOf(tmpKorean.get(i).getLat()))
                                 .lng(String.valueOf(tmpKorean.get(i).getLng()))
                                 .phoneNumber(tmpKorean.get(i).getPhoneNumber())
+                                .grade(ans)
                                 .build();
                         return res;
                     }
@@ -54,6 +68,18 @@ public class RestaurantListService {
                 List<ChineseFood> tmpChinese = chineseFoodRepository.findAll();
                 for(int i = 0; i < tmpChinese.size(); i++){
                     if(tmpChinese.get(i).getRestaurant_id() == id) {
+                        double grade = 0;
+                        int cnt = 0;
+                        double ans = 0;
+                        List<Reviews> tmpReview = reviewsRepository.findAll();
+                        for(int a = 0; a < tmpReview.size(); a++){
+                            if(tmpChinese.get(i).getRestaurant_id() == tmpReview.get(a).getRestaurant_id()){
+                                grade += tmpReview.get(a).getGrade();
+                                cnt++;
+                            }
+                        }
+                        ans = grade / cnt;
+
                         CategoryResDto res = CategoryResDto.builder()
                                 .name(tmpChinese.get(i).getName())
                                 .currentTable(String.valueOf(tmpChinese.get(i).getCurrentTable()))
@@ -62,6 +88,7 @@ public class RestaurantListService {
                                 .lat(String.valueOf(tmpChinese.get(i).getLat()))
                                 .lng(String.valueOf(tmpChinese.get(i).getLng()))
                                 .phoneNumber(tmpChinese.get(i).getPhoneNumber())
+                                .grade(ans)
                                 .build();
                         return res;
                     }
@@ -71,6 +98,18 @@ public class RestaurantListService {
                 List<JapaneseFood> tmpJapanese = japaneseFoodRepository.findAll();
                 for(int i = 0; i < tmpJapanese.size(); i++){
                     if(tmpJapanese.get(i).getRestaurant_id() == id) {
+                        double grade = 0;
+                        int cnt = 0;
+                        double ans = 0;
+                        List<Reviews> tmpReview = reviewsRepository.findAll();
+                        for(int a = 0; a < tmpReview.size(); a++){
+                            if(tmpJapanese.get(i).getRestaurant_id() == tmpReview.get(a).getRestaurant_id()){
+                                grade += tmpReview.get(a).getGrade();
+                                cnt++;
+                            }
+                        }
+                        ans = grade / cnt;
+
                         CategoryResDto res = CategoryResDto.builder()
                                 .name(tmpJapanese.get(i).getName())
                                 .currentTable(String.valueOf(tmpJapanese.get(i).getCurrentTable()))
@@ -79,6 +118,7 @@ public class RestaurantListService {
                                 .lat(String.valueOf(tmpJapanese.get(i).getLat()))
                                 .lng(String.valueOf(tmpJapanese.get(i).getLng()))
                                 .phoneNumber(tmpJapanese.get(i).getPhoneNumber())
+                                .grade(ans)
                                 .build();
                         return res;
                     }
@@ -88,6 +128,18 @@ public class RestaurantListService {
                 List<WesternFood> tmpWestern = westernFoodRepository.findAll();
                 for(int i = 0; i < tmpWestern.size(); i++){
                     if(tmpWestern.get(i).getRestaurant_id() == id) {
+                        double grade = 0;
+                        int cnt = 0;
+                        double ans = 0;
+                        List<Reviews> tmpReview = reviewsRepository.findAll();
+                        for(int a = 0; a < tmpReview.size(); a++){
+                            if(tmpWestern.get(i).getRestaurant_id() == tmpReview.get(a).getRestaurant_id()){
+                                grade += tmpReview.get(a).getGrade();
+                                cnt++;
+                            }
+                        }
+                        ans = grade / cnt;
+
                         CategoryResDto res = CategoryResDto.builder()
                                 .name(tmpWestern.get(i).getName())
                                 .currentTable(String.valueOf(tmpWestern.get(i).getCurrentTable()))
@@ -96,6 +148,7 @@ public class RestaurantListService {
                                 .lat(String.valueOf(tmpWestern.get(i).getLat()))
                                 .lng(String.valueOf(tmpWestern.get(i).getLng()))
                                 .phoneNumber(tmpWestern.get(i).getPhoneNumber())
+                                .grade(ans)
                                 .build();
                         return res;
                     }
@@ -105,6 +158,18 @@ public class RestaurantListService {
                 List<BoonsikFood> tmpBoonsik = boonsikFoodRepository.findAll();
                 for(int i = 0; i < tmpBoonsik.size(); i++){
                     if(tmpBoonsik.get(i).getRestaurant_id() == id) {
+                        double grade = 0;
+                        int cnt = 0;
+                        double ans = 0;
+                        List<Reviews> tmpReview = reviewsRepository.findAll();
+                        for(int a = 0; a < tmpReview.size(); a++){
+                            if(tmpBoonsik.get(i).getRestaurant_id() == tmpReview.get(a).getRestaurant_id()){
+                                grade += tmpReview.get(a).getGrade();
+                                cnt++;
+                            }
+                        }
+                        ans = grade / cnt;
+
                         CategoryResDto res = CategoryResDto.builder()
                                 .name(tmpBoonsik.get(i).getName())
                                 .currentTable(String.valueOf(tmpBoonsik.get(i).getCurrentTable()))
@@ -113,6 +178,7 @@ public class RestaurantListService {
                                 .lat(String.valueOf(tmpBoonsik.get(i).getLat()))
                                 .lng(String.valueOf(tmpBoonsik.get(i).getLng()))
                                 .phoneNumber(tmpBoonsik.get(i).getPhoneNumber())
+                                .grade(ans)
                                 .build();
                         return res;
                     }
