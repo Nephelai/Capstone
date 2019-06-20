@@ -1,6 +1,7 @@
 package triplej.capstone.services;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,6 +12,7 @@ import java.text.SimpleDateFormat;
 
 @Service
 @AllArgsConstructor
+@NoArgsConstructor
 public class EmailService {
     JavaMailSender emailSender;
     private FindRestaurantsInfoService findRestaurantsInfoService;
