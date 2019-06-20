@@ -8,6 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CategoryResDto {
+    private String id;
     private String name;
     private String currentTable;
     private String totalTable;
