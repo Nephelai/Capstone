@@ -250,8 +250,16 @@ class Comments extends React.Component{
         </div>
       );
     });
-
+  
+      
+      
     const filteredComponents = (data) => {
+      const date_ascending=(a, b)=> {
+        var dateA = new Date(a['time']).getTime();
+        var dateB = new Date(b['time']).getTime();
+        return dateB > dateA ? 1 : -1;
+        };
+      data=data.sort(date_ascending);
 
     const currentTodos = data.slice(indexOfFirstTodo, indexOfLastTodo);//[0,10)까지 배열 잘름
       
