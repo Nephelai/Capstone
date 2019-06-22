@@ -126,7 +126,7 @@ class Comments extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-        id:'',
+        user_id:'',
         text:'',
         password:'',
         person:'',
@@ -179,7 +179,6 @@ class Comments extends React.Component{
       
     handleFormSubmit=(e)=> {
     e.preventDefault()
-    this.props.stateRefresh()
     this.addComments()
     .then((response) => {
     console.log(response.data);
@@ -194,7 +193,7 @@ class Comments extends React.Component{
     this.setState(nextState);
     }
     addComments=()=>{
-    const url = 'http://15.164.118.54:8080/comments/${this.props.match.params.storeId}';
+    const url = `/comments/${this.props.match.params.storeId}`;
     const formData = new FormData();
     formData.append('user_id', this.state.id)
     formData.append('user_pw', this.state.password)
@@ -202,10 +201,21 @@ class Comments extends React.Component{
     formData.append('grade', this.state. rating_half_star)
     const config = {
     headers: {
-    'content-type': 'multipart/form-data'
+    'content-type': 'application/json'
     }
     }
-    return post(url, formData, config)
+    
+    for (var value of formData.values()) {
+
+      console.log(value);
+    
+    }
+    var object = {};
+    formData.forEach(function(value, key){
+        object[key] = value;
+    });
+    var json = JSON.stringify(object);
+    return post(url, json, config)
     }
     handleClick=(event)=> {
       this.setState({
@@ -246,10 +256,10 @@ class Comments extends React.Component{
   
       return currentTodos.map((c,i)=>{
         return <Disqus
-        id={c.id}
+        id={c.user_id}
         grade={c.grade}
         comment={c.comment}
-        timestamp={c.timestamp}
+        timestamp={c.time}
         />})
     }
       
@@ -313,7 +323,7 @@ class Comments extends React.Component{
   <TableCell><input type="password" placeholder="password를 입력하세용~~" name="password" value={this.state.password} onChange={this.handleValueChange}/></TableCell> 
   </TableRow>
   <h2>Rating from state: {this.state.rating_half_star}</h2>
-  <div style={{fontSize: 30}}>
+  <div style={{fontSize: 20}}>
           <StarRatingComponent
             name="app6"
             starColor="#ffb400"
@@ -343,13 +353,14 @@ class Comments extends React.Component{
    </TableRow>
    <TableRow>
    <TableCell>
-   <button type="submit">등록</button>
+   <button type="submit" onClick={this.handleFormSubmit}>등록</button>
    </TableCell>
    </TableRow>
-</Table>
+
+
      {this.state.person.length>0?
        filteredComponents(this.state.person) : 
-       <TableRow>
+       <TableRow>       
          <TableCell colSpan="6" align="center">
            <CircularProgress
                 className={classes.progress}
@@ -359,7 +370,10 @@ class Comments extends React.Component{
          </TableCell>
        </TableRow>
        }
-
+</Table>
+<ul id="page-numbers" >
+            {renderPageNumbers}
+      </ul>
 </div>
 </div>
     )
