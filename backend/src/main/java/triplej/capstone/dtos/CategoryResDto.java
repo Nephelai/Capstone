@@ -16,5 +16,6 @@ public class CategoryResDto {
     private String lat;
     private String lng;
     private String phoneNumber;
+    private int cutLine;
     private double grade;
 }

@@ -53,17 +53,17 @@ public class CategoryListService {
                             .name(tmpKorean.get(i).getName())
                             .currentTable(String.valueOf(tmpKorean.get(i).getCurrentTable()))
                             .totalTable(String.valueOf(tmpKorean.get(i).getTotalTable()))
+                            .remainTime("0")
                             .lat(String.valueOf(tmpKorean.get(i).getLat()))
                             .lng(String.valueOf(tmpKorean.get(i).getLng()))
                             .phoneNumber(tmpKorean.get(i).getPhoneNumber())
                             .grade(ans)
+                            .cutLine(tmpKorean.get(i).getCutLine())
                             .build();
-
-                    tmp.setRemainTime("0");
                     if(tmp.getCurrentTable().equals(tmp.getTotalTable())) {
-                        long tmpTime = System.currentTimeMillis() - findFirstTimeService.findFirstTime(tmp.getId());
-                        tmpTime = Long.parseLong(tmp.getRemainTime()) - tmpTime;
-                        if (tmpTime < 5) tmpTime = 5;
+                        Long tmpTime = System.currentTimeMillis() - findFirstTimeService.getFirstTime(tmp.getId());
+                        tmpTime = tmp.getCutLine() - tmpTime;
+                        if (tmpTime.compareTo(Long.valueOf(5 * 1000 * 60)) == -1) tmpTime = Long.valueOf(5 * 1000 * 60);
                         tmp.setRemainTime(format.format(tmpTime));
                     }
 
@@ -90,18 +90,20 @@ public class CategoryListService {
                             .name(tmpChinese.get(i).getName())
                             .currentTable(String.valueOf(tmpChinese.get(i).getCurrentTable()))
                             .totalTable(String.valueOf(tmpChinese.get(i).getTotalTable()))
+                            .remainTime("0")
                             .lat(String.valueOf(tmpChinese.get(i).getLat()))
                             .lng(String.valueOf(tmpChinese.get(i).getLng()))
                             .phoneNumber(tmpChinese.get(i).getPhoneNumber())
                             .grade(ans)
+                            .cutLine(tmpChinese.get(i).getCutLine())
                             .build();
-                    tmp.setRemainTime("0");
                     if(tmp.getCurrentTable().equals(tmp.getTotalTable())) {
-                        long tmpTime = System.currentTimeMillis() - findFirstTimeService.findFirstTime(tmp.getId());
-                        tmpTime = Long.parseLong(tmp.getRemainTime()) - tmpTime;
-                        if (tmpTime < 5) tmpTime = 5;
+                        Long tmpTime = System.currentTimeMillis() - findFirstTimeService.getFirstTime(tmp.getId());
+                        tmpTime = tmp.getCutLine() - tmpTime;
+                        if (tmpTime.compareTo(Long.valueOf(5 * 1000 * 60)) == -1) tmpTime = Long.valueOf(5 * 1000 * 60);
                         tmp.setRemainTime(format.format(tmpTime));
                     }
+
                     resCategory.add(tmp);
                 }
                 break;
@@ -125,16 +127,17 @@ public class CategoryListService {
                             .name(tmpJapanese.get(i).getName())
                             .currentTable(String.valueOf(tmpJapanese.get(i).getCurrentTable()))
                             .totalTable(String.valueOf(tmpJapanese.get(i).getTotalTable()))
+                            .remainTime("0")
                             .lat(String.valueOf(tmpJapanese.get(i).getLat()))
                             .lng(String.valueOf(tmpJapanese.get(i).getLng()))
                             .phoneNumber(tmpJapanese.get(i).getPhoneNumber())
                             .grade(ans)
+                            .cutLine(tmpJapanese.get(i).getCutLine())
                             .build();
-                    tmp.setRemainTime("0");
                     if(tmp.getCurrentTable().equals(tmp.getTotalTable())) {
-                        long tmpTime = System.currentTimeMillis() - findFirstTimeService.findFirstTime(tmp.getId());
-                        tmpTime = Long.parseLong(tmp.getRemainTime()) - tmpTime;
-                        if (tmpTime < 5) tmpTime = 5;
+                        Long tmpTime = System.currentTimeMillis() - findFirstTimeService.getFirstTime(tmp.getId());
+                        tmpTime = tmp.getCutLine() - tmpTime;
+                        if (tmpTime.compareTo(Long.valueOf(5 * 1000 * 60)) == -1) tmpTime = Long.valueOf(5 * 1000 * 60);
                         tmp.setRemainTime(format.format(tmpTime));
                     }
                     resCategory.add(tmp);
@@ -160,16 +163,17 @@ public class CategoryListService {
                             .name(tmpWestern.get(i).getName())
                             .currentTable(String.valueOf(tmpWestern.get(i).getCurrentTable()))
                             .totalTable(String.valueOf(tmpWestern.get(i).getTotalTable()))
+                            .remainTime("0")
                             .lat(String.valueOf(tmpWestern.get(i).getLat()))
                             .lng(String.valueOf(tmpWestern.get(i).getLng()))
                             .phoneNumber(tmpWestern.get(i).getPhoneNumber())
                             .grade(ans)
+                            .cutLine(tmpWestern.get(i).getCutLine())
                             .build();
-                    tmp.setRemainTime("0");
                     if(tmp.getCurrentTable().equals(tmp.getTotalTable())) {
-                        long tmpTime = System.currentTimeMillis() - findFirstTimeService.findFirstTime(tmp.getId());
-                        tmpTime = Long.parseLong(tmp.getRemainTime()) - tmpTime;
-                        if (tmpTime < 5) tmpTime = 5;
+                        Long tmpTime = System.currentTimeMillis() - findFirstTimeService.getFirstTime(tmp.getId());
+                        tmpTime = tmp.getCutLine() - tmpTime;
+                        if (tmpTime.compareTo(Long.valueOf(5 * 1000 * 60)) == -1) tmpTime = Long.valueOf(5 * 1000 * 60);
                         tmp.setRemainTime(format.format(tmpTime));
                     }
                     resCategory.add(tmp);
@@ -195,16 +199,17 @@ public class CategoryListService {
                             .name(tmpBoonsik.get(i).getName())
                             .currentTable(String.valueOf(tmpBoonsik.get(i).getCurrentTable()))
                             .totalTable(String.valueOf(tmpBoonsik.get(i).getTotalTable()))
+                            .remainTime("0")
                             .lat(String.valueOf(tmpBoonsik.get(i).getLat()))
                             .lng(String.valueOf(tmpBoonsik.get(i).getLng()))
                             .phoneNumber(tmpBoonsik.get(i).getPhoneNumber())
                             .grade(grade)
+                            .cutLine(tmpBoonsik.get(i).getCutLine())
                             .build();
-                    tmp.setRemainTime("0");
                     if(tmp.getCurrentTable().equals(tmp.getTotalTable())) {
-                        long tmpTime = System.currentTimeMillis() - findFirstTimeService.findFirstTime(tmp.getId());
-                        tmpTime = Long.parseLong(tmp.getRemainTime()) - tmpTime;
-                        if (tmpTime < 5) tmpTime = 5;
+                        Long tmpTime = System.currentTimeMillis() - findFirstTimeService.getFirstTime(tmp.getId());
+                        tmpTime = tmp.getCutLine() - tmpTime;
+                        if (tmpTime.compareTo(Long.valueOf(5 * 1000 * 60)) == -1) tmpTime = Long.valueOf(5 * 1000 * 60);
                         tmp.setRemainTime(format.format(tmpTime));
                     }
                     resCategory.add(tmp);
