@@ -138,7 +138,7 @@ class Category extends React.Component {
 
   componentDidMount(){
     this.stateRefresh()
-    //this.timer2=setInterval(this.stateRefresh,600000)
+    this.timer2=setInterval(this.stateRefresh,100000)
     this.timer=setInterval(this.progress,20);
   }
   componentDidUpdate(prevProps, prevState) {
@@ -157,7 +157,7 @@ class Category extends React.Component {
     }
   callApi=async()=>{
     console.log(this.props.match.params.categoriesId)
-    const url=`http://15.164.118.54:8080/front/categories/${this.props.match.params.categoriesId}`
+    const url=`http://15.164.118.54:8080/categories/${this.props.match.params.categoriesId}`
     const response =await fetch(url);
     const body =await response.json();
     console.log(body);
