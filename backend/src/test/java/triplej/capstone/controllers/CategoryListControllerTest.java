@@ -43,7 +43,7 @@ public class CategoryListControllerTest {
         //assertThat(body).contains("인하각");
         //assertThat(body, containsString("인하각"));
 
-        mockMvc.perform(get("front/categories/0/"))
+        mockMvc.perform(get("/categories/0/"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andReturn();
