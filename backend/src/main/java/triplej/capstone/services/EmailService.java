@@ -40,7 +40,7 @@ public class EmailService {
 
     public void constructMessage(String id, String username, String count, String phonenumber) {
         SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
-        String to = findRestaurantsInfoService.findEmailById(id);
+        String to = findRestaurantsInfoService.findEmailById(Long.parseLong(id));
         String subject = username;
         String text = "사용자 수 : " + count + "\n 전화번호 : " + phonenumber + "\n 예약시간 : " + format.format(System.currentTimeMillis());
         log.info(to, subject, text);
