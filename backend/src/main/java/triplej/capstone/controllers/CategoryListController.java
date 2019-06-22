@@ -19,7 +19,7 @@ public class CategoryListController {
     @Autowired
     CategoryListService categoryListService;
 
-    @GetMapping("front/categories/{id}")
+    @GetMapping("/categories/{id}")
     public List<CategoryResDto> findList(@PathVariable(name = "id") int id) {
         // id = categoryId
 
