@@ -8,30 +8,22 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import NaverMap,{Marker} from 'react-naver-map'
-import markerPng from './marker_v2.png'
-
-const CustomMarker = ({lat, lng, onClick}) => (
-  <Marker
-    lat={lat}
-    lng={lng}
-    onClick={onClick}
-    icon={{
-      url: markerPng,
-      size: {width: 24, height: 32},
-      scaledSize: {width: 24, height: 32},
-      anchor: {x: 12, y: 32},
-    }}
-    shape={{coords: [0, 12, 12, 0, 24, 12, 12, 32, 0, 12], type: 'poly'}}
-  />
-)
+import TextField from '@material-ui/core/TextField';
+import {post} from 'axios'
+import NumericInput from 'react-numeric-input';
+import Table from '@material-ui/core/Table';
+import TableHead from '@material-ui/core/TableHead';
+import TableBody from '@material-ui/core/TableBody';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
 
 const DialogTitle = withStyles(theme => ({
   root: {
     borderBottom: `1px solid ${theme.palette.divider}`,
     margin: 0,
     padding: theme.spacing.unit * 2,
-    
+    width:'300',
+    height:'300'
   },
   closeButton: {
     position: 'absolute',
@@ -57,6 +49,8 @@ const DialogContent = withStyles(theme => ({
   root: {
     margin: 0,
     padding: theme.spacing.unit * 2,
+    width:'300',
+    height:'300'
 
   },
 }))(MuiDialogContent);
@@ -77,13 +71,18 @@ class CustomizedDialogDemo extends React.Component {
     this.state = {
     open: false,
     bounds: undefined,
-    markers: [{id: 1, lat: this.props.lat, lng: this.props.lng}],   
+    userName:'',
+    userCount:'1',
+    userPhone:''
   };
 
 }
   handleClickOpen = () => {
     this.setState({
       open: true,
+      userName:'',
+      userCount:'1',
+      userPhone:''
     });
   };
 
@@ -92,55 +91,90 @@ class CustomizedDialogDemo extends React.Component {
    
     this.setState({ open: false });
   };
-  handleMapClick = e => {
-    const lat = e.latlng.lat()
-    const lng = e.latlng.lng()
-    this.setState(state => ({markers: [{id: +new Date(), lat, lng}]}))
-  }
+  handleFormSubmit=(e)=> {
 
-  handleMarkerClick = (id, e) => {
-    this.setState(state => ({markers: state.markers.filter(m => m.id !== id)}))
-  }
+    e.preventDefault()
+    window.alert("등록되었습니다.")
+    this.handlechange()
+    .then((response) => {
+    console.log(response.data);
+    })
+    
+    this.setState({
+    userName: '',
+    userCount: '1',
+    userPhone: '', 
+    open: false
+    
+    })
+    
+    }
+    
+    handlechange=()=>{
+    const url='	http://15.164.118.54:8080/email'
+    const formData = new FormData();
+    formData.append('id', this.props.id)
+    formData.append('name', this.state.userName)
+    formData.append('number', this.state.userCount)
+    formData.append('phone', this.state.userPhone)
+    const config = {
+        headers: {
+        'content-type': 'multipart/form-data'
+        }
+        }
+        for (var value of formData.values()) {
 
+            console.log(value);
+          
+          } 
+    return post(url, formData, config)
+    }
+    handleValueChange=(e)=> {
 
-  handleMapInit = (map, naver) => {}
-  
+    let nextState = {};
+    
+    nextState[e.target.name] = e.target.value;
+    
+    this.setState(nextState);
+    
+    }
+    
+    
+    
   render() {
     const {markers} = this.state
-    const firstMarker = markers[0]
 
     return (
       <div backdrop="static">
         <Button variant="outlined" color="secondary" onClick={this.handleClickOpen}>
-          위치 정보
+          예약
         </Button>
         <Dialog
           onClose={this.handleClose}
           aria-labelledby="customized-dialog-title"
           open={this.state.open}
         >
-          <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-            위치 정보
+          <DialogTitle id="customized-dialog-title" onClose={this.handleClose} style={{ width:'300',height:'300'}}>
+            예약 정보
           </DialogTitle>
           <DialogContent>
          <h1>{this.props.name}</h1>
-          
-          <h2>가게위치</h2>
          
           <div>
-  
-        <NaverMap
-          ncp
-          clientId="od2tgm7ydu"
-          style={{width: '500px', height: '500px'}}
-          initialPosition={firstMarker}
-          initialZoom={15}
-          zoomControl={1}
-          onMapClick={this.handleMapClick}>
-          <Marker lat={this.props.lat} lng={this.props.lng} />
-        </NaverMap>
-        
-      </div>
+         
+
+          <TextField label="이름" type="text" name="userName" value={this.state.userName} onChange={this.handleValueChange} /><br/>
+          <TextField label="휴대폰 번호" type="tel" name="userPhone" value={this.state.userPhone} onChange={this.handleValueChange} /><br/>
+          <Table>
+          <TableRow>
+              <TableCell>
+          예약자 수: <input type="number" name="userCount" min={1} max={5} defaultValue={1} value={this.state.userCount} onChange={this.handleValueChange} /><br/>
+          </TableCell>
+          </TableRow>
+          </Table>
+          <Button variant="contained" color="primary" style={{marginTop:20}}onClick={this.handleFormSubmit}>등록</Button>
+         
+          </div>
               
           </DialogContent>
           <DialogActions>
