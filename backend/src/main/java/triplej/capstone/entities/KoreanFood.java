@@ -40,4 +40,6 @@ public class KoreanFood {
     @Column
     private double lng;
 
+    @Column
+    private int cutLine;
 }

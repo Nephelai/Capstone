@@ -40,4 +40,6 @@ public class WesternFood {
     @Column
     private double lng;
 
+    @Column
+    private int cutLine;
 }

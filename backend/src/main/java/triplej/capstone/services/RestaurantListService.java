@@ -7,6 +7,7 @@ import triplej.capstone.dtos.CategoryResDto;
 import triplej.capstone.dtos.CurrentTableDto;
 import triplej.capstone.entities.*;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Service
@@ -19,8 +20,11 @@ public class RestaurantListService {
     private WesternFoodRepository westernFoodRepository;
     private ReviewsRepository reviewsRepository;
 
+    FindFirstTimeService findFirstTimeService;
+
     @Transactional(readOnly = true)
     public CategoryResDto findInfo(String category, long id) {
+        SimpleDateFormat format = new SimpleDateFormat ( "mm:ss");
         int category_id = -1;
         if(category.equals("KoreanFood"))
             category_id = 0;
@@ -55,12 +59,18 @@ public class RestaurantListService {
                                 .name(tmpKorean.get(i).getName())
                                 .currentTable(String.valueOf(tmpKorean.get(i).getCurrentTable()))
                                 .totalTable(String.valueOf(tmpKorean.get(i).getTotalTable()))
-                                .remainTime("10")
                                 .lat(String.valueOf(tmpKorean.get(i).getLat()))
                                 .lng(String.valueOf(tmpKorean.get(i).getLng()))
                                 .phoneNumber(tmpKorean.get(i).getPhoneNumber())
                                 .grade(ans)
                                 .build();
+                        res.setRemainTime("0");
+                        if(res.getCurrentTable().equals(res.getTotalTable())) {
+                            long tmpTime = System.currentTimeMillis() - findFirstTimeService.findFirstTime(res.getId());
+                            tmpTime = Long.parseLong(res.getRemainTime()) - tmpTime;
+                            if (tmpTime < 5) tmpTime = 5;
+                            res.setRemainTime(format.format(tmpTime));
+                        }
                         return res;
                     }
                 }
@@ -86,12 +96,18 @@ public class RestaurantListService {
                                 .name(tmpChinese.get(i).getName())
                                 .currentTable(String.valueOf(tmpChinese.get(i).getCurrentTable()))
                                 .totalTable(String.valueOf(tmpChinese.get(i).getTotalTable()))
-                                .remainTime("10")
                                 .lat(String.valueOf(tmpChinese.get(i).getLat()))
                                 .lng(String.valueOf(tmpChinese.get(i).getLng()))
                                 .phoneNumber(tmpChinese.get(i).getPhoneNumber())
                                 .grade(ans)
                                 .build();
+                        res.setRemainTime("0");
+                        if(res.getCurrentTable().equals(res.getTotalTable())) {
+                            long tmpTime = System.currentTimeMillis() - findFirstTimeService.findFirstTime(res.getId());
+                            tmpTime = Long.parseLong(res.getRemainTime()) - tmpTime;
+                            if (tmpTime < 5) tmpTime = 5;
+                            res.setRemainTime(format.format(tmpTime));
+                        }
                         return res;
                     }
                 }
@@ -117,12 +133,18 @@ public class RestaurantListService {
                                 .name(tmpJapanese.get(i).getName())
                                 .currentTable(String.valueOf(tmpJapanese.get(i).getCurrentTable()))
                                 .totalTable(String.valueOf(tmpJapanese.get(i).getTotalTable()))
-                                .remainTime("10")
                                 .lat(String.valueOf(tmpJapanese.get(i).getLat()))
                                 .lng(String.valueOf(tmpJapanese.get(i).getLng()))
                                 .phoneNumber(tmpJapanese.get(i).getPhoneNumber())
                                 .grade(ans)
                                 .build();
+                        res.setRemainTime("0");
+                        if(res.getCurrentTable().equals(res.getTotalTable())) {
+                            long tmpTime = System.currentTimeMillis() - findFirstTimeService.findFirstTime(res.getId());
+                            tmpTime = Long.parseLong(res.getRemainTime()) - tmpTime;
+                            if (tmpTime < 5) tmpTime = 5;
+                            res.setRemainTime(format.format(tmpTime));
+                        }
                         return res;
                     }
                 }
@@ -148,12 +170,18 @@ public class RestaurantListService {
                                 .name(tmpWestern.get(i).getName())
                                 .currentTable(String.valueOf(tmpWestern.get(i).getCurrentTable()))
                                 .totalTable(String.valueOf(tmpWestern.get(i).getTotalTable()))
-                                .remainTime("10")
                                 .lat(String.valueOf(tmpWestern.get(i).getLat()))
                                 .lng(String.valueOf(tmpWestern.get(i).getLng()))
                                 .phoneNumber(tmpWestern.get(i).getPhoneNumber())
                                 .grade(ans)
                                 .build();
+                        res.setRemainTime("0");
+                        if(res.getCurrentTable().equals(res.getTotalTable())) {
+                            long tmpTime = System.currentTimeMillis() - findFirstTimeService.findFirstTime(res.getId());
+                            tmpTime = Long.parseLong(res.getRemainTime()) - tmpTime;
+                            if (tmpTime < 5) tmpTime = 5;
+                            res.setRemainTime(format.format(tmpTime));
+                        }
                         return res;
                     }
                 }
@@ -179,12 +207,18 @@ public class RestaurantListService {
                                 .name(tmpBoonsik.get(i).getName())
                                 .currentTable(String.valueOf(tmpBoonsik.get(i).getCurrentTable()))
                                 .totalTable(String.valueOf(tmpBoonsik.get(i).getTotalTable()))
-                                .remainTime("10")
                                 .lat(String.valueOf(tmpBoonsik.get(i).getLat()))
                                 .lng(String.valueOf(tmpBoonsik.get(i).getLng()))
                                 .phoneNumber(tmpBoonsik.get(i).getPhoneNumber())
                                 .grade(ans)
                                 .build();
+                        res.setRemainTime("0");
+                        if(res.getCurrentTable().equals(res.getTotalTable())) {
+                            long tmpTime = System.currentTimeMillis() - findFirstTimeService.findFirstTime(res.getId());
+                            tmpTime = Long.parseLong(res.getRemainTime()) - tmpTime;
+                            if (tmpTime < 5) tmpTime = 5;
+                            res.setRemainTime(format.format(tmpTime));
+                        }
                         return res;
                     }
                 }
