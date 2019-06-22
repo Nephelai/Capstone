@@ -55,7 +55,7 @@ public class RestaurantListService {
                                 .name(tmpKorean.get(i).getName())
                                 .currentTable(String.valueOf(tmpKorean.get(i).getCurrentTable()))
                                 .totalTable(String.valueOf(tmpKorean.get(i).getTotalTable()))
-                                .remainTime("10")
+                                .remainTime("0")
                                 .lat(String.valueOf(tmpKorean.get(i).getLat()))
                                 .lng(String.valueOf(tmpKorean.get(i).getLng()))
                                 .phoneNumber(tmpKorean.get(i).getPhoneNumber())
@@ -86,7 +86,7 @@ public class RestaurantListService {
                                 .name(tmpChinese.get(i).getName())
                                 .currentTable(String.valueOf(tmpChinese.get(i).getCurrentTable()))
                                 .totalTable(String.valueOf(tmpChinese.get(i).getTotalTable()))
-                                .remainTime("10")
+                                .remainTime("0")
                                 .lat(String.valueOf(tmpChinese.get(i).getLat()))
                                 .lng(String.valueOf(tmpChinese.get(i).getLng()))
                                 .phoneNumber(tmpChinese.get(i).getPhoneNumber())
@@ -117,12 +117,13 @@ public class RestaurantListService {
                                 .name(tmpJapanese.get(i).getName())
                                 .currentTable(String.valueOf(tmpJapanese.get(i).getCurrentTable()))
                                 .totalTable(String.valueOf(tmpJapanese.get(i).getTotalTable()))
-                                .remainTime("10")
+                                .remainTime("2")
                                 .lat(String.valueOf(tmpJapanese.get(i).getLat()))
                                 .lng(String.valueOf(tmpJapanese.get(i).getLng()))
                                 .phoneNumber(tmpJapanese.get(i).getPhoneNumber())
                                 .grade(ans)
                                 .build();
+
                         return res;
                     }
                 }
@@ -148,7 +149,7 @@ public class RestaurantListService {
                                 .name(tmpWestern.get(i).getName())
                                 .currentTable(String.valueOf(tmpWestern.get(i).getCurrentTable()))
                                 .totalTable(String.valueOf(tmpWestern.get(i).getTotalTable()))
-                                .remainTime("10")
+                                .remainTime("0")
                                 .lat(String.valueOf(tmpWestern.get(i).getLat()))
                                 .lng(String.valueOf(tmpWestern.get(i).getLng()))
                                 .phoneNumber(tmpWestern.get(i).getPhoneNumber())
@@ -179,7 +180,7 @@ public class RestaurantListService {
                                 .name(tmpBoonsik.get(i).getName())
                                 .currentTable(String.valueOf(tmpBoonsik.get(i).getCurrentTable()))
                                 .totalTable(String.valueOf(tmpBoonsik.get(i).getTotalTable()))
-                                .remainTime("10")
+                                .remainTime("0")
                                 .lat(String.valueOf(tmpBoonsik.get(i).getLat()))
                                 .lng(String.valueOf(tmpBoonsik.get(i).getLng()))
                                 .phoneNumber(tmpBoonsik.get(i).getPhoneNumber())
