@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
+
+
 
 class Pos extends Component {
     
@@ -28,15 +31,16 @@ class Pos extends Component {
    
    
     render() {
+   
         return (
             <div>
-         <button onClick={this.handlepluschange}> 
-         테이블 증가
-         </button>
+        <Button onClick={this.handlepluschange}>
+        주문
+      </Button>
          
-         <button onClick={this.handleminuschange}> 
-         테이블 감소
-         </button>
+      <Button onClick={this.handleminuschange}>
+        결제
+      </Button>
        </div>
         )
     }
