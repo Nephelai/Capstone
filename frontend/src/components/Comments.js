@@ -160,7 +160,7 @@ class Comments extends React.Component{
     }
     callApi=async()=>{
       console.log(this.props.match.params.storeId)
-      const url=`http://15.164.118.54:8080/comments/${this.props.match.params.storeId}`
+      const url=`comments/${this.props.match.params.storeId}`
       const response =await fetch(url);
       const body =await response.json();
       console.log(body);

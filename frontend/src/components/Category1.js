@@ -138,7 +138,7 @@ class Category extends React.Component {
 
   componentDidMount(){
     this.stateRefresh()
-    //this.timer2=setInterval(this.stateRefresh,600000)
+    this.timer2=setInterval(this.stateRefresh,10000)
     this.timer=setInterval(this.progress,20);
   }
   componentDidUpdate(prevProps, prevState) {
@@ -157,7 +157,7 @@ class Category extends React.Component {
     }
   callApi=async()=>{
     console.log(this.props.match.params.categoriesId)
-    const url=`/categories/${this.props.match.params.categoriesId}`
+    const url=`http://15.164.118.54:8080/categories/${this.props.match.params.categoriesId}`
     const response =await fetch(url);
     const body =await response.json();
     console.log(body);
@@ -233,7 +233,7 @@ class Category extends React.Component {
      
       for(var i=1;i<=data.length;i++)
       {
-          arr[data[i-1].phoneNumber]=i
+          arr[data[i-1].id]=i
       }
             
       data = data.filter((c) => {
@@ -246,7 +246,7 @@ class Category extends React.Component {
         stateRefresh={this.stateRefresh}
         key={i}
         id={c.id}
-        rank={arr[c.phoneNumber]}
+        rank={arr[c.id]}
         name={c.name}
         currentTable={c.totalTable-c.currentTable}
         totalTable={c.totalTable}
