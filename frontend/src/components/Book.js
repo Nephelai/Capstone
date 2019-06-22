@@ -111,23 +111,29 @@ class CustomizedDialogDemo extends React.Component {
     }
     
     handlechange=()=>{
-    const url='	http://15.164.118.54:8080/email'
+    const url='	http://15.164.189.88:8080/email'
     const formData = new FormData();
     formData.append('id', this.props.id)
     formData.append('name', this.state.userName)
     formData.append('number', this.state.userCount)
     formData.append('phone', this.state.userPhone)
     const config = {
-        headers: {
-        'content-type': 'multipart/form-data'
-        }
-        }
-        for (var value of formData.values()) {
-
-            console.log(value);
-          
-          } 
-    return post(url, formData, config)
+      headers: {
+      'content-type': 'application/json'
+      }
+      }
+      
+      for (var value of formData.values()) {
+  
+        console.log(value);
+      
+      }
+      var object = {};
+      formData.forEach(function(value, key){
+          object[key] = value;
+      });
+      var json = JSON.stringify(object);
+      return post(url, json, config)
     }
     handleValueChange=(e)=> {
 
