@@ -252,8 +252,9 @@ class Comments extends React.Component{
     });
 
     const filteredComponents = (data) => {
+
     const currentTodos = data.slice(indexOfFirstTodo, indexOfLastTodo);//[0,10)까지 배열 잘름
-  
+      
       return currentTodos.map((c,i)=>{
         return <Disqus
         id={c.user_id}
