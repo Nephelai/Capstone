@@ -138,7 +138,7 @@ class Category extends React.Component {
 
   componentDidMount(){
     this.stateRefresh()
-    this.timer2=setInterval(this.stateRefresh,100000)
+    this.timer2=setInterval(this.stateRefresh,10000)
     this.timer=setInterval(this.progress,20);
   }
   componentDidUpdate(prevProps, prevState) {
