@@ -11,8 +11,12 @@ import javax.persistence.*;
 @Setter
 @Entity
 public class Reviews {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long review_id;
+
+    @Column
     private long restaurant_id;
 
     @Column

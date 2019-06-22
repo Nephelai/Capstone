@@ -17,7 +17,6 @@ class Customer extends React.Component{
             }
         }}>{this.props.name}</TableCell>
             <TableCell>{this.props.currentTable}</TableCell>
-           
             <TableCell>{this.props.remainTime}</TableCell>
             <TableCell>{this.props.grade}</TableCell> 
             <TableCell><Modal name={this.props.name} lat={this.props.lat} lng={this.props.lng} stateRefresh={this.props.stateRefresh}/></TableCell>

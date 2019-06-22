@@ -4,14 +4,40 @@ import TableCell from '@material-ui/core/TableCell';
 import Modal from './Modal'
 import Book from './Book'
 import {Link} from 'react-router-dom'
+import StarRatingComponent from './StarRatingComponent'
+
+
 class Customer extends React.Component{
     render(){
         return(
             <TableRow>
             <TableCell>{this.props.id}</TableCell>
-            <TableCell>{this.props.grade}</TableCell>
-            <TableCell>{this.props.timestamp}</TableCell>
+            <TableCell> <div style={{fontSize: 20}}>
+          <StarRatingComponent
+            name="app6"
+            starColor="#ffb400"
+            emptyStarColor="#ffb400"
+            value={this.props.grade}
+    
+            renderStarIcon={(index, value) => {
+              return (
+                <span>
+                  <i className={index <= value ? 'fa fa-star' : 'fa fa-star-o'} />
+                </span>
+              );
+            }}
+            renderStarIconHalf={() => {
+              return (
+                <span>
+                {/* <span style={{position: 'absolute'}}><i className="far fa-star" /></span> */}
+                  <span><i className="fa fa-star-half-full" /></span>
+                </span>
+              );
+            }}
+           />
+        </div></TableCell>
             <TableCell>{this.props.comment}</TableCell> 
+            <TableCell>{this.props.timestamp}</TableCell>
             </TableRow>
         )
     }
