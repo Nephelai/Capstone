@@ -300,7 +300,7 @@ class Category extends React.Component {
         <List>
           {['한식', '중식', '일식', '양식','분식','전체'].map((text, index) => (
     
-            <ListItem component={NavLink} to={"/categories/"+index} activeStyle={activeStyle} button key={text}>
+            <ListItem component={NavLink} to={"/front/categories/"+index} activeStyle={activeStyle} button key={text}>
               <ListItemText primary={text} style={{textAlign: 'center'}}/>
             </ListItem>
           ))}

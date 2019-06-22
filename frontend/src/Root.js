@@ -12,7 +12,7 @@ class Root extends Component {
     render() {
         return (
          <BrowserRouter>
-                <Route exact path="/categories/:categoriesId" component={Category1}/>
+                <Route exact path="/front/categories/:categoriesId" component={Category1}/>
                 <Route exact path="/" component={Main}/>
                 <Route exact path="/page" component={Page}/>
                 <Route exact path="/pos" component={Pos}/>
