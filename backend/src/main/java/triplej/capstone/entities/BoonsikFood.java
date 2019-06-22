@@ -36,5 +36,4 @@ public class BoonsikFood {
 
     @Column
     private double lng;
-
 }

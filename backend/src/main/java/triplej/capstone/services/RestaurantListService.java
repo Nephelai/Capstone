@@ -38,7 +38,7 @@ public class RestaurantListService {
                 for(int i = 0; i < tmpKorean.size(); i++){
                     if(tmpKorean.get(i).getRestaurant_id() == id) {
                         CategoryResDto res = CategoryResDto.builder()
-                                .id(Long.toString((tmpKorean).get(i).getId()))
+                                .id(Long.toString((tmpKorean).get(i).getRestaurant_id()))
                                 .name(tmpKorean.get(i).getName())
                                 .currentTable(String.valueOf(tmpKorean.get(i).getCurrentTable()))
                                 .totalTable(String.valueOf(tmpKorean.get(i).getTotalTable()))
@@ -56,7 +56,7 @@ public class RestaurantListService {
                 for(int i = 0; i < tmpChinese.size(); i++){
                     if(tmpChinese.get(i).getRestaurant_id() == id) {
                         CategoryResDto res = CategoryResDto.builder()
-                                .id(Long.toString((tmpChinese).get(i).getId()))
+                                .id(Long.toString((tmpChinese).get(i).getRestaurant_id()))
                                 .name(tmpChinese.get(i).getName())
                                 .currentTable(String.valueOf(tmpChinese.get(i).getCurrentTable()))
                                 .totalTable(String.valueOf(tmpChinese.get(i).getTotalTable()))
@@ -74,7 +74,7 @@ public class RestaurantListService {
                 for(int i = 0; i < tmpJapanese.size(); i++){
                     if(tmpJapanese.get(i).getRestaurant_id() == id) {
                         CategoryResDto res = CategoryResDto.builder()
-                                .id(Long.toString((tmpJapanese).get(i).getId()))
+                                .id(Long.toString((tmpJapanese).get(i).getRestaurant_id()))
                                 .name(tmpJapanese.get(i).getName())
                                 .currentTable(String.valueOf(tmpJapanese.get(i).getCurrentTable()))
                                 .totalTable(String.valueOf(tmpJapanese.get(i).getTotalTable()))
@@ -92,7 +92,7 @@ public class RestaurantListService {
                 for(int i = 0; i < tmpWestern.size(); i++){
                     if(tmpWestern.get(i).getRestaurant_id() == id) {
                         CategoryResDto res = CategoryResDto.builder()
-                                .id(Long.toString((tmpWestern).get(i).getId()))
+                                .id(Long.toString((tmpWestern).get(i).getRestaurant_id()))
                                 .name(tmpWestern.get(i).getName())
                                 .currentTable(String.valueOf(tmpWestern.get(i).getCurrentTable()))
                                 .totalTable(String.valueOf(tmpWestern.get(i).getTotalTable()))
@@ -110,7 +110,7 @@ public class RestaurantListService {
                 for(int i = 0; i < tmpBoonsik.size(); i++){
                     if(tmpBoonsik.get(i).getRestaurant_id() == id) {
                         CategoryResDto res = CategoryResDto.builder()
-                                .id(Long.toString((tmpBoonsik).get(i).getId()))
+                                .id(Long.toString((tmpBoonsik).get(i).getRestaurant_id()))
                                 .name(tmpBoonsik.get(i).getName())
                                 .currentTable(String.valueOf(tmpBoonsik.get(i).getCurrentTable()))
                                 .totalTable(String.valueOf(tmpBoonsik.get(i).getTotalTable()))
