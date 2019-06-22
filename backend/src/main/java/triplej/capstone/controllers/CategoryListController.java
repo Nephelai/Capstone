@@ -13,7 +13,7 @@ import triplej.capstone.services.CategoryListService;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
-@Controller
+@RestController
 @AllArgsConstructor
 public class CategoryListController {
     @Autowired
