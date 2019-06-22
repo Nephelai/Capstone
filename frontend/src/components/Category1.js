@@ -140,6 +140,7 @@ class Category extends React.Component {
     this.stateRefresh()
    // this.timer2=setInterval(this.stateRefresh,10000)
     this.timer=setInterval(this.progress,20);
+   
   }
   componentDidUpdate(prevProps, prevState) {
     if (this.state.lastId !== prevProps.match.params.categoriesId) {
@@ -270,7 +271,7 @@ class Category extends React.Component {
           </Typography>
           <div className={classes.search} >
               <div className={classes.searchIcon}>
-               <Link to="/categories/4" style={{ textDecoration: 'none', color:"white" }}><SearchIcon/></Link>
+               <Link to="/categories/4" style={{ textDecoration: 'none', color:"white" }} ><SearchIcon/></Link>
               </div>
               <InputBase 
                 ref={this.InputBase}
@@ -300,7 +301,8 @@ class Category extends React.Component {
         <List>
           {['한식', '중식', '일식', '양식','분식','전체'].map((text, index) => (
     
-            <ListItem component={NavLink} to={"/categories/"+index} activeStyle={activeStyle} button key={text}>
+            <ListItem component={NavLink} to={"/categories/"+index} activeStyle={activeStyle} button key={text}
+             onClick={()=>{ this.setState( {currentPage: 1})}}>
               <ListItemText primary={text} style={{textAlign: 'center'}}/>
             </ListItem>
           ))}
