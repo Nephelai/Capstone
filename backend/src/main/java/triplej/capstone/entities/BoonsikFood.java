@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Map;
 
 @NoArgsConstructor
 @Getter
@@ -22,7 +24,7 @@ public class BoonsikFood {
     @Column(length = 50, nullable = false)
     private String name;
 
-    @Column(length = 11, nullable = false)
+    @Column
     private String phoneNumber;
 
     @Column

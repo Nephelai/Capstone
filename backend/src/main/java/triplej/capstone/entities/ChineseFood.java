@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Map;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter // get 함수 생성
@@ -23,7 +25,7 @@ public class ChineseFood {
     @Column(length = 50, nullable = false)
     private String name;
 
-    @Column(length = 11, nullable = false)
+    @Column
     private String phoneNumber;
 
     @Column
@@ -37,4 +39,5 @@ public class ChineseFood {
 
     @Column
     private double lng;
+
 }
