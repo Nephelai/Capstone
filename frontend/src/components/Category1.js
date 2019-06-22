@@ -157,7 +157,7 @@ class Category extends React.Component {
     }
   callApi=async()=>{
     console.log(this.props.match.params.categoriesId)
-    const url=`/categories/${this.props.match.params.categoriesId}`
+    const url=`http://15.164.118.54:8080/front/categories/${this.props.match.params.categoriesId}`
     const response =await fetch(url);
     const body =await response.json();
     console.log(body);
@@ -233,7 +233,7 @@ class Category extends React.Component {
      
       for(var i=1;i<=data.length;i++)
       {
-          arr[data[i-1].phoneNumber]=i
+          arr[data[i-1].id]=i
       }
             
       data = data.filter((c) => {
@@ -246,7 +246,7 @@ class Category extends React.Component {
         stateRefresh={this.stateRefresh}
         key={i}
         id={c.id}
-        rank={arr[c.phoneNumber]}
+        rank={arr[c.id]}
         name={c.name}
         currentTable={c.totalTable-c.currentTable}
         totalTable={c.totalTable}
@@ -300,7 +300,7 @@ class Category extends React.Component {
         <List>
           {['한식', '중식', '일식', '양식','분식','전체'].map((text, index) => (
     
-            <ListItem component={NavLink} to={"/front/categories/"+index} activeStyle={activeStyle} button key={text}>
+            <ListItem component={NavLink} to={"/categories/"+index} activeStyle={activeStyle} button key={text}>
               <ListItemText primary={text} style={{textAlign: 'center'}}/>
             </ListItem>
           ))}
