@@ -17,6 +17,6 @@ public class RestaurantsTimeStampDto {
     public RestaurantsTimeStampDto(RestaurantsTimeStamp entity) {
         id = Long.toString(entity.getId());
         restaurant_id = Long.toString(entity.getRestaurant_id());
-        time = entity.getTime();
+        time = String.valueOf(entity.getTime());
     }
 }

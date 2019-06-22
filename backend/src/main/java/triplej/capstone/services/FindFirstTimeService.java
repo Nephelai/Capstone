@@ -19,9 +19,12 @@ public class FindFirstTimeService {
     @Transactional(readOnly = true)
     public Long findFirstTime(String id) {
         List<RestaurantsTimeStampDto> tmp = restaurantsTimeStampRepository.findAllByAsc(Long.parseLong(id)).map(RestaurantsTimeStampDto::new).collect(Collectors.toList());
-        System.out.println(tmp.size());
-        for(int i = 0; i < tmp.size(); i++)
-            System.out.println(tmp.get(i).toString());
         return Long.parseLong(tmp.get(0).getId());
+    }
+
+    @Transactional(readOnly = true)
+    public Long getFirstTime(String id) {
+        List<RestaurantsTimeStampDto> tmp = restaurantsTimeStampRepository.findAllByAsc(Long.parseLong(id)).map(RestaurantsTimeStampDto::new).collect(Collectors.toList());
+        return Long.parseLong(tmp.get(0).getTime());
     }
 }

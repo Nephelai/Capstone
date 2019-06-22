@@ -44,7 +44,7 @@ public class CurrentTableService {
                         koreanFoodRepository.save(tmpKorean.get(i));
                         restaurantsTimeStampRepository.save(RestaurantsTimeStamp.builder()
                             .restaurant_id(id)
-                            .time(format.format(System.currentTimeMillis()))
+                            .time(System.currentTimeMillis())
                             .build()
                         );
                         res.setName(tmpKorean.get(i).getName());
@@ -66,7 +66,7 @@ public class CurrentTableService {
                         chineseFoodRepository.save(tmpChinese.get(i));
                         restaurantsTimeStampRepository.save(RestaurantsTimeStamp.builder()
                                 .restaurant_id(id)
-                                .time(format.format(System.currentTimeMillis()))
+                                .time(System.currentTimeMillis())
                                 .build()
                         );
                         res.setName(tmpChinese.get(i).getName());
@@ -88,7 +88,7 @@ public class CurrentTableService {
                         japaneseFoodRepository.save(tmpJapanese.get(i));
                         restaurantsTimeStampRepository.save(RestaurantsTimeStamp.builder()
                                 .restaurant_id(id)
-                                .time(format.format(System.currentTimeMillis()))
+                                .time(System.currentTimeMillis())
                                 .build()
                         );
                         res.setName(tmpJapanese.get(i).getName());
@@ -110,7 +110,7 @@ public class CurrentTableService {
                         westernFoodRepository.save(tmpWestern.get(i));
                         restaurantsTimeStampRepository.save(RestaurantsTimeStamp.builder()
                                 .restaurant_id(id)
-                                .time(format.format(System.currentTimeMillis()))
+                                .time(System.currentTimeMillis())
                                 .build()
                         );
                         res.setName(tmpWestern.get(i).getName());
@@ -132,7 +132,7 @@ public class CurrentTableService {
                         boonsikFoodRepository.save(tmpBoonsik.get(i));
                         restaurantsTimeStampRepository.save(RestaurantsTimeStamp.builder()
                                 .restaurant_id(id)
-                                .time(format.format(System.currentTimeMillis()))
+                                .time(System.currentTimeMillis())
                                 .build()
                         );
                         res.setName(tmpBoonsik.get(i).getName());

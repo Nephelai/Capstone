@@ -40,4 +40,6 @@ public class JapaneseFood {
     @Column
     private double lng;
 
+    @Column
+    private int cutLine;
 }

@@ -7,6 +7,7 @@ import triplej.capstone.dtos.CategoryResDto;
 import triplej.capstone.dtos.CurrentTableDto;
 import triplej.capstone.entities.*;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Service
@@ -19,8 +20,11 @@ public class RestaurantListService {
     private WesternFoodRepository westernFoodRepository;
     private ReviewsRepository reviewsRepository;
 
+    FindFirstTimeService findFirstTimeService;
+
     @Transactional(readOnly = true)
     public CategoryResDto findInfo(String category, long id) {
+        SimpleDateFormat format = new SimpleDateFormat ( "mm:ss");
         int category_id = -1;
         if(category.equals("KoreanFood"))
             category_id = 0;
@@ -60,7 +64,14 @@ public class RestaurantListService {
                                 .lng(String.valueOf(tmpKorean.get(i).getLng()))
                                 .phoneNumber(tmpKorean.get(i).getPhoneNumber())
                                 .grade(ans)
+                                .cutLine(tmpKorean.get(i).getCutLine())
                                 .build();
+                        if(res.getCurrentTable().equals(res.getTotalTable())) {
+                            Long tmpTime = System.currentTimeMillis() - findFirstTimeService.getFirstTime(res.getId());
+                            tmpTime = res.getCutLine() - tmpTime;
+                            if (tmpTime.compareTo(Long.valueOf(5 * 1000 * 60)) == -1) tmpTime = Long.valueOf(5 * 1000 * 60);
+                            res.setRemainTime(format.format(tmpTime));
+                        }
                         return res;
                     }
                 }
@@ -91,7 +102,14 @@ public class RestaurantListService {
                                 .lng(String.valueOf(tmpChinese.get(i).getLng()))
                                 .phoneNumber(tmpChinese.get(i).getPhoneNumber())
                                 .grade(ans)
+                                .cutLine(tmpChinese.get(i).getCutLine())
                                 .build();
+                        if(res.getCurrentTable().equals(res.getTotalTable())) {
+                            Long tmpTime = System.currentTimeMillis() - findFirstTimeService.getFirstTime(res.getId());
+                            tmpTime = res.getCutLine() - tmpTime;
+                            if (tmpTime.compareTo(Long.valueOf(5 * 1000 * 60)) == -1) tmpTime = Long.valueOf(5 * 1000 * 60);
+                            res.setRemainTime(format.format(tmpTime));
+                        }
                         return res;
                     }
                 }
@@ -117,13 +135,19 @@ public class RestaurantListService {
                                 .name(tmpJapanese.get(i).getName())
                                 .currentTable(String.valueOf(tmpJapanese.get(i).getCurrentTable()))
                                 .totalTable(String.valueOf(tmpJapanese.get(i).getTotalTable()))
-                                .remainTime("2")
+                                .remainTime("0")
                                 .lat(String.valueOf(tmpJapanese.get(i).getLat()))
                                 .lng(String.valueOf(tmpJapanese.get(i).getLng()))
                                 .phoneNumber(tmpJapanese.get(i).getPhoneNumber())
                                 .grade(ans)
+                                .cutLine(tmpJapanese.get(i).getCutLine())
                                 .build();
-
+                        if(res.getCurrentTable().equals(res.getTotalTable())) {
+                            Long tmpTime = System.currentTimeMillis() - findFirstTimeService.getFirstTime(res.getId());
+                            tmpTime = res.getCutLine() - tmpTime;
+                            if (tmpTime.compareTo(Long.valueOf(5 * 1000 * 60)) == -1) tmpTime = Long.valueOf(5 * 1000 * 60);
+                            res.setRemainTime(format.format(tmpTime));
+                        }
                         return res;
                     }
                 }
@@ -154,7 +178,14 @@ public class RestaurantListService {
                                 .lng(String.valueOf(tmpWestern.get(i).getLng()))
                                 .phoneNumber(tmpWestern.get(i).getPhoneNumber())
                                 .grade(ans)
+                                .cutLine(tmpWestern.get(i).getCutLine())
                                 .build();
+                        if(res.getCurrentTable().equals(res.getTotalTable())) {
+                            Long tmpTime = System.currentTimeMillis() - findFirstTimeService.getFirstTime(res.getId());
+                            tmpTime = res.getCutLine() - tmpTime;
+                            if (tmpTime.compareTo(Long.valueOf(5 * 1000 * 60)) == -1) tmpTime = Long.valueOf(5 * 1000 * 60);
+                            res.setRemainTime(format.format(tmpTime));
+                        }
                         return res;
                     }
                 }
@@ -185,7 +216,14 @@ public class RestaurantListService {
                                 .lng(String.valueOf(tmpBoonsik.get(i).getLng()))
                                 .phoneNumber(tmpBoonsik.get(i).getPhoneNumber())
                                 .grade(ans)
+                                .cutLine(tmpBoonsik.get(i).getCutLine())
                                 .build();
+                        if(res.getCurrentTable().equals(res.getTotalTable())) {
+                            Long tmpTime = System.currentTimeMillis() - findFirstTimeService.getFirstTime(res.getId());
+                            tmpTime = res.getCutLine() - tmpTime;
+                            if (tmpTime.compareTo(Long.valueOf(5 * 1000 * 60)) == -1) tmpTime = Long.valueOf(5 * 1000 * 60);
+                            res.setRemainTime(format.format(tmpTime));
+                        }
                         return res;
                     }
                 }

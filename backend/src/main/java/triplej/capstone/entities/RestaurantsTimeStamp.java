@@ -17,10 +17,10 @@ public class RestaurantsTimeStamp {
     private long restaurant_id;
 
     @Column
-    private String time;
+    private long time;
 
     @Builder
-    public RestaurantsTimeStamp(Long restaurant_id, String time) {
+    public RestaurantsTimeStamp(Long restaurant_id, long time) {
         this.restaurant_id = restaurant_id;
         this.time = time;
     }

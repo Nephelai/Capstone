@@ -21,7 +21,7 @@ public class EmailController {
 
     @Autowired
     EmailService emailService;
-    
+  
     @PostMapping("/email")
     public String emailSend(@RequestBody Map<String, Object> params) {
         emailService.setJavaMailSender(javaMailSender);

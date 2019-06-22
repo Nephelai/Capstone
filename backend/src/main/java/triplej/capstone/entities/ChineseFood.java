@@ -40,4 +40,6 @@ public class ChineseFood {
     @Column
     private double lng;
 
+    @Column
+    private int cutLine;
 }
