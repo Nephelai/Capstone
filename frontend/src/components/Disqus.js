@@ -11,7 +11,7 @@ class Customer extends React.Component{
     render(){
         return(
             <TableRow>
-            <TableCell>{this.props.id}</TableCell>
+            <TableCell>{this.props.comment}</TableCell>
             <TableCell> <div style={{fontSize: 20}}>
           <StarRatingComponent
             name="app6"
@@ -36,7 +36,7 @@ class Customer extends React.Component{
             }}
            />
         </div></TableCell>
-            <TableCell>{this.props.comment}</TableCell> 
+            <TableCell>{this.props.id}</TableCell>
             <TableCell>{this.props.timestamp}</TableCell>
             </TableRow>
         )
