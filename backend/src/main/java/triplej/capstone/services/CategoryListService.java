@@ -46,7 +46,12 @@ public class CategoryListService {
                             cnt++;
                         }
                     }
-                    ans = grade / cnt;
+                    if(cnt == 0){
+                        ans = 0;
+                    }
+                    else{
+                        ans = grade / cnt;
+                    }
 
                     CategoryResDto tmp = CategoryResDto.builder()
                             .id(Long.toString((tmpKorean).get(i).getRestaurant_id()))
@@ -83,7 +88,12 @@ public class CategoryListService {
                             cnt++;
                         }
                     }
-                    ans = grade / cnt;
+                    if(cnt == 0){
+                        ans = 0;
+                    }
+                    else{
+                        ans = grade / cnt;
+                    }
 
                     CategoryResDto tmp = CategoryResDto.builder()
                             .id(Long.toString((tmpChinese).get(i).getRestaurant_id()))
@@ -120,7 +130,12 @@ public class CategoryListService {
                             cnt++;
                         }
                     }
-                    ans = grade / cnt;
+                    if(cnt == 0){
+                        ans = 0;
+                    }
+                    else{
+                        ans = grade / cnt;
+                    }
 
                     CategoryResDto tmp = CategoryResDto.builder()
                             .id(Long.toString((tmpJapanese).get(i).getRestaurant_id()))
@@ -156,7 +171,12 @@ public class CategoryListService {
                             cnt++;
                         }
                     }
-                    ans = grade / cnt;
+                    if(cnt == 0){
+                        ans = 0;
+                    }
+                    else{
+                        ans = grade / cnt;
+                    }
 
                     CategoryResDto tmp = CategoryResDto.builder()
                             .id(Long.toString((tmpWestern).get(i).getRestaurant_id()))
@@ -192,7 +212,12 @@ public class CategoryListService {
                             cnt++;
                         }
                     }
-                    ans = grade / cnt;
+                    if(cnt == 0){
+                        ans = 0;
+                    }
+                    else{
+                        ans = grade / cnt;
+                    }
 
                     CategoryResDto tmp = CategoryResDto.builder()
                             .id(Long.toString((tmpBoonsik).get(i).getRestaurant_id()))
