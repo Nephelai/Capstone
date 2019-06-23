@@ -126,7 +126,7 @@ class Comments extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-        user_id:'',
+        id:'',
         text:'',
         password:'',
         person:'',
@@ -169,7 +169,11 @@ class Comments extends React.Component{
 
     stateRefresh=()=> {
       this.setState({
-        person:''  
+        person:'',
+        id:'',
+        text:'',
+        password:'',
+        rating_half_star:''  
       });
     this.callApi()
     .then(res => this.setState({person: res}))
@@ -182,6 +186,7 @@ class Comments extends React.Component{
     this.addComments()
     .then((response) => {
     console.log(response.data);
+    window.alert("등록되었습니다.")
     this.stateRefresh()
     })
     
