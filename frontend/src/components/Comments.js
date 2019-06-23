@@ -25,6 +25,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import {post} from 'axios'
 import Disqus from './Disqus'
 import StarRatingComponent from './StarRatingComponent'
+import { Alert, Button } from 'reactstrap';
 
 const drawerWidth = 240;
 
@@ -92,7 +93,6 @@ const styles = theme => ({
   },
 table:{
     paddingTop:0,
-    marginLeft:240,
     width:"77%"
 },
 
@@ -244,14 +244,15 @@ class Comments extends React.Component{
     const renderPageNumbers = pageNumbers.map(number => {
       return (
         <div style={ {marginLeft:'50%'}}>
-        <button
-          key={number}
-          id={number}
-          onClick={this.handleClick}
-          style={{float:"left",textAlign:"center"}}
+        <Button
+            outline color="primary"
+            key={number}
+            id={number}
+            onClick={this.handleClick}
+            style={{display:'inline-block', float:"left", textAlign:"center"}}
         >
           {number}
-        </button> 
+        </Button>
         </div>
       );
     });
@@ -265,7 +266,6 @@ class Comments extends React.Component{
         return dateB > dateA ? 1 : -1;
         };
       data=data.sort(date_ascending);
-
     const currentTodos = data.slice(indexOfFirstTodo, indexOfLastTodo);//[0,10)까지 배열 잘름
       
       return currentTodos.map((c,i)=>{
@@ -327,54 +327,59 @@ class Comments extends React.Component{
 
 <Table>
   <TableRow>
-    <TableCell style={{fontSize:20}}>{this.props.location.state.name}</TableCell>
-
+    <TableCell style={{fontSize:20}}>
+        <Alert color="success">
+            <h3 className="alert-heading" style={{textAlign: 'center'}}>{this.props.location.state.name}</h3>
+        </Alert>
+    </TableCell>
   </TableRow>
   <TableRow>
-  <TableCell><input type="text" placeholder="ID를 입력하세용~~" name="id" value={this.state.id} onChange={this.handleValueChange}/></TableCell> 
+  <TableCell><input type="text" placeholder="ID를 입력하세용~~" name="id" value={this.state.id} onChange={this.handleValueChange}/></TableCell>
   </TableRow>
   <TableRow>
-  <TableCell><input type="password" placeholder="password를 입력하세용~~" name="password" value={this.state.password} onChange={this.handleValueChange}/></TableCell> 
+  <TableCell><input type="password" placeholder="password를 입력하세용~~" name="password" value={this.state.password} onChange={this.handleValueChange}/></TableCell>
   </TableRow>
-  <h2>Rating from state: {this.state.rating_half_star}</h2>
-  <div style={{fontSize: 20}}>
-          <StarRatingComponent
-            name="app6"
-            starColor="#ffb400"
-            emptyStarColor="#ffb400"
-            value={this.state.rating_half_star}
-            onStarClick={this.onStarClickHalfStar}
-            renderStarIcon={(index, value) => {
-              return (
-                <span>
-                  <i className={index <= value ? 'fa fa-star' : 'fa fa-star-o'} />
-                </span>
-              );
-            }}
-            renderStarIconHalf={() => {
-              return (
-                <span>
+    <TableRow>
+        <TableCell>
+            <Alert color={"info"} style={{display:'flex', justifyContent: 'space-around'}}>
+                <h4 style={{float: "left"}}>평점 : {this.state.rating_half_star}</h4>
+                <div style={{fontSize: 20}} align={"right"}>
+                    <StarRatingComponent
+                        name="app6"
+                        starColor="#ffb400"
+                        emptyStarColor="#ffb400"
+                        value={this.state.rating_half_star}
+                        onStarClick={this.onStarClickHalfStar}
+                        renderStarIcon={(index, value) => {
+                            return (
+                                <span><i className={index <= value ? 'fa fa-star' : 'fa fa-star-o'} /></span>
+                            );
+                        }}
+                        renderStarIconHalf={() => {
+                            return (
+                                <span>
                 {/* <span style={{position: 'absolute'}}><i className="far fa-star" /></span> */}
-                  <span><i className="fa fa-star-half-full" /></span>
+                                    <span><i className="fa fa-star-half-full" /></span>
                 </span>
-              );
-            }}
-           />
-        </div>
+                            );
+                        }}
+                    />
+                </div>
+            </Alert>
+        </TableCell>
+    </TableRow>
   <TableRow>
   <TableCell><textarea name="text" placeholder="내용" style={{width: '450px', height: '100px'}} value={this.state.text} onChange={this.handleValueChange}/>
   </TableCell> 
    </TableRow>
    <TableRow>
    <TableCell>
-   <button type="submit" onClick={this.handleFormSubmit}>등록</button>
+   <Button color={"warning"} type="submit" onClick={this.handleFormSubmit}>등록</Button>
    </TableCell>
    </TableRow>
-
-
      {this.state.person.length>0?
        filteredComponents(this.state.person) : 
-       <TableRow>       
+       <TableRow>
          <TableCell colSpan="6" align="center">
            등록된 댓글이 없습니다.
            </TableCell>
