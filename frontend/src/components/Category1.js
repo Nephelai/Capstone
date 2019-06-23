@@ -211,7 +211,7 @@ class Category extends React.Component {
             key={number}
             id={number}
             onClick={this.handleClick}
-            style={{display:'inline-block',float:"left",textAlign:"center"}}
+            style={{display:'inline-block',float:"left",textAlign:"center",border:"1px solid black",backgroundColor:'white'}}
           >
             {number}
           </button> 
@@ -309,7 +309,7 @@ class Category extends React.Component {
 
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <select style={{position:"relative",marginLeft:1000,marginTop:10,width:150,marginBottom:10}}
+        <select style={{position:"relative",marginLeft:'70%',marginTop:10,width:150,marginBottom:10}}
         onChange={this.handleChange}>
             <option selected value="1">좌석 순</option>
             <option value="2">평점 순</option>

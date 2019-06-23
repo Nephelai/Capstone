@@ -17,7 +17,7 @@ class Customer extends React.Component{
             state:{
                 name:this.props.name,
             }
-        }} style={{fontSize:15,textAlign:"center"}}>{this.props.name}</TableCell>
+        }} style={{fontSize:15,textAlign:"center",textDecoration:'none'}}>{this.props.name}</TableCell>
             <TableCell style={{fontSize:15,textAlign:"center"}}>{this.props.currentTable}</TableCell>
             <TableCell style={{fontSize:15,textAlign:"center"}}>{this.props.remainTime}</TableCell>
             <TableCell style={{fontSize:15,textAlign:"center"}}> <div style={{fontSize: 15}}>
