@@ -23,7 +23,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import StarRatingComponent from './StarRatingComponent'
-import './style.css';
+import ss from './style.css';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
 
@@ -82,7 +84,7 @@ const styles = theme => ({
 table:{
     paddingTop:0,
     width:"100%",
-
+    marginBottom:'20'
   },
 
 appBar: {
@@ -97,7 +99,7 @@ drawer: {
 },
 drawerPaper: {
   width: drawerWidth,
- 
+  marginBottom:'20'
 },
 content: {
   flexGrow: 1,
@@ -204,12 +206,12 @@ class Category extends React.Component {
       }
       const renderPageNumbers = pageNumbers.map(number => {
         return (
-          <div style={ {marginLeft:'50%'}}>
+          <div style={ {marginTop:10,marginLeft:'45%',marginBottom:'20'}}>
           <button
             key={number}
             id={number}
             onClick={this.handleClick}
-            style={{float:"left",textAlign:"center"}}
+            style={{display:'inline-block',float:"left",textAlign:"center"}}
           >
             {number}
           </button> 
@@ -288,7 +290,6 @@ class Category extends React.Component {
         variant="permanent"
         classes={{
           paper: classes.drawerPaper,
-          display:'flex'
         }}
       >
         <div className={classes.toolbar} />
@@ -317,13 +318,13 @@ class Category extends React.Component {
         <Table className={classes.table}>
           <TableHead>
           <TableRow >
-            <TableCell style={{fontSize:20}}>순위</TableCell>
-            <TableCell style={{fontSize:20}}>가게 이름</TableCell>
-            <TableCell style={{fontSize:20}}>이용가능 테이블 수</TableCell>
-            <TableCell style={{fontSize:20}}>대기 시간</TableCell>
-            <TableCell style={{fontSize:20}}>평점</TableCell>
-            <TableCell style={{fontSize:20}}>위치 정보</TableCell>
-            <TableCell style={{fontSize:20}}>예약하기</TableCell>
+            <TableCell style={{fontSize:20,textAlign:"center"}}>순위</TableCell>
+            <TableCell style={{fontSize:20,textAlign:"center"}}>가게 이름</TableCell>
+            <TableCell style={{fontSize:20,textAlign:"center"}}>이용가능 테이블 수</TableCell>
+            <TableCell style={{fontSize:20,textAlign:"center"}}>대기 시간</TableCell>
+            <TableCell style={{fontSize:20,textAlign:"center"}}>평점</TableCell>
+            <TableCell style={{fontSize:20,textAlign:"center"}}>위치 정보</TableCell>
+            <TableCell style={{fontSize:20,textAlign:"center"}}>예약하기</TableCell>
            </TableRow>
           </TableHead>
           <TableBody>
@@ -343,9 +344,11 @@ class Category extends React.Component {
        </TableBody>
         </Table>
       </Paper>
-      <ul id="page-numbers" >
+      <div>
+      <ul id="page-numbers">
             {renderPageNumbers}
       </ul>
+      </div>
         </main>
       </div>
     );

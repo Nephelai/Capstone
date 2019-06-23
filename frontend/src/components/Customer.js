@@ -11,16 +11,16 @@ class Customer extends React.Component{
         return(
           
             <TableRow>
-            <TableCell>{this.props.rank}</TableCell>
+            <TableCell style={{fontSize:15,textAlign:"center"}}>{this.props.rank}</TableCell>
             <TableCell component={Link} to={{
             pathname:`/comments/${this.props.id}`,
             state:{
                 name:this.props.name,
             }
-        }}>{this.props.name}</TableCell>
-            <TableCell>{this.props.currentTable}</TableCell>
-            <TableCell>{this.props.remainTime}</TableCell>
-            <TableCell> <div style={{fontSize: 15}}>
+        }} style={{fontSize:15,textAlign:"center"}}>{this.props.name}</TableCell>
+            <TableCell style={{fontSize:15,textAlign:"center"}}>{this.props.currentTable}</TableCell>
+            <TableCell style={{fontSize:15,textAlign:"center"}}>{this.props.remainTime}</TableCell>
+            <TableCell style={{fontSize:15,textAlign:"center"}}> <div style={{fontSize: 15}}>
           <StarRatingComponent
             name="app6"
             starColor="#ffb400"
@@ -44,8 +44,8 @@ class Customer extends React.Component{
             }}
            />
         </div>{this.props.grade}</TableCell> 
-            <TableCell><Modal name={this.props.name} lat={this.props.lat} lng={this.props.lng} stateRefresh={this.props.stateRefresh}/></TableCell>
-            <TableCell><Book id={this.props.id} name={this.props.name} stateRefresh={this.props.stateRefresh}/></TableCell> 
+            <TableCell style={{textAlign:"center"}}><Modal name={this.props.name} lat={this.props.lat} lng={this.props.lng} stateRefresh={this.props.stateRefresh}/></TableCell>
+            <TableCell style={{textAlign:"center"}}><Book id={this.props.id} name={this.props.name} stateRefresh={this.props.stateRefresh}/></TableCell> 
             </TableRow>
         )
     }
