@@ -173,7 +173,7 @@ class Comments extends React.Component{
         id:'',
         text:'',
         password:'',
-        rating_half_star:''  
+        rating_half_star:'3.5'  
       });
     this.callApi()
     .then(res => this.setState({person: res}))
