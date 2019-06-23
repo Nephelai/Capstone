@@ -77,10 +77,11 @@ class CustomizedDialogDemo extends React.Component {
     this.state = {
     open: false,
     bounds: undefined,
-    markers: [{id: 1, lat: this.props.lat, lng: this.props.lng}],   
+  
   };
 
 }
+  
   handleClickOpen = () => {
     this.setState({
       open: true,
@@ -89,8 +90,11 @@ class CustomizedDialogDemo extends React.Component {
 
   handleClose = (e) => {
     e.stopPropagation();
-   
-    this.setState({ open: false });
+    this.setState({ open: false,
+      markers:''
+    });
+    
+
   };
   handleMapClick = e => {
     const lat = e.latlng.lat()
@@ -98,16 +102,11 @@ class CustomizedDialogDemo extends React.Component {
     this.setState(state => ({markers: [{id: +new Date(), lat, lng}]}))
   }
 
-  handleMarkerClick = (id, e) => {
-    this.setState(state => ({markers: state.markers.filter(m => m.id !== id)}))
-  }
-
 
   handleMapInit = (map, naver) => {}
   
   render() {
-    const {markers} = this.state
-    const firstMarker = markers[0]
+    var markers = {id: 1, lat: this.props.lat, lng: this.props.lng}
 
     return (
       <div backdrop="static">
@@ -133,7 +132,7 @@ class CustomizedDialogDemo extends React.Component {
           ncp
           clientId="od2tgm7ydu"
           style={{width: '500px', height: '500px'}}
-          initialPosition={firstMarker}
+          initialPosition={markers}
           initialZoom={15}
           zoomControl={1}
           onMapClick={this.handleMapClick}>

@@ -22,6 +22,7 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import StarRatingComponent from './StarRatingComponent'
 
 const drawerWidth = 240;
 
@@ -129,7 +130,8 @@ class Category extends React.Component {
     searchKeyword: '',
     currentPage: 1,//현재 페이지
     todosPerPage: 10,//한 페이지에 보여줄 페이지 목록
-    value: 1  
+    value: 1 ,
+    rating_half_star: ''
   }
 
   this.stateRefresh = this.stateRefresh.bind(this);
@@ -236,12 +238,11 @@ class Category extends React.Component {
       {
           arr[data[i-1].id]=i
       }
-            
+          
       data = data.filter((c) => {
         return c.name.indexOf(this.state.searchKeyword) > -1;
       });
-      const currentTodos = data.slice(indexOfFirstTodo, indexOfLastTodo);//[0,10)까지 배열 잘름
-      
+      const currentTodos = data.slice(indexOfFirstTodo, indexOfLastTodo)//[0,10)까지 배열 잘름
       return currentTodos.map((c,i)=>{
         return <Customer 
         stateRefresh={this.stateRefresh}
