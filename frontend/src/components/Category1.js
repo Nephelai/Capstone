@@ -241,7 +241,7 @@ class Category extends React.Component {
         return c.name.indexOf(this.state.searchKeyword) > -1;
       });
       const currentTodos = data.slice(indexOfFirstTodo, indexOfLastTodo);//[0,10)까지 배열 잘름
-  
+      
       return currentTodos.map((c,i)=>{
         return <Customer 
         stateRefresh={this.stateRefresh}
@@ -252,7 +252,7 @@ class Category extends React.Component {
         currentTable={c.totalTable-c.currentTable}
         totalTable={c.totalTable}
         remainTime={c.remainTime}
-        grade={c.grade}
+        grade={c.grade.toFixed(2)}
         lat={c.lat}
         lng={c.lng}
         />

@@ -270,9 +270,9 @@ class Comments extends React.Component{
       
       return currentTodos.map((c,i)=>{
         return <Disqus
-        id={c.user_id}
-        grade={c.grade}
         comment={c.comment}
+        grade={c.grade}
+        id={c.user_id}
         timestamp={c.time}
         />})
     }
