@@ -23,26 +23,17 @@ import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import StarRatingComponent from './StarRatingComponent'
+import './style.css';
 
 const drawerWidth = 240;
 
-const customStyles = {
-  ul: {
-      backgroundColor: 'white',
-      marginLeft: '50%'
-  },
- 
-  a: {
-      color: 'blue',
-      border: '1px solid black',
-  
-  }
-};
+
 const styles = theme => ({
   root: {
     width:'100%',
-    minwidth:1080
-
+  // minwidth:1080,
+  display:'flex'
+    
   },
   progress: {
     margin: theme.spacing.unit * 2,
@@ -90,9 +81,9 @@ const styles = theme => ({
   },
 table:{
     paddingTop:0,
-    marginLeft:240,
-    width:"83%"
-},
+    width:"100%",
+
+  },
 
 appBar: {
   zIndex: theme.zIndex.drawer + 1,
@@ -102,10 +93,11 @@ appBar: {
 drawer: {
   width: drawerWidth,
   flexShrink: 0,
-  
+ 
 },
 drawerPaper: {
   width: drawerWidth,
+ 
 },
 content: {
   flexGrow: 1,
@@ -296,6 +288,7 @@ class Category extends React.Component {
         variant="permanent"
         classes={{
           paper: classes.drawerPaper,
+          display:'flex'
         }}
       >
         <div className={classes.toolbar} />
@@ -315,12 +308,12 @@ class Category extends React.Component {
 
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <select style={{position:"relative",marginLeft:1200,marginTop:10,width:150,marginBottom:10}}
+        <select style={{position:"relative",marginLeft:1000,marginTop:10,width:150,marginBottom:10}}
         onChange={this.handleChange}>
             <option selected value="1">좌석 순</option>
             <option value="2">평점 순</option>
         </select>
-        <Paper position="relative">
+        <Paper position="relative" >
         <Table className={classes.table}>
           <TableHead>
           <TableRow >
