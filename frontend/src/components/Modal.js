@@ -119,10 +119,10 @@ class CustomizedDialogDemo extends React.Component {
           open={this.state.open}
         >
           <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-            위치 정보
+          {this.props.name}
           </DialogTitle>
           <DialogContent>
-         <h1>{this.props.name}</h1>
+         
           
           <h2>가게위치</h2>
          
