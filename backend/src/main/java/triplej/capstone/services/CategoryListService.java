@@ -228,7 +228,7 @@ public class CategoryListService {
                             .lat(String.valueOf(tmpBoonsik.get(i).getLat()))
                             .lng(String.valueOf(tmpBoonsik.get(i).getLng()))
                             .phoneNumber(tmpBoonsik.get(i).getPhoneNumber())
-                            .grade(grade)
+                            .grade(ans)
                             .cutLine(tmpBoonsik.get(i).getCutLine())
                             .build();
                     if(tmp.getCurrentTable().equals(tmp.getTotalTable())) {
