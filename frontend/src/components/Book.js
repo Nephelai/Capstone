@@ -111,7 +111,7 @@ class CustomizedDialogDemo extends React.Component {
     }
     
     handlechange=()=>{
-    const url='	http://15.164.189.88:8080/email'
+    const url='/api/email'
     const formData = new FormData();
     formData.append('id', this.props.id)
     formData.append('name', this.state.userName)

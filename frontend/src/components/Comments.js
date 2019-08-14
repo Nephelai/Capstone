@@ -160,7 +160,7 @@ class Comments extends React.Component{
     }
     callApi=async()=>{
       console.log(this.props.match.params.storeId)
-      const url=`http://15.164.189.88:8080/comments/${this.props.match.params.storeId}`
+      const url=`/api/comments/${this.props.match.params.storeId}`
       const response =await fetch(url);
       const body =await response.json();
       console.log(body);
@@ -198,7 +198,7 @@ class Comments extends React.Component{
     this.setState(nextState);
     }
     addComments=()=>{
-    const url = `http://15.164.189.88:8080/comments/${this.props.match.params.storeId}`;
+    const url = `/api/comments/${this.props.match.params.storeId}`;
     const formData = new FormData();
     formData.append('user_id', this.state.id)
     formData.append('user_pw', this.state.password)

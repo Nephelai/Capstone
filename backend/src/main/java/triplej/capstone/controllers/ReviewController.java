@@ -19,14 +19,14 @@ public class ReviewController {
     ReviewListService reviewListService;
 
     // add review
-    @PostMapping("/comments/{restaurant_id}")
+    @PostMapping("/api/comments/{restaurant_id}")
     public Reviews addReview(@PathVariable("restaurant_id") long id, @RequestBody Map<String, Object> m){
         // System.out.println(m.get("user_id"));
         return reviewListService.add(id, m);
     }
 
     // show review list
-    @GetMapping("/comments/{restaurant_id}")
+    @GetMapping("/api/comments/{restaurant_id}")
     public List<ReviewResDto> showReviewList(@PathVariable("restaurant_id") long id) {
         return reviewListService.show(id);
     }
