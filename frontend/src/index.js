@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Main from './Main';
 import Root from './Root';
 import * as serviceWorker from './serviceWorker';
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import '../node_modules/font-awesome/css/font-awesome.min.css'
 import 'bootstrap/dist/css/bootstrap.css'
+//모듈부분
 
 const theme = createMuiTheme({
     typography:{

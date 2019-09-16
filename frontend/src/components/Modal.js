@@ -10,6 +10,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import NaverMap,{Marker} from 'react-naver-map'
 import markerPng from './marker_v2.png'
+//모듈부분
 
 const CustomMarker = ({lat, lng, onClick}) => (
   <Marker

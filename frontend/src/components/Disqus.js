@@ -1,11 +1,8 @@
 import React from "react";
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
-import Modal from './Modal'
-import Book from './Book'
-import {Link} from 'react-router-dom'
 import StarRatingComponent from './StarRatingComponent'
-
+//모듈부분
 
 class Customer extends React.Component{
     render(){
