@@ -10,12 +10,10 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import {post} from 'axios'
-import NumericInput from 'react-numeric-input';
 import Table from '@material-ui/core/Table';
-import TableHead from '@material-ui/core/TableHead';
-import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
+//모듈부분
 
 const DialogTitle = withStyles(theme => ({
   root: {
@@ -111,7 +109,7 @@ class CustomizedDialogDemo extends React.Component {
     }
     
     handlechange=()=>{
-    const url='	http://15.164.189.88:8080/email'
+    const url='/api/email'
     const formData = new FormData();
     formData.append('id', this.props.id)
     formData.append('name', this.state.userName)
