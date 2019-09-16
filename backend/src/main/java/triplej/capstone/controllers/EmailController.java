@@ -22,7 +22,7 @@ public class EmailController {
     @Autowired
     EmailService emailService;
   
-    @PostMapping("/email")
+    @PostMapping("/api/email")
     public String emailSend(@RequestBody Map<String, Object> params) {
         emailService.setJavaMailSender(javaMailSender);
         emailService.constructMessage(params.get("id").toString(), params.get("name").toString(), params.get("number").toString(), params.get("phone").toString());

@@ -10,37 +10,21 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Paper from '@material-ui/core/Paper';
-import Customer from './Customer'
 import Table from '@material-ui/core/Table';
-import TableHead from '@material-ui/core/TableHead';
-import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import {Link,NavLink} from 'react-router-dom';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import {post} from 'axios'
 import Disqus from './Disqus'
 import StarRatingComponent from './StarRatingComponent'
 import { Alert, Button } from 'reactstrap';
+//모듈부분
 
 const drawerWidth = 240;
 
-const customStyles = {
-  ul: {
-      backgroundColor: 'white',
-      marginLeft: '50%'
-  },
- 
-  a: {
-      color: 'blue',
-      border: '1px solid black',
-  
-  }
-};
 const styles = theme => ({
   root: {
     width:'100%',
@@ -160,7 +144,7 @@ class Comments extends React.Component{
     }
     callApi=async()=>{
       console.log(this.props.match.params.storeId)
-      const url=`http://15.164.189.88:8080/comments/${this.props.match.params.storeId}`
+      const url=`/api/comments/${this.props.match.params.storeId}`
       const response =await fetch(url);
       const body =await response.json();
       console.log(body);
@@ -198,7 +182,7 @@ class Comments extends React.Component{
     this.setState(nextState);
     }
     addComments=()=>{
-    const url = `http://15.164.189.88:8080/comments/${this.props.match.params.storeId}`;
+    const url = `/api/comments/${this.props.match.params.storeId}`;
     const formData = new FormData();
     formData.append('user_id', this.state.id)
     formData.append('user_pw', this.state.password)
