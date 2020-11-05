@@ -132,20 +132,33 @@ class Category extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.lastId !== prevProps.match.params.categoriesId) {
+    if (this.props.match.params.categoriesId !== prevProps.match.params.categoriesId) {
       this.stateRefresh();  
     }
   }
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (prevState.lastId !== nextProps.match.params.categoriesId) {
-      console.log(nextProps.match.params.categoriesId);
-      return { lastId:  nextProps.match.params.categoriesId};
-    }
-    return null;
+  shouldComponentUpdate(nextProps,nextState)
+  {
+      if(this.props.match.params.categoriesId === nextProps.match.params.categoriesId)
+      {
+          return false
+      }
+      else
+      {
+        console.log(this.props.match.params.categoriesId)
+          console.log(nextProps.match.params.categoriesId);
+        return true
+      }
   }
+  // static getDerivedStateFromProps(nextProps, prevState) {
+  //   if (prevState.lastId !== nextProps.match.params.categoriesId) {
+  //     console.log(nextProps.match.params.categoriesId);
+  //     return { lastId:  nextProps.match.params.categoriesId};
+  //   }
+  //   return null;
+  // }
 
   callApi = async() => {
-    console.log(this.props.match.params.categoriesId);
+    //console.log(this.props.match.params.categoriesId);
     const url=`/api/categories/${this.props.match.params.categoriesId}`;
     const response =await fetch(url);
     const body =await response.json();
@@ -190,7 +203,6 @@ class Category extends React.Component {
     const { todos, currentPage, todosPerPage } = this.state;
     const indexOfLastTodo = currentPage * todosPerPage;//ex) 1*10
     const indexOfFirstTodo = indexOfLastTodo - todosPerPage;//ex)10-10
-      
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(this.state.customers.length / todosPerPage); i++) {
       pageNumbers.push(i);
@@ -283,7 +295,7 @@ class Category extends React.Component {
         <List>
           {['한식', '중식', '일식', '양식','분식','전체'].map((text, index) => (
     
-            <ListItem component={NavLink} to={"/categories/"+index} activeStyle={activeStyle} Button key={text}
+            <ListItem component={NavLink} to={`/categories/`+index} activeStyle={activeStyle} Button key={text}
              onClick={()=>{ this.setState( {currentPage: 1})}}>
               <ListItemText primary={text} style={{textAlign: 'center'}}/>
             </ListItem>
@@ -308,6 +320,7 @@ class Category extends React.Component {
             <TableCell style={{fontSize:20,textAlign:"center"}}>순위</TableCell>
             <TableCell style={{fontSize:20,textAlign:"center"}}>가게 이름</TableCell>
             <TableCell style={{fontSize:20,textAlign:"center"}}>이용가능 테이블 수</TableCell>
+            <TableCell style={{fontSize:20,textAlign:"center"}}>전체 테이블 수</TableCell>
             <TableCell style={{fontSize:20,textAlign:"center"}}>대기 시간</TableCell>
             <TableCell style={{fontSize:20,textAlign:"center"}}>평점</TableCell>
             <TableCell style={{fontSize:20,textAlign:"center"}}>위치 정보</TableCell>

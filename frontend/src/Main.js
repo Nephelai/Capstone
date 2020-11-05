@@ -283,7 +283,7 @@ class PersistentDrawerLeft extends React.Component {
         >
           <div className={classes.drawerHeader} />
           {images.map((image,index) => (
-        <ButtonBase component={Link} to={"/categories/"+index}
+        <ButtonBase component={Link} to={'/categories/'+index}
           focusRipple
           key={image.title}
           className={classes.image}
